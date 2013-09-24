@@ -1,0 +1,333 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66D9C3B717D6691B00960535 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B617D6691B00960535 /* UIKit.framework */; };
+		66D9C3B917D6691B00960535 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B817D6691B00960535 /* Foundation.framework */; };
+		66D9C3BB17D6691B00960535 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3BA17D6691B00960535 /* CoreGraphics.framework */; };
+		66D9C3BD17D6691B00960535 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3BC17D6691B00960535 /* GLKit.framework */; };
+		66D9C3BF17D6691B00960535 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3BE17D6691B00960535 /* OpenGLES.framework */; };
+		66D9C3C517D6691B00960535 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3C317D6691B00960535 /* InfoPlist.strings */; };
+		66D9C3C717D6691B00960535 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3C617D6691B00960535 /* main.m */; };
+		66D9C3CB17D6691B00960535 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3CA17D6691B00960535 /* AppDelegate.m */; };
+		66D9C3CD17D6691B00960535 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3CC17D6691B00960535 /* Default.png */; };
+		66D9C3CF17D6691B00960535 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3CE17D6691B00960535 /* Default@2x.png */; };
+		66D9C3D117D6691B00960535 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D017D6691B00960535 /* Default-568h@2x.png */; };
+		66D9C3D417D6691B00960535 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D217D6691B00960535 /* MainStoryboard.storyboard */; };
+		66D9C3D617D6691B00960535 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D517D6691B00960535 /* Shader.fsh */; };
+		66D9C3D817D6691B00960535 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D717D6691B00960535 /* Shader.vsh */; };
+		66D9C3DB17D6691B00960535 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3DA17D6691B00960535 /* ViewController.m */; };
+		66D9C3E417D669A200960535 /* GLK2DrawCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3E317D669A200960535 /* GLK2DrawCall.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		66D9C3B317D6691B00960535 /* GLK2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLK2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D9C3B617D6691B00960535 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		66D9C3B817D6691B00960535 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		66D9C3BA17D6691B00960535 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		66D9C3BC17D6691B00960535 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		66D9C3BE17D6691B00960535 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		66D9C3C217D6691B00960535 /* GLK2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GLK2-Info.plist"; sourceTree = "<group>"; };
+		66D9C3C417D6691B00960535 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		66D9C3C617D6691B00960535 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		66D9C3C817D6691B00960535 /* GLK2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLK2-Prefix.pch"; sourceTree = "<group>"; };
+		66D9C3C917D6691B00960535 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		66D9C3CA17D6691B00960535 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		66D9C3CC17D6691B00960535 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		66D9C3CE17D6691B00960535 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		66D9C3D017D6691B00960535 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		66D9C3D317D6691B00960535 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		66D9C3D517D6691B00960535 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		66D9C3D717D6691B00960535 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		66D9C3D917D6691B00960535 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		66D9C3DA17D6691B00960535 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		66D9C3E217D669A200960535 /* GLK2DrawCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCall.h; sourceTree = "<group>"; };
+		66D9C3E317D669A200960535 /* GLK2DrawCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2DrawCall.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66D9C3B017D6691B00960535 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D9C3B717D6691B00960535 /* UIKit.framework in Frameworks */,
+				66D9C3B917D6691B00960535 /* Foundation.framework in Frameworks */,
+				66D9C3BB17D6691B00960535 /* CoreGraphics.framework in Frameworks */,
+				66D9C3BD17D6691B00960535 /* GLKit.framework in Frameworks */,
+				66D9C3BF17D6691B00960535 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66D9C3AA17D6691B00960535 = {
+			isa = PBXGroup;
+			children = (
+				66D9C3C017D6691B00960535 /* GLK2 */,
+				66D9C3B517D6691B00960535 /* Frameworks */,
+				66D9C3B417D6691B00960535 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		66D9C3B417D6691B00960535 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66D9C3B317D6691B00960535 /* GLK2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66D9C3B517D6691B00960535 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66D9C3B617D6691B00960535 /* UIKit.framework */,
+				66D9C3B817D6691B00960535 /* Foundation.framework */,
+				66D9C3BA17D6691B00960535 /* CoreGraphics.framework */,
+				66D9C3BC17D6691B00960535 /* GLKit.framework */,
+				66D9C3BE17D6691B00960535 /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66D9C3C017D6691B00960535 /* GLK2 */ = {
+			isa = PBXGroup;
+			children = (
+				66D9C3E117D669A200960535 /* GLK2 */,
+				66D9C3C917D6691B00960535 /* AppDelegate.h */,
+				66D9C3CA17D6691B00960535 /* AppDelegate.m */,
+				66D9C3D217D6691B00960535 /* MainStoryboard.storyboard */,
+				66D9C3D517D6691B00960535 /* Shader.fsh */,
+				66D9C3D717D6691B00960535 /* Shader.vsh */,
+				66D9C3D917D6691B00960535 /* ViewController.h */,
+				66D9C3DA17D6691B00960535 /* ViewController.m */,
+				66D9C3C117D6691B00960535 /* Supporting Files */,
+			);
+			path = GLK2;
+			sourceTree = "<group>";
+		};
+		66D9C3C117D6691B00960535 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				66D9C3C217D6691B00960535 /* GLK2-Info.plist */,
+				66D9C3C317D6691B00960535 /* InfoPlist.strings */,
+				66D9C3C617D6691B00960535 /* main.m */,
+				66D9C3C817D6691B00960535 /* GLK2-Prefix.pch */,
+				66D9C3CC17D6691B00960535 /* Default.png */,
+				66D9C3CE17D6691B00960535 /* Default@2x.png */,
+				66D9C3D017D6691B00960535 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		66D9C3E117D669A200960535 /* GLK2 */ = {
+			isa = PBXGroup;
+			children = (
+				66D9C3E217D669A200960535 /* GLK2DrawCall.h */,
+				66D9C3E317D669A200960535 /* GLK2DrawCall.m */,
+			);
+			path = GLK2;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		66D9C3B217D6691B00960535 /* GLK2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66D9C3DE17D6691B00960535 /* Build configuration list for PBXNativeTarget "GLK2" */;
+			buildPhases = (
+				66D9C3AF17D6691B00960535 /* Sources */,
+				66D9C3B017D6691B00960535 /* Frameworks */,
+				66D9C3B117D6691B00960535 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GLK2;
+			productName = GLK2;
+			productReference = 66D9C3B317D6691B00960535 /* GLK2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66D9C3AB17D6691B00960535 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
+			buildConfigurationList = 66D9C3AE17D6691B00960535 /* Build configuration list for PBXProject "GLK2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 66D9C3AA17D6691B00960535;
+			productRefGroup = 66D9C3B417D6691B00960535 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66D9C3B217D6691B00960535 /* GLK2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66D9C3B117D6691B00960535 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D9C3C517D6691B00960535 /* InfoPlist.strings in Resources */,
+				66D9C3CD17D6691B00960535 /* Default.png in Resources */,
+				66D9C3CF17D6691B00960535 /* Default@2x.png in Resources */,
+				66D9C3D117D6691B00960535 /* Default-568h@2x.png in Resources */,
+				66D9C3D417D6691B00960535 /* MainStoryboard.storyboard in Resources */,
+				66D9C3D617D6691B00960535 /* Shader.fsh in Resources */,
+				66D9C3D817D6691B00960535 /* Shader.vsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66D9C3AF17D6691B00960535 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D9C3C717D6691B00960535 /* main.m in Sources */,
+				66D9C3CB17D6691B00960535 /* AppDelegate.m in Sources */,
+				66D9C3DB17D6691B00960535 /* ViewController.m in Sources */,
+				66D9C3E417D669A200960535 /* GLK2DrawCall.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		66D9C3C317D6691B00960535 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66D9C3C417D6691B00960535 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		66D9C3D217D6691B00960535 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66D9C3D317D6691B00960535 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		66D9C3DC17D6691B00960535 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		66D9C3DD17D6691B00960535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66D9C3DF17D6691B00960535 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GLK2/GLK2-Prefix.pch";
+				INFOPLIST_FILE = "GLK2/GLK2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		66D9C3E017D6691B00960535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GLK2/GLK2-Prefix.pch";
+				INFOPLIST_FILE = "GLK2/GLK2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66D9C3AE17D6691B00960535 /* Build configuration list for PBXProject "GLK2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D9C3DC17D6691B00960535 /* Debug */,
+				66D9C3DD17D6691B00960535 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66D9C3DE17D6691B00960535 /* Build configuration list for PBXNativeTarget "GLK2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D9C3DF17D6691B00960535 /* Debug */,
+				66D9C3E017D6691B00960535 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66D9C3AB17D6691B00960535 /* Project object */;
+}
