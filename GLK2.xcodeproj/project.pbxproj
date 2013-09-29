@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		662DA6F817F85CF400EC8FF6 /* GLK2Attribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 662DA6F717F85CF400EC8FF6 /* GLK2Attribute.m */; };
+		662DA6FB17F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 662DA6F917F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard */; };
+		662DA6FD17F881F400EC8FF6 /* VertexPositionUnprojected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 662DA6FC17F881F400EC8FF6 /* VertexPositionUnprojected.vsh */; };
+		662DA6FF17F8826600EC8FF6 /* FragmentColourOnly.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 662DA6FE17F8826500EC8FF6 /* FragmentColourOnly.fsh */; };
+		6688242E17F46B3E00E19A08 /* GLK2Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242B17F46B3E00E19A08 /* GLK2Shader.m */; };
+		6688242F17F46B3E00E19A08 /* GLK2ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */; };
 		66D9C3B717D6691B00960535 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B617D6691B00960535 /* UIKit.framework */; };
 		66D9C3B917D6691B00960535 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B817D6691B00960535 /* Foundation.framework */; };
 		66D9C3BB17D6691B00960535 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3BA17D6691B00960535 /* CoreGraphics.framework */; };
@@ -19,13 +25,20 @@
 		66D9C3CF17D6691B00960535 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3CE17D6691B00960535 /* Default@2x.png */; };
 		66D9C3D117D6691B00960535 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D017D6691B00960535 /* Default-568h@2x.png */; };
 		66D9C3D417D6691B00960535 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D217D6691B00960535 /* MainStoryboard.storyboard */; };
-		66D9C3D617D6691B00960535 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D517D6691B00960535 /* Shader.fsh */; };
-		66D9C3D817D6691B00960535 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 66D9C3D717D6691B00960535 /* Shader.vsh */; };
 		66D9C3DB17D6691B00960535 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3DA17D6691B00960535 /* ViewController.m */; };
 		66D9C3E417D669A200960535 /* GLK2DrawCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3E317D669A200960535 /* GLK2DrawCall.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		662DA6F617F85CF400EC8FF6 /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
+		662DA6F717F85CF400EC8FF6 /* GLK2Attribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Attribute.m; sourceTree = "<group>"; };
+		662DA6FA17F8809C00EC8FF6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "en.lproj/MainStoryboard-iPad.storyboard"; sourceTree = "<group>"; };
+		662DA6FC17F881F400EC8FF6 /* VertexPositionUnprojected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexPositionUnprojected.vsh; sourceTree = "<group>"; };
+		662DA6FE17F8826500EC8FF6 /* FragmentColourOnly.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentColourOnly.fsh; sourceTree = "<group>"; };
+		6688242A17F46B3E00E19A08 /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
+		6688242B17F46B3E00E19A08 /* GLK2Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Shader.m; sourceTree = "<group>"; };
+		6688242C17F46B3E00E19A08 /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
+		6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2ShaderProgram.m; sourceTree = "<group>"; };
 		66D9C3B317D6691B00960535 /* GLK2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLK2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D9C3B617D6691B00960535 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66D9C3B817D6691B00960535 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,8 +55,6 @@
 		66D9C3CE17D6691B00960535 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		66D9C3D017D6691B00960535 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		66D9C3D317D6691B00960535 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		66D9C3D517D6691B00960535 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		66D9C3D717D6691B00960535 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		66D9C3D917D6691B00960535 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		66D9C3DA17D6691B00960535 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		66D9C3E217D669A200960535 /* GLK2DrawCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCall.h; sourceTree = "<group>"; };
@@ -102,8 +113,9 @@
 				66D9C3C917D6691B00960535 /* AppDelegate.h */,
 				66D9C3CA17D6691B00960535 /* AppDelegate.m */,
 				66D9C3D217D6691B00960535 /* MainStoryboard.storyboard */,
-				66D9C3D517D6691B00960535 /* Shader.fsh */,
-				66D9C3D717D6691B00960535 /* Shader.vsh */,
+				662DA6F917F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard */,
+				662DA6FE17F8826500EC8FF6 /* FragmentColourOnly.fsh */,
+				662DA6FC17F881F400EC8FF6 /* VertexPositionUnprojected.vsh */,
 				66D9C3D917D6691B00960535 /* ViewController.h */,
 				66D9C3DA17D6691B00960535 /* ViewController.m */,
 				66D9C3C117D6691B00960535 /* Supporting Files */,
@@ -130,6 +142,12 @@
 			children = (
 				66D9C3E217D669A200960535 /* GLK2DrawCall.h */,
 				66D9C3E317D669A200960535 /* GLK2DrawCall.m */,
+				6688242A17F46B3E00E19A08 /* GLK2Shader.h */,
+				6688242B17F46B3E00E19A08 /* GLK2Shader.m */,
+				6688242C17F46B3E00E19A08 /* GLK2ShaderProgram.h */,
+				6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */,
+				662DA6F617F85CF400EC8FF6 /* GLK2Attribute.h */,
+				662DA6F717F85CF400EC8FF6 /* GLK2Attribute.m */,
 			);
 			path = GLK2;
 			sourceTree = "<group>";
@@ -185,12 +203,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D9C3C517D6691B00960535 /* InfoPlist.strings in Resources */,
+				662DA6FD17F881F400EC8FF6 /* VertexPositionUnprojected.vsh in Resources */,
+				662DA6FF17F8826600EC8FF6 /* FragmentColourOnly.fsh in Resources */,
 				66D9C3CD17D6691B00960535 /* Default.png in Resources */,
 				66D9C3CF17D6691B00960535 /* Default@2x.png in Resources */,
 				66D9C3D117D6691B00960535 /* Default-568h@2x.png in Resources */,
 				66D9C3D417D6691B00960535 /* MainStoryboard.storyboard in Resources */,
-				66D9C3D617D6691B00960535 /* Shader.fsh in Resources */,
-				66D9C3D817D6691B00960535 /* Shader.vsh in Resources */,
+				662DA6FB17F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,12 +224,23 @@
 				66D9C3CB17D6691B00960535 /* AppDelegate.m in Sources */,
 				66D9C3DB17D6691B00960535 /* ViewController.m in Sources */,
 				66D9C3E417D669A200960535 /* GLK2DrawCall.m in Sources */,
+				6688242E17F46B3E00E19A08 /* GLK2Shader.m in Sources */,
+				6688242F17F46B3E00E19A08 /* GLK2ShaderProgram.m in Sources */,
+				662DA6F817F85CF400EC8FF6 /* GLK2Attribute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		662DA6F917F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				662DA6FA17F8809C00EC8FF6 /* en */,
+			);
+			name = "MainStoryboard-iPad.storyboard";
+			sourceTree = "<group>";
+		};
 		66D9C3C317D6691B00960535 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -290,7 +320,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GLK2/GLK2-Prefix.pch";
 				INFOPLIST_FILE = "GLK2/GLK2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -301,7 +333,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GLK2/GLK2-Prefix.pch";
 				INFOPLIST_FILE = "GLK2/GLK2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
