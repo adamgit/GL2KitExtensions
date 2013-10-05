@@ -63,10 +63,12 @@
 	/**   ... Make some geometry */
 	
 	GLfloat z = -0.5; // must be more than -1 * zNear, and ABS() less than zFar
-	GLKVector3* cpuBuffer = malloc( sizeof(GLKVector3) * 3 );
-	cpuBuffer[0] = GLKVector3Make(-1,-1, z);
-	cpuBuffer[1] = GLKVector3Make( 0, 1, z);
-	cpuBuffer[2] = GLKVector3Make( 1,-1, z);
+	GLKVector3 cpuBuffer[] = 
+	{
+	GLKVector3Make(-1,-1, z),
+	GLKVector3Make( 0, 1, z),
+	GLKVector3Make( 1,-1, z)
+	};
 	
 	/**   ... Configure the VAO (state) + VBO (vertex data) for self */
 	GLuint VAOName, VBOName;
