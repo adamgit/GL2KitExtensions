@@ -40,11 +40,12 @@
 	}
 	
 	
-	[GLK2Shader compileShader:&_glName type:glShaderType file:shaderPathname];
+	self.glName = [GLK2Shader compileShader:glShaderType file:shaderPathname];
 	self.status = GLK2ShaderStatusCompiled;
 }
 
-+ (void)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file
+/** Based on Apple's code, but modified to have a sensible design (removed the excessive use of pointers) */
++ (GLuint) compileShader:(GLenum)type file:(NSString *)file
 {
     GLint status;
     const GLchar *source;
@@ -52,14 +53,16 @@
     source = (GLchar *)[[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil] UTF8String];
     NSAssert( source, @"Failed to load shader from file: %@", file);
 	
-    *shader = glCreateShader(type);
-    glShaderSource(*shader, 1, &source, NULL);
-    glCompileShader(*shader);
+    GLuint shader = glCreateShader(type);
+    glShaderSource(shader, 1, &source, NULL);
+    glCompileShader(shader);
     
-    glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
     if (status == 0) {
-        glDeleteShader(*shader);
+        glDeleteShader(shader);
     }
+	
+	return shader;
 }
 
 @end

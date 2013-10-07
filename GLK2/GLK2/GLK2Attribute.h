@@ -13,7 +13,7 @@
 +(GLK2Attribute*) attributeNamed:(NSString*) nameOfAttribute GLType:(GLenum) openGLType GLLocation:(GLint) openGLLocation;
 
 /** The name of the variable inside the shader source file(s) */
-@property(nonatomic) NSString* nameInSourceFile;
+@property(nonatomic, retain) NSString* nameInSourceFile;
 
 /** The magic key that allows you to "set" this attribute later by uploading a list/array of data to the GPU, e.g. using a VBO */
 @property(nonatomic) GLint glLocation;
