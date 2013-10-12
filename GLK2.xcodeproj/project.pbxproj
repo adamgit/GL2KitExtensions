@@ -31,6 +31,9 @@
 		66D9C3DB17D6691B00960535 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3DA17D6691B00960535 /* ViewController.m */; };
 		66D9C3E417D669A200960535 /* GLK2DrawCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C3E317D669A200960535 /* GLK2DrawCall.m */; };
 		66F07116180957030069DF31 /* GLK2Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F07115180957030069DF31 /* GLK2Texture.m */; };
+		66F071181809793C0069DF31 /* black-with-white-stripe.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F071171809793C0069DF31 /* black-with-white-stripe.png */; };
+		66F0711A18097AE10069DF31 /* VertexUnprojectedWithTexture.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 66F0711918097AE10069DF31 /* VertexUnprojectedWithTexture.vsh */; };
+		66F0711C18097AF70069DF31 /* FragmentTextureOnly.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 66F0711B18097AF70069DF31 /* FragmentTextureOnly.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +74,9 @@
 		66D9C3E317D669A200960535 /* GLK2DrawCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2DrawCall.m; sourceTree = "<group>"; };
 		66F07114180957030069DF31 /* GLK2Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Texture.h; sourceTree = "<group>"; };
 		66F07115180957030069DF31 /* GLK2Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Texture.m; sourceTree = "<group>"; };
+		66F071171809793C0069DF31 /* black-with-white-stripe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-with-white-stripe.png"; sourceTree = "<group>"; };
+		66F0711918097AE10069DF31 /* VertexUnprojectedWithTexture.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexUnprojectedWithTexture.vsh; sourceTree = "<group>"; };
+		66F0711B18097AF70069DF31 /* FragmentTextureOnly.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentTextureOnly.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +133,10 @@
 				66D9C3D217D6691B00960535 /* MainStoryboard.storyboard */,
 				662DA6F917F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard */,
 				662DA6FE17F8826500EC8FF6 /* FragmentColourOnly.fsh */,
+				66F0711B18097AF70069DF31 /* FragmentTextureOnly.fsh */,
 				662DA6FC17F881F400EC8FF6 /* VertexPositionUnprojected.vsh */,
+				66F0711918097AE10069DF31 /* VertexUnprojectedWithTexture.vsh */,
+				66F071171809793C0069DF31 /* black-with-white-stripe.png */,
 				66D9C3D917D6691B00960535 /* ViewController.h */,
 				66D9C3DA17D6691B00960535 /* ViewController.m */,
 				66D9C3C117D6691B00960535 /* Supporting Files */,
@@ -224,7 +233,10 @@
 			files = (
 				66D9C3C517D6691B00960535 /* InfoPlist.strings in Resources */,
 				662DA6FD17F881F400EC8FF6 /* VertexPositionUnprojected.vsh in Resources */,
+				66F0711C18097AF70069DF31 /* FragmentTextureOnly.fsh in Resources */,
+				66F0711A18097AE10069DF31 /* VertexUnprojectedWithTexture.vsh in Resources */,
 				662DA6FF17F8826600EC8FF6 /* FragmentColourOnly.fsh in Resources */,
+				66F071181809793C0069DF31 /* black-with-white-stripe.png in Resources */,
 				66D9C3CD17D6691B00960535 /* Default.png in Resources */,
 				66D9C3CF17D6691B00960535 /* Default@2x.png in Resources */,
 				66D9C3D117D6691B00960535 /* Default-568h@2x.png in Resources */,

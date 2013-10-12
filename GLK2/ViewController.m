@@ -29,6 +29,8 @@
 {
 	[super viewDidLoad];
 	
+	self.preferredFramesPerSecond = 60;
+	
 	/*****************************************************
 	 Creating and "making current" an EAGLContext must be
 	 the very first thing any OpenGL app does!
@@ -85,7 +87,8 @@
 	/**   ... Make some geometry */
 	
 	GLfloat z = -0.5; // must be more than -1 * zNear, and ABS() less than zFar
-	GLKVector3 cpuBuffer[] = 
+	draw1Triangle.numVerticesToDraw = 3;
+	GLKVector3 cpuBuffer[3] = 
 	{
 	GLKVector3Make(-1,-1, z),
 	GLKVector3Make( 0, 1, z),
@@ -100,10 +103,73 @@
 	    the code easier to read if we specify our data in vec3, upload as vec3, and let OpenGL do the final conversion.
 	 */
 	draw1Triangle.VAO = [[GLK2VertexArrayObject new] autorelease];
-	[draw1Triangle.VAO addVBOForAttribute:attribute filledWithData:cpuBuffer bytesPerArrayElement:sizeof(GLKVector3) arrayLength:3];
+	[draw1Triangle.VAO addVBOForAttribute:attribute filledWithData:cpuBuffer bytesPerArrayElement:sizeof(GLKVector3) arrayLength: draw1Triangle.numVerticesToDraw];
 	
 	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
 	[result addObject: draw1Triangle];
+	
+	
+	/** -- Draw Call 3:
+	 
+	 draw a TEXTURED pair of 2 triangles onto the screen, arranged into a square ("quad")
+	 */
+	GLK2DrawCall* drawTexturedQuad = [[GLK2DrawCall new] autorelease];
+	
+	/** load a simple texture, using Apple: */
+	NSError* error;
+	GLKTextureInfo* appleTextureMetadata = [GLKTextureLoader textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"black-with-white-stripe" ofType:@"png"] options:nil error:&error];
+	if( appleTextureMetadata == nil )
+		NSLog(@"error loading texture: %@", error);
+	
+	/** make the texture repeat infinitely if it's smaller than the object it's mapped onto */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	
+	drawTexturedQuad.shaderProgram = [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexUnprojectedWithTexture" fragmentFilename:@"FragmentTextureOnly"];
+	glUseProgram( drawTexturedQuad.shaderProgram.glName );
+	
+	GLK2Attribute* attributePosition = [drawTexturedQuad.shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
+	GLK2Attribute* attributeTexCoord = [drawTexturedQuad.shaderProgram attributeNamed:@"textureCoordinate"]; // will fail if you haven't called glUseProgram yet
+	
+	/**   ... Make some geometry */
+	drawTexturedQuad.numVerticesToDraw = 6;
+	GLKVector3 cpuBufferQuad[6] = 
+	{
+		GLKVector3Make(-0.5,-0.5, z),
+		GLKVector3Make(-0.5, 0.5, z),
+		GLKVector3Make( 0.5, 0.5, z),
+		
+		GLKVector3Make( 0.5, 0.4, z),
+		GLKVector3Make( 0.4,-0.6, z),
+		GLKVector3Make(-0.4,-0.4, z)
+	};
+	
+	/**   ... TEXTURE the geometry */
+	
+	GLKVector2 cpuBufferQuadTextureCoords[6] = 
+	{
+		GLKVector2Make( 0, 0),
+		GLKVector2Make( 0, 1.0),
+		GLKVector2Make( 1.0, 1.0),
+		
+		GLKVector2Make( 1.0, 1.0),
+		GLKVector2Make( 1.0, 0),
+		GLKVector2Make( 0, 0)
+	};
+	
+	/**   ... create a VAO to hold a VBO, and upload the geometry into that new VBO
+	 
+	 NOTE: our "position" attribute is a vec4 in the shader source, but we're sending GLKVector3's (not GLKVector4's).
+	 This is ABSOLUTELY FINE, OpenGL will up-convert for us - but we have to warn OpenGL that the data being uploaded
+	 is vec3 instead of vec4. OpenGL assumes nothing, so if we used vec4's, we'd still have to give this info. It makes
+	 the code easier to read if we specify our data in vec3, upload as vec3, and let OpenGL do the final conversion.
+	 */
+	drawTexturedQuad.VAO = [[GLK2VertexArrayObject new] autorelease];
+	[drawTexturedQuad.VAO addVBOForAttribute:attributePosition filledWithData:cpuBufferQuad bytesPerArrayElement:sizeof(GLKVector3) arrayLength:drawTexturedQuad.numVerticesToDraw];
+	[drawTexturedQuad.VAO addVBOForAttribute:attributeTexCoord filledWithData:cpuBufferQuadTextureCoords bytesPerArrayElement:sizeof(GLKVector2) arrayLength:drawTexturedQuad.numVerticesToDraw];
+	
+	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
+	[result addObject: drawTexturedQuad];
 	
 	return result;
 }
@@ -148,7 +214,16 @@
 	else
 		glBindVertexArrayOES( 0 /** means "none */ );
 	
+	GLK2Uniform* uniformTexOffsetU = [drawCall.shaderProgram uniformNamed:@"textureOffsetU"]; // will fail if you haven't called glUseProgram yet
+	if( uniformTexOffsetU != nil )
+	{
+		int framesOutOfFramesPerSecond = self.framesDisplayed % self.framesPerSecond;
+		
+		float newOffset = (framesOutOfFramesPerSecond / (float) self.framesPerSecond);
+		[drawCall.shaderProgram setValue:&newOffset forUniform:uniformTexOffsetU];
+	}
+	
 	/** Finally: kick-off the draw-call, telling GL how to interpret the data we've given it (triangles, lines, points - or a variation of one of those) */
-	glDrawArrays( GL_TRIANGLES, 0, 3);
+	glDrawArrays( GL_TRIANGLES, 0, drawCall.numVerticesToDraw );
 }
 @end

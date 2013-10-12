@@ -1,3 +1,6 @@
+/**
+ 
+ */
 #import "GLK2Texture.h"
 
 @interface GLK2Texture()

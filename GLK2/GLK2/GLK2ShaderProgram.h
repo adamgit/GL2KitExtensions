@@ -49,6 +49,9 @@ typedef enum GLK2ShaderProgramStatus
 /** the "link" stage automatically finds all "attribute" lines in the shader source, and creates one GLK2Attribute for each */
 -(NSArray*) allAttributes;
 
+-(GLK2Uniform*) uniformNamed:(NSString*) name;
+-(NSArray*) allUniforms;
+
 #pragma mark - Set the value of a Uniform
 
 -(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform;

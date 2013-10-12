@@ -257,7 +257,7 @@
 		case GL_FLOAT_MAT4:
 		{
 			[self setFloatBasedValue:value forUniform:uniform transposeMatrix:FALSE];
-		}
+		}break;
 			
 		case GL_INT:
 		case GL_INT_VEC2:
@@ -265,7 +265,7 @@
 		case GL_INT_VEC4:
 		{
 			[self setIntBasedValue:value forUniform:uniform];
-		}
+		}break;
 		
 		default:
 			NSAssert(FALSE, @"Uniform %@ has an unknown / unsupported type in shader source file", uniform.nameInSourceFile );
@@ -331,7 +331,7 @@
 		case GL_FLOAT_MAT2:
 		{
 			glUniformMatrix2fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );
-		}break;
+		}break; 
 		case GL_FLOAT_MAT3:
 		{
 			glUniformMatrix3fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );
