@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6613C10A1809E34F0075937A /* GLK2GetError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6613C1091809E34F0075937A /* GLK2GetError.m */; };
 		662DA6F817F85CF400EC8FF6 /* GLK2Attribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 662DA6F717F85CF400EC8FF6 /* GLK2Attribute.m */; };
 		662DA6FB17F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 662DA6F917F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard */; };
 		662DA6FD17F881F400EC8FF6 /* VertexPositionUnprojected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 662DA6FC17F881F400EC8FF6 /* VertexPositionUnprojected.vsh */; };
@@ -37,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6613C1081809E3200075937A /* GLK2GetError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLK2GetError.h; sourceTree = "<group>"; };
+		6613C1091809E34F0075937A /* GLK2GetError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2GetError.m; sourceTree = "<group>"; };
 		662DA6F617F85CF400EC8FF6 /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
 		662DA6F717F85CF400EC8FF6 /* GLK2Attribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Attribute.m; sourceTree = "<group>"; };
 		662DA6FA17F8809C00EC8FF6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "en.lproj/MainStoryboard-iPad.storyboard"; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				66496F011805E2F20095DF41 /* GLK2VertexArrayObject.m */,
 				66F07114180957030069DF31 /* GLK2Texture.h */,
 				66F07115180957030069DF31 /* GLK2Texture.m */,
+				6613C1081809E3200075937A /* GLK2GetError.h */,
+				6613C1091809E34F0075937A /* GLK2GetError.m */,
 			);
 			path = GLK2;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66496F0C1805E4770095DF41 /* GLK2Uniform.m in Sources */,
+				6613C10A1809E34F0075937A /* GLK2GetError.m in Sources */,
 				66D9C3C717D6691B00960535 /* main.m in Sources */,
 				66D9C3CB17D6691B00960535 /* AppDelegate.m in Sources */,
 				66D9C3DB17D6691B00960535 /* ViewController.m in Sources */,

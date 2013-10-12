@@ -8,6 +8,8 @@
 #import "GLK2Shader.h"
 #import "GLK2ShaderProgram.h"
 
+#import "GLK2GetError.h"
+
 @interface ViewController ()
 @property(nonatomic, retain) NSMutableArray* drawCalls;
 @end
@@ -198,6 +200,8 @@
 
 -(void) renderSingleDrawCall:(GLK2DrawCall*) drawCall
 {
+	gl2CheckAndClearAllErrors();
+	
 	/** First: Clear (color, depth, or both) */
 	float* newClearColour = [drawCall clearColourArray];
 	glClearColor( newClearColour[0], newClearColour[1], newClearColour[2], newClearColour[3] );
