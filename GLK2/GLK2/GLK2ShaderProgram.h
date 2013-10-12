@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 #import "GLK2Attribute.h"
+#import "GLK2Uniform.h"
 
 typedef enum GLK2ShaderProgramStatus
 {
@@ -38,7 +39,7 @@ typedef enum GLK2ShaderProgramStatus
 @property(nonatomic) GLK2ShaderProgramStatus status;
 
 /** OpenGL uses integers as "names" instead of Strings, because Strings in C are a pain to work with, and slower */
-@property(nonatomic) GLuint glName;
+@property(nonatomic, readonly) GLuint glName;
 
 /** Setting either property automatically calls glAttachShader */
 @property(nonatomic,retain) GLK2Shader* vertexShader, * fragmentShader;
@@ -47,6 +48,10 @@ typedef enum GLK2ShaderProgramStatus
 -(GLK2Attribute*) attributeNamed:(NSString*) name;
 /** the "link" stage automatically finds all "attribute" lines in the shader source, and creates one GLK2Attribute for each */
 -(NSArray*) allAttributes;
+
+#pragma mark - Set the value of a Uniform
+
+-(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform;
 
 /** automatically calls glCreateProgram() */
 - (id)init;

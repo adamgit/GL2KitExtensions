@@ -10,10 +10,10 @@
 
 @interface GLK2Attribute : NSObject
 
-+(GLK2Attribute*) attributeNamed:(NSString*) nameOfAttribute GLType:(GLenum) openGLType GLLocation:(GLint) openGLLocation;
++(GLK2Attribute*) attributeNamed:(NSString*) nameOfAttribute GLType:(GLenum) openGLType GLLocation:(GLint) openGLLocation GLSize:(GLint) openGLSize;
 
 /** The name of the variable inside the shader source file(s) */
-@property(nonatomic) NSString* nameInSourceFile;
+@property(nonatomic, retain) NSString* nameInSourceFile;
 
 /** The magic key that allows you to "set" this attribute later by uploading a list/array of data to the GPU, e.g. using a VBO */
 @property(nonatomic) GLint glLocation;
@@ -31,5 +31,15 @@
  TEXTURES: 2D texture, Cubemap texture
  */
 @property(nonatomic) GLenum glType;
+
+/** Defined by OpenGL as "the size of the attribute, in units of the type returned in type."
+ 
+ e.g. if "type" is 4-int-vector, and the attribute was declared as "vec4", then size will be "1".
+ 
+ But (unconfirmed): if the attribute were declared as "vec4[2]", then size would be "2". i.e. "size" really
+ means "sizeOfArrayIfThisIsAnArrayOtherwiseOne" - but I've seen it return some unexpected values in the past,
+ so CAVEAT EMPTOR.
+*/
+@property(nonatomic) GLint glSize;
 
 @end

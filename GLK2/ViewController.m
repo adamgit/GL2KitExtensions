@@ -29,7 +29,10 @@
 {
 	[super viewDidLoad];
 	
-	/** Creating and "making current" an EAGLContext must be the very first thing any OpenGL app does! */
+	/*****************************************************
+	 Creating and "making current" an EAGLContext must be
+	 the very first thing any OpenGL app does!
+	 */
 	if( self.localContext == nil )
 	{
 		self.localContext = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
@@ -37,21 +40,40 @@
 	NSAssert( self.localContext != nil, @"Failed to create ES context");
 	[EAGLContext setCurrentContext:self.localContext]; // VERY important! GL silently stops working without this
 	
-	/** Enable GL rendering by enabling the GLKView (enable it by giving it an EAGLContext to render to) */
+	/*****************************************************
+	 This is the main thing that changes from app to app: the set of draw-calls
+	 */
+	self.drawCalls = [self createAllDrawCalls];
+	
+	/*****************************************************
+	 Enable GL rendering by:
+	    - giving the GLKView an EAGLContext to render to
+	    - "bindDrawable" (in GL terms: this is identical to binding the screen's FrameBufferObject)
+	    - ... DO NOT mess with delegates; GLKViewController did that already, automatically, for you
+	 */
 	GLKView *view = (GLKView *)self.view;
 	view.context = self.localContext;
 	view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
 	[view bindDrawable];
-	
+}
+
+-(NSMutableArray*) createAllDrawCalls
+{	
 	/** All the local setup for the ViewController */
-	self.drawCalls = [NSMutableArray array];
+	NSMutableArray* result = [NSMutableArray array];
 	
-	/** -- Draw Call 1: clear the background */
+	/** -- Draw Call 1:
+	 
+	 clear the background
+	 */
 	GLK2DrawCall* simpleClearingCall = [[GLK2DrawCall new] autorelease];
 	simpleClearingCall.shouldClearColorBit = TRUE;
-	[self.drawCalls addObject: simpleClearingCall];
+	[result addObject: simpleClearingCall];
 	
-	/** -- Draw Call 2: draw a triangle onto the screen */
+	/** -- Draw Call 2:
+	 
+	 draw a triangle onto the screen
+	 */
 	GLK2DrawCall* draw1Triangle = [[GLK2DrawCall new] autorelease];
 	
 	/**   ... Upload a program */
@@ -70,21 +92,20 @@
 	GLKVector3Make( 1,-1, z)
 	};
 	
-	/**   ... Configure the VAO (state) + VBO (vertex data) for self */
-	GLuint VAOName, VBOName;
-	glGenVertexArraysOES(1, &VAOName ); // this uses address-of, so MUST use the underscore version in Objective-C
-	glBindVertexArrayOES( VAOName );
-	
-	glGenBuffers( 1, &VBOName );
- 	glBindBuffer(GL_ARRAY_BUFFER, VBOName );
-	glBufferData(GL_ARRAY_BUFFER, 3 * sizeof( GLKVector3 ), cpuBuffer, GL_DYNAMIC_DRAW);
-	
-	/**   ... Tell OpenGL "how" the attribute "position" is stored/packed into the stream of bytes we just uploaded */
-	glEnableVertexAttribArray( attribute.glLocation );
-	glVertexAttribPointer( attribute.glLocation, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	/**   ... create a VAO to hold a VBO, and upload the geometry into that new VBO
+	          
+	 NOTE: our "position" attribute is a vec4 in the shader source, but we're sending GLKVector3's (not GLKVector4's).
+		This is ABSOLUTELY FINE, OpenGL will up-convert for us - but we have to warn OpenGL that the data being uploaded
+		is vec3 instead of vec4. OpenGL assumes nothing, so if we used vec4's, we'd still have to give this info. It makes
+	    the code easier to read if we specify our data in vec3, upload as vec3, and let OpenGL do the final conversion.
+	 */
+	draw1Triangle.VAO = [[GLK2VertexArrayObject new] autorelease];
+	[draw1Triangle.VAO addVBOForAttribute:attribute filledWithData:cpuBuffer bytesPerArrayElement:sizeof(GLKVector3) arrayLength:3];
 	
 	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
-	[self.drawCalls addObject: draw1Triangle];
+	[result addObject: draw1Triangle];
+	
+	return result;
 }
 
 -(void) update
@@ -121,6 +142,11 @@
 		glUseProgram( drawCall.shaderProgram.glName);
 	else
 		glUseProgram( 0 /** means "none */ );
+	
+	if( drawCall.VAO != nil )
+		glBindVertexArrayOES( drawCall.VAO.glName );
+	else
+		glBindVertexArrayOES( 0 /** means "none */ );
 	
 	/** Finally: kick-off the draw-call, telling GL how to interpret the data we've given it (triangles, lines, points - or a variation of one of those) */
 	glDrawArrays( GL_TRIANGLES, 0, 3);

@@ -12,8 +12,8 @@
  */
 typedef enum GLK2ShaderType
 {
-	GLK2ShaderTypeVertex,
-	GLK2ShaderTypeFragment
+	GLK2ShaderTypeVertex = GL_VERTEX_SHADER,
+	GLK2ShaderTypeFragment = GL_FRAGMENT_SHADER
 } GLK2ShaderType;
 
 /**
@@ -29,7 +29,7 @@ typedef enum GLK2ShaderStatus
 @interface GLK2Shader : NSObject
 
 /** OpenGL uses integers as "names" instead of Strings, because Strings in C are a pain to work with, and slower */
-@property(nonatomic) GLuint glName;
+@property(nonatomic, readonly) GLuint glName;
 
 @property(nonatomic) GLK2ShaderType type;
 @property(nonatomic) GLK2ShaderStatus status;
