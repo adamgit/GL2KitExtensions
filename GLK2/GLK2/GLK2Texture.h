@@ -47,10 +47,24 @@
  
  */
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
 @interface GLK2Texture : NSObject
 
++(GLK2Texture*) texturePreLoadedByApplesGLKit:(GLKTextureInfo*) appleMetadata;
+
 /** OpenGL uses integers as "names" instead of Strings, because Strings in C are a pain to work with, and slower */
 @property(nonatomic, readonly) GLuint glName;
+
+/** Creates a new, blank, OpenGL texture on the GPU.
+ 
+ If you already created a texture from some other source, use the initWithName: method instead
+ */
+- (id)init;
+
+/** If a texture was loaded by an external source - e.g. Apple's GLKit - you'll already have a name for it, and can
+ use this method
+ */
+- (id)initWithName:(GLuint) name;
 
 @end
