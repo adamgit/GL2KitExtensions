@@ -59,7 +59,13 @@
  if you want)
  
  @param texture if nil, will "remove" the sampler/texture pair from the mapping for this drawcall
+ @return the OpenGL texture-unit that this drawcall wants to use for that texture
  */
--(void) setTexture:(GLK2Texture*) texture forSampler:(GLK2Uniform*) sampler;
+-(GLuint) setTexture:(GLK2Texture*) texture forSampler:(GLK2Uniform*) sampler;
+
+/** Massive bug in OpenGL API: ShaderPrograms DO NOT USE the correct texture-unit ID's (i.e. GL_TEXTURE0 etc)
+ for identifying texture-units; instead, they use "the offset to add to GL_TEXTURE0"
+ */
+-(GLint)textureUnitOffsetForSampler:(GLK2Uniform *)sampler;
 
 @end

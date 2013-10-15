@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66094FEB180B1829003041C7 /* tex2.png in Resources */ = {isa = PBXBuildFile; fileRef = 66094FEA180B1829003041C7 /* tex2.png */; };
 		6613C10A1809E34F0075937A /* GLK2GetError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6613C1091809E34F0075937A /* GLK2GetError.m */; };
 		662DA6F817F85CF400EC8FF6 /* GLK2Attribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 662DA6F717F85CF400EC8FF6 /* GLK2Attribute.m */; };
 		662DA6FB17F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 662DA6F917F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66094FEA180B1829003041C7 /* tex2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tex2.png; sourceTree = "<group>"; };
 		6613C1081809E3200075937A /* GLK2GetError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLK2GetError.h; sourceTree = "<group>"; };
 		6613C1091809E34F0075937A /* GLK2GetError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2GetError.m; sourceTree = "<group>"; };
 		662DA6F617F85CF400EC8FF6 /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				66F0711B18097AF70069DF31 /* FragmentTextureOnly.fsh */,
 				662DA6FC17F881F400EC8FF6 /* VertexPositionUnprojected.vsh */,
 				66F0711918097AE10069DF31 /* VertexUnprojectedWithTexture.vsh */,
+				66094FEA180B1829003041C7 /* tex2.png */,
 				66F071171809793C0069DF31 /* black-with-white-stripe.png */,
 				66D9C3D917D6691B00960535 /* ViewController.h */,
 				66D9C3DA17D6691B00960535 /* ViewController.m */,
@@ -238,6 +241,7 @@
 			files = (
 				66D9C3C517D6691B00960535 /* InfoPlist.strings in Resources */,
 				662DA6FD17F881F400EC8FF6 /* VertexPositionUnprojected.vsh in Resources */,
+				66094FEB180B1829003041C7 /* tex2.png in Resources */,
 				66F0711C18097AF70069DF31 /* FragmentTextureOnly.fsh in Resources */,
 				66F0711A18097AE10069DF31 /* VertexUnprojectedWithTexture.vsh in Resources */,
 				662DA6FF17F8826600EC8FF6 /* FragmentColourOnly.fsh in Resources */,

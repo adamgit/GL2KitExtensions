@@ -11,9 +11,12 @@
 	newValue.glLocation = openGLLocation;
 	newValue.arrayLength = numElements;
 	/****** NB: if you add any properties, make sure you add them to "copyWithZone:" method too */
+	/****** NB: if you add any properties, make sure you add them to "isEqual:" method too */
 	
 	return newValue;
 }
+
+#pragma mark - methods Apple requires us to implement to use this as a key in an NSDictionary
 
 -(id)copyWithZone:(NSZone *)zone
 {
@@ -25,5 +28,18 @@
 	newCopy.arrayLength = self.arrayLength;
 	
 	return newCopy;
+}
+
+-(BOOL)isEqual:(id)object
+{
+	if( [object class] != [self class] )
+		return FALSE;
+	
+	GLK2Uniform* other = (GLK2Uniform*) object;
+	
+	return other.glLocation == self.glLocation
+	&& other.glType == self.glType
+	&& other.arrayLength == self.arrayLength
+	&& [other.nameInSourceFile isEqualToString:self.nameInSourceFile];
 }
 @end

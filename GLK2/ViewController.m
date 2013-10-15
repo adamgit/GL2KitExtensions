@@ -119,9 +119,18 @@
 	
 	/** load a simple texture, using Apple: */
 	NSError* error;
+	
 	GLKTextureInfo* appleTextureMetadata = [GLKTextureLoader textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"black-with-white-stripe" ofType:@"png"] options:nil error:&error];
 	if( appleTextureMetadata == nil )
 		NSLog(@"error loading texture: %@", error);
+	
+	GLK2Texture* textureSimple = [GLK2Texture texturePreLoadedByApplesGLKit:appleTextureMetadata];
+	
+	GLKTextureInfo* appleTextureMetadata2 = [GLKTextureLoader textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tex2" ofType:@"png"] options:nil error:&error];
+	if( appleTextureMetadata2 == nil )
+		NSLog(@"error loading texture: %@", error);
+	
+	GLK2Texture* textureSimpl2 = [[GLK2Texture texturePreLoadedByApplesGLKit:appleTextureMetadata2] retain];
 	
 	/** make the texture repeat infinitely if it's smaller than the object it's mapped onto */
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -132,6 +141,8 @@
 	
 	GLK2Attribute* attributePosition = [drawTexturedQuad.shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
 	GLK2Attribute* attributeTexCoord = [drawTexturedQuad.shaderProgram attributeNamed:@"textureCoordinate"]; // will fail if you haven't called glUseProgram yet
+	GLK2Uniform* uniformTextureSampler = [drawTexturedQuad.shaderProgram uniformNamed:@"s_texture1"];
+	GLK2Uniform* uniformTextureSampler2 = [drawTexturedQuad.shaderProgram uniformNamed:@"s2"];
 	
 	/**   ... Make some geometry */
 	drawTexturedQuad.numVerticesToDraw = 6;
@@ -170,6 +181,16 @@
 	[drawTexturedQuad.VAO addVBOForAttribute:attributePosition filledWithData:cpuBufferQuad bytesPerArrayElement:sizeof(GLKVector3) arrayLength:drawTexturedQuad.numVerticesToDraw];
 	[drawTexturedQuad.VAO addVBOForAttribute:attributeTexCoord filledWithData:cpuBufferQuadTextureCoords bytesPerArrayElement:sizeof(GLKVector2) arrayLength:drawTexturedQuad.numVerticesToDraw];
 	
+	/**   ... store the sampler : texture mappings */
+	[drawTexturedQuad setTexture:textureSimple forSampler:uniformTextureSampler];
+	[drawTexturedQuad setTexture:textureSimpl2 forSampler:uniformTextureSampler2];
+#if TRUE
+	for( GLK2Uniform* sampler in drawTexturedQuad.texturesFromSamplers )
+	{
+		glUniform1i( sampler.glLocation, [drawTexturedQuad textureUnitOffsetForSampler:sampler] );
+	}
+#endif
+	
 	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
 	[result addObject: drawTexturedQuad];
 	
@@ -200,7 +221,7 @@
 
 -(void) renderSingleDrawCall:(GLK2DrawCall*) drawCall
 {
-	gl2CheckAndClearAllErrors();
+	//gl2CheckAndClearAllErrors();
 	
 	/** First: Clear (color, depth, or both) */
 	float* newClearColour = [drawCall clearColourArray];
@@ -215,8 +236,8 @@
 	
 	if( drawCall.VAO != nil )
 		glBindVertexArrayOES( drawCall.VAO.glName );
-	else
-		glBindVertexArrayOES( 0 /** means "none */ );
+	//else PROBLEM: unbinding causes us to lose the texture in textureSimpl2, and I have no idea why
+		//glBindVertexArrayOES( 0 /** means "none */ );
 	
 	GLK2Uniform* uniformTexOffsetU = [drawCall.shaderProgram uniformNamed:@"textureOffsetU"]; // will fail if you haven't called glUseProgram yet
 	if( uniformTexOffsetU != nil )
@@ -226,6 +247,17 @@
 		float newOffset = (framesOutOfFramesPerSecond / (float) self.framesPerSecond);
 		[drawCall.shaderProgram setValue:&newOffset forUniform:uniformTexOffsetU];
 	}
+	
+#if TRUE
+	for( GLK2Uniform* sampler in drawCall.texturesFromSamplers )
+	{
+		GLK2Texture* texture = [drawCall.texturesFromSamplers objectForKey:sampler];
+		NSLog(@"RENDER: Binding and enabling texture sampler '%@', putting texture: %i into texture unit: %i", sampler.nameInSourceFile, texture.glName, GL_TEXTURE0 + [drawCall textureUnitOffsetForSampler:sampler] );
+		
+		glActiveTexture( GL_TEXTURE0 + [drawCall textureUnitOffsetForSampler:sampler] );
+		glBindTexture( GL_TEXTURE_2D, texture.glName);
+	}
+#endif
 	
 	/** Finally: kick-off the draw-call, telling GL how to interpret the data we've given it (triangles, lines, points - or a variation of one of those) */
 	glDrawArrays( GL_TRIANGLES, 0, drawCall.numVerticesToDraw );
