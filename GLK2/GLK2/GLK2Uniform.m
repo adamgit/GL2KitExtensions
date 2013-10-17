@@ -82,6 +82,41 @@
 	}
 }
 
+-(int)vectorWidth
+{
+	switch( self.glType )
+	{
+		case GL_INT_VEC2:
+		case GL_FLOAT_VEC2:
+			return 2;
+		case GL_INT_VEC3:
+		case GL_FLOAT_VEC3:
+			return 3;
+		case GL_INT_VEC4:
+		case GL_FLOAT_VEC4:
+			return 4;
+			
+		default:
+			return 0;
+	}
+}
+
+-(int)matrixWidth
+{
+	switch( self.glType )
+	{
+		case GL_FLOAT_MAT2:
+			return 2;
+		case GL_FLOAT_MAT3:
+			return 3;
+		case GL_FLOAT_MAT4:
+			return 4;
+			
+		default:
+			return 0;
+	}
+}
+
 #pragma mark - methods Apple requires us to implement to use this as a key in an NSDictionary
 
 -(id)copyWithZone:(NSZone *)zone
