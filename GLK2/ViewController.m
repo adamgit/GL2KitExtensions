@@ -184,12 +184,6 @@
 	/**   ... store the sampler : texture mappings */
 	[drawTexturedQuad setTexture:textureSimple forSampler:uniformTextureSampler];
 	[drawTexturedQuad setTexture:textureSimpl2 forSampler:uniformTextureSampler2];
-#if TRUE
-	for( GLK2Uniform* sampler in drawTexturedQuad.texturesFromSamplers )
-	{
-		glUniform1i( sampler.glLocation, [drawTexturedQuad textureUnitOffsetForSampler:sampler] );
-	}
-#endif
 	
 	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
 	[result addObject: drawTexturedQuad];

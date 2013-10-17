@@ -53,6 +53,7 @@
 		66496F011805E2F20095DF41 /* GLK2VertexArrayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2VertexArrayObject.m; sourceTree = "<group>"; };
 		66496F0A1805E4770095DF41 /* GLK2Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Uniform.h; sourceTree = "<group>"; };
 		66496F0B1805E4770095DF41 /* GLK2Uniform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Uniform.m; sourceTree = "<group>"; };
+		6665247D180EEE7B00728DC3 /* UniformCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniformCalculator.h; sourceTree = "<group>"; };
 		6688242A17F46B3E00E19A08 /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
 		6688242B17F46B3E00E19A08 /* GLK2Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Shader.m; sourceTree = "<group>"; };
 		6688242C17F46B3E00E19A08 /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 				662DA6F717F85CF400EC8FF6 /* GLK2Attribute.m */,
 				66496F0A1805E4770095DF41 /* GLK2Uniform.h */,
 				66496F0B1805E4770095DF41 /* GLK2Uniform.m */,
+				6665247D180EEE7B00728DC3 /* UniformCalculator.h */,
 				66496EFE1805E2F20095DF41 /* GLK2BufferObject.h */,
 				66496EFF1805E2F20095DF41 /* GLK2BufferObject.m */,
 				66496F001805E2F20095DF41 /* GLK2VertexArrayObject.h */,

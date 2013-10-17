@@ -42,4 +42,8 @@
  */
 @property(nonatomic) GLint arrayLength;
 
+#pragma mark - Interpretation of OpenGL's badly-typed "type" feature
+
+@property(nonatomic,readonly) BOOL isInteger, isFloat, isVector, isMatrix;
+
 @end
