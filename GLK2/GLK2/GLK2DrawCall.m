@@ -22,6 +22,7 @@
 	self = [super init];
 	if (self) {
 		[self setClearColourRed:1.0f green:0 blue:1.0f alpha:1.0f];
+		self.requiresDepthTest = TRUE;
 		
 		self.texturesFromSamplers = [NSMutableDictionary dictionary];
 		

@@ -8,6 +8,7 @@
  
  */
 #import <Foundation/Foundation.h>
+#import "GLK2BufferFormat.h"
 
 /** Half of the "usage" parameter as defined on http://www.opengl.org/sdk/docs/man/xhtml/glBufferData.xml */
 typedef enum GLK2BufferObjectFrequency
@@ -60,13 +61,12 @@ typedef enum GLK2BufferObjectNature
     (GLK2BufferObject).bytesPerItem = sizeof( GLKVector3 );
  
  */
-@property(nonatomic) GLsizeiptr bytesPerItem;
+@property(nonatomic,retain) GLK2BufferFormat* currentFormat;
 
 /**
- The VertexArrayObject methods are fundamentally incompatible, and use "floats" as the unit-of-size, instead of "bytes",
- so you need to know the number of floats-per-item-in-the-buffer, when it comes time to call glVertexAttribPointer
+ Whenever you change the contentsFormat, this will be automatically updated
  */
-@property(nonatomic,readonly) GLuint sizePerItemInFloats;
+@property(nonatomic,readonly) GLsizeiptr totalBytesPerItem;
 
 /**
  OpenGL has two parameters which are combined into a single value and used as a "usage hint"; obviously, it would have
@@ -78,6 +78,11 @@ typedef enum GLK2BufferObjectNature
 /** Wraps glBufferData
  
  To automatically get the correct value for usageHint, use "getUsageEnumValueFromFrequency:nature:"
+ */
+-(void) upload:(void *) dataArray numItems:(int) count usageHint:(GLenum) usage withNewFormat:(GLK2BufferFormat*) bFormat;
+
+/**
+ Uses the existing buffer format (self.contentsFormat) - will fail if that is not set
  */
 -(void) upload:(void *) dataArray numItems:(int) count usageHint:(GLenum) usage;
 

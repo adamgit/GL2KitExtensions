@@ -17,6 +17,10 @@
 /** Every draw call MUST have a shaderprogram, or else it cannot draw objects nor pixels */
 @property(nonatomic,retain) GLK2ShaderProgram* shaderProgram;
 
+/** You nearly always want this on, so that overlapping triangles correctly overlap, instead of having one or the other
+ overwriting the ones IN FRONT OF it */
+@property(nonatomic) BOOL requiresDepthTest;
+
 /** If this draw call has ANY geometry, it should go in a VBO (stores raw Vertex attributes),
  and the VBO should be embedded in a VAO (which stores the metadata about the geometry) */
 @property(nonatomic,retain) GLK2VertexArrayObject* VAO;
@@ -50,6 +54,7 @@
  Defaults to:
  
  - clear color MAGENTA
+ - depth test ON 
  
  ... everything else: OFF
  */

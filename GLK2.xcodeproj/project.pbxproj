@@ -16,6 +16,7 @@
 		66496F041805E2F20095DF41 /* GLK2BufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 66496EFF1805E2F20095DF41 /* GLK2BufferObject.m */; };
 		66496F051805E2F20095DF41 /* GLK2VertexArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 66496F011805E2F20095DF41 /* GLK2VertexArrayObject.m */; };
 		66496F0C1805E4770095DF41 /* GLK2Uniform.m in Sources */ = {isa = PBXBuildFile; fileRef = 66496F0B1805E4770095DF41 /* GLK2Uniform.m */; };
+		6663635D18114D97009882F7 /* GLK2BufferFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6663635C18114D97009882F7 /* GLK2BufferFormat.m */; };
 		6688242E17F46B3E00E19A08 /* GLK2Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242B17F46B3E00E19A08 /* GLK2Shader.m */; };
 		6688242F17F46B3E00E19A08 /* GLK2ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */; };
 		66D9C3B717D6691B00960535 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B617D6691B00960535 /* UIKit.framework */; };
@@ -53,6 +54,8 @@
 		66496F011805E2F20095DF41 /* GLK2VertexArrayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2VertexArrayObject.m; sourceTree = "<group>"; };
 		66496F0A1805E4770095DF41 /* GLK2Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Uniform.h; sourceTree = "<group>"; };
 		66496F0B1805E4770095DF41 /* GLK2Uniform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Uniform.m; sourceTree = "<group>"; };
+		6663635B18114D97009882F7 /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
+		6663635C18114D97009882F7 /* GLK2BufferFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2BufferFormat.m; sourceTree = "<group>"; };
 		6665247D180EEE7B00728DC3 /* UniformCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniformCalculator.h; sourceTree = "<group>"; };
 		6688242A17F46B3E00E19A08 /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
 		6688242B17F46B3E00E19A08 /* GLK2Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Shader.m; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 				66F07115180957030069DF31 /* GLK2Texture.m */,
 				6613C1081809E3200075937A /* GLK2GetError.h */,
 				6613C1091809E34F0075937A /* GLK2GetError.m */,
+				6663635B18114D97009882F7 /* GLK2BufferFormat.h */,
+				6663635C18114D97009882F7 /* GLK2BufferFormat.m */,
 			);
 			path = GLK2;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			files = (
 				66496F0C1805E4770095DF41 /* GLK2Uniform.m in Sources */,
 				6613C10A1809E34F0075937A /* GLK2GetError.m in Sources */,
+				6663635D18114D97009882F7 /* GLK2BufferFormat.m in Sources */,
 				66D9C3C717D6691B00960535 /* main.m in Sources */,
 				66D9C3CB17D6691B00960535 /* AppDelegate.m in Sources */,
 				66D9C3DB17D6691B00960535 /* ViewController.m in Sources */,
