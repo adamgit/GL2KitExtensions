@@ -32,6 +32,12 @@
 
 -(BOOL)isEqual:(id)object
 {
+	/** 
+	 WARNING! Because we overrode this, we MUST override hash too!
+	 
+	 Apple's default implementation of "hash" silently breaks if you don't
+	 overwrite it :( :( :( :(. Very bad design.
+	 */
 	if( [object class] != [self class] )
 		return FALSE;
 	
@@ -42,4 +48,10 @@
 	&& other.arrayLength == self.arrayLength
 	&& [other.nameInSourceFile isEqualToString:self.nameInSourceFile];
 }
+
+-(NSUInteger)hash
+{
+	return [self.nameInSourceFile hash]; // very closely corresponds to the bucket/hash we would choose to use anyway
+}
+
 @end
