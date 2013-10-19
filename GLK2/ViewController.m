@@ -78,37 +78,44 @@
 	 
 	 draw a triangle onto the screen
 	 */
-	GLK2DrawCall* draw1Triangle = [[GLK2DrawCall new] autorelease];
-	
-	/**   ... Upload a program */
-	draw1Triangle.shaderProgram = [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexPositionUnprojected" fragmentFilename:@"FragmentColourOnly"];
-	glUseProgram( draw1Triangle.shaderProgram.glName );
-	
-	GLK2Attribute* attribute = [draw1Triangle.shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
-	
-	/**   ... Make some geometry */
+	GLK2ShaderProgram* sharedProgramForBlueTriangles = [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexPositionUnprojected" fragmentFilename:@"FragmentColourOnly"];
+
+	for( int i=0; i<4; i++ )
+	{
+		GLK2DrawCall* draw1Triangle = [[GLK2DrawCall new] autorelease];
+		
+		/**   ... Upload a program */
+		draw1Triangle.shaderProgram = sharedProgramForBlueTriangles;
+		glUseProgram( draw1Triangle.shaderProgram.glName );
+		
+		GLK2Attribute* attribute = [draw1Triangle.shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
+		
+		/**   ... Make some geometry */
+		
+		GLfloat z = -0.5; // must be more than -1 * zNear, and ABS() less than zFar
+		draw1Triangle.numVerticesToDraw = 3;
+		GLKVector3 cpuBuffer[3] = 
+		{
+			GLKVector3Make(-1 + i%2,  -1 + i/2, z),
+			GLKVector3Make(-0.5 + i%2, 0 + i/2, z),
+			GLKVector3Make( 0 + i%2,  -1 + i/2, z)
+		};
+		
+		/**   ... create a VAO to hold a VBO, and upload the geometry into that new VBO
+		 
+		 NOTE: our "position" attribute is a vec4 in the shader source, but we're sending GLKVector3's (not GLKVector4's).
+		 This is ABSOLUTELY FINE, OpenGL will up-convert for us - but we have to warn OpenGL that the data being uploaded
+		 is vec3 instead of vec4. OpenGL assumes nothing, so if we used vec4's, we'd still have to give this info. It makes
+		 the code easier to read if we specify our data in vec3, upload as vec3, and let OpenGL do the final conversion.
+		 */
+		draw1Triangle.VAO = [[GLK2VertexArrayObject new] autorelease];
+		[draw1Triangle.VAO addVBOForAttribute:attribute filledWithData:cpuBuffer bytesPerArrayElement:sizeof(GLKVector3) arrayLength: draw1Triangle.numVerticesToDraw];
+		
+		/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
+		[result addObject: draw1Triangle];
+	}
 	
 	GLfloat z = -0.5; // must be more than -1 * zNear, and ABS() less than zFar
-	draw1Triangle.numVerticesToDraw = 3;
-	GLKVector3 cpuBuffer[3] = 
-	{
-	GLKVector3Make(-1,-1, z),
-	GLKVector3Make( 0, 1, z),
-	GLKVector3Make( 1,-1, z)
-	};
-	
-	/**   ... create a VAO to hold a VBO, and upload the geometry into that new VBO
-	          
-	 NOTE: our "position" attribute is a vec4 in the shader source, but we're sending GLKVector3's (not GLKVector4's).
-		This is ABSOLUTELY FINE, OpenGL will up-convert for us - but we have to warn OpenGL that the data being uploaded
-		is vec3 instead of vec4. OpenGL assumes nothing, so if we used vec4's, we'd still have to give this info. It makes
-	    the code easier to read if we specify our data in vec3, upload as vec3, and let OpenGL do the final conversion.
-	 */
-	draw1Triangle.VAO = [[GLK2VertexArrayObject new] autorelease];
-	[draw1Triangle.VAO addVBOForAttribute:attribute filledWithData:cpuBuffer bytesPerArrayElement:sizeof(GLKVector3) arrayLength: draw1Triangle.numVerticesToDraw];
-	
-	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
-	[result addObject: draw1Triangle];
 	
 	
 	/** -- Draw Call 3:
@@ -184,12 +191,6 @@
 	/**   ... store the sampler : texture mappings */
 	[drawTexturedQuad setTexture:textureSimple forSampler:uniformTextureSampler];
 	[drawTexturedQuad setTexture:textureSimpl2 forSampler:uniformTextureSampler2];
-#if TRUE
-	for( GLK2Uniform* sampler in drawTexturedQuad.texturesFromSamplers )
-	{
-		glUniform1i( sampler.glLocation, [drawTexturedQuad textureUnitOffsetForSampler:sampler] );
-	}
-#endif
 	
 	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
 	[result addObject: drawTexturedQuad];

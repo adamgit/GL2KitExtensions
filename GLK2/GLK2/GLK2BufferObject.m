@@ -2,6 +2,7 @@
 
 @interface GLK2BufferObject()
 @property(nonatomic, readwrite) GLuint glName;
+@property(nonatomic, readwrite) GLsizeiptr totalBytesPerItem;
 @end
 
 @implementation GLK2BufferObject
@@ -105,18 +106,36 @@
 	return usage;
 }
 
--(GLuint)sizePerItemInFloats
+-(void)setCurrentFormat:(GLK2BufferFormat *)newValue
 {
-	return (self.bytesPerItem / 4);
+	[_currentFormat release];
+	_currentFormat = newValue;
+	[_currentFormat retain];
+	
+	self.totalBytesPerItem = 0;
+	for( int i=0; i<self.currentFormat.numberOfSubTypes; i++ )
+	{
+		GLsizeiptr bytesPerItem = [self.currentFormat bytesPerItemForSubTypeIndex:i];
+		
+		NSAssert( bytesPerItem > 0 , @"Invalid GLK2BufferFormat");
+		
+		self.totalBytesPerItem += bytesPerItem;
+	}
+}
+
+-(void) upload:(void *) dataArray numItems:(int) count usageHint:(GLenum) usage withNewFormat:(GLK2BufferFormat*) bFormat
+{
+	self.currentFormat = bFormat;
+	[self upload:dataArray numItems:count usageHint:usage];
 }
 
 -(void) upload:(void *) dataArray numItems:(int) count usageHint:(GLenum) usage
 {
-	NSAssert(self.bytesPerItem > 0 , @"Can't call this method until you've configured a data-format for the buffer by setting self.bytesPerItem");
-	NSAssert(self.glBufferType > 0 , @"Can't call this method until you've configured a GL type ('purpose') for the buffer by setting self.glBufferType");
+	NSAssert( self.currentFormat != nil, @"Use the version of this method that takes a new GLK2BufferFormat, or set self.contentsFormat manually");
 	
 	glBindBuffer( self.glBufferType, self.glName );
-	glBufferData( GL_ARRAY_BUFFER, count * self.bytesPerItem, dataArray, usage);
+	
+	glBufferData( GL_ARRAY_BUFFER, count * self.totalBytesPerItem, dataArray, usage);
 }
 
 @end

@@ -276,6 +276,11 @@
 			[self setIntBasedValue:value forUniform:uniform];
 		}break;
 		
+		case GL_SAMPLER_2D:
+		{
+			[self setIntBasedValue:value forUniform:uniform];
+		}break;
+		
 		default:
 			NSAssert(FALSE, @"Uniform %@ has an unknown / unsupported type in shader source file", uniform.nameInSourceFile );
 	}
@@ -287,6 +292,7 @@
 	{
 			/** the basic datatypes first */
 		case GL_INT:
+		case GL_SAMPLER_2D:
 		{
 			glUniform1i( uniform.glLocation, *valuePointer );
 		}break;

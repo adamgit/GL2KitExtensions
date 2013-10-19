@@ -22,6 +22,7 @@
 	self = [super init];
 	if (self) {
 		[self setClearColourRed:1.0f green:0 blue:1.0f alpha:1.0f];
+		self.requiresDepthTest = TRUE;
 		
 		self.texturesFromSamplers = [NSMutableDictionary dictionary];
 		
@@ -109,6 +110,19 @@
 				{
 					[self.textureUnitSlots replaceObjectAtIndex:i withObject:sampler];
 					indexOfStoredSampler = i;
+					
+					/** Inform the embedded shader program that this slot is the new source for this sampler */
+					// save the current program, if it's not ours:
+					GLint currentProgram;
+					glGetIntegerv( GL_CURRENT_PROGRAM, &currentProgram);
+					
+					NSAssert( self.shaderProgram != nil, @"Cannot set textures on a drawcall until you've given it a shader program (it's possible, but not implemented here)");
+					glUseProgram(self.shaderProgram.glName);
+					glUniform1i( sampler.glLocation, [self textureUnitOffsetForSampler:sampler] );
+					// Or, alternatively (identically): [self.shaderProgram setValue:[self textureUnitOffsetForSampler:sampler] forUniform:sampler];
+					
+					// restore the current program, if it's wasn't ours:
+					glUseProgram(currentProgram);
 					break;
 				}
 			}
@@ -136,6 +150,16 @@
 		
 		return -1;
 	}
+}
+
+-(GLuint)setTexture:(GLK2Texture *)texture forSamplerNamed:(NSString *)samplerName
+{
+	NSAssert( self.shaderProgram != nil, @"Cannot set textures on a drawcall until you've given it a shader program");
+	
+	GLK2Uniform* sampler = [self.shaderProgram uniformNamed:samplerName];
+	NSAssert( sampler != nil, @"Unknown sampler named %@", samplerName );
+	
+	return [self setTexture:texture forSampler:sampler];
 }
 
 -(GLint)textureUnitOffsetForSampler:(GLK2Uniform *)sampler

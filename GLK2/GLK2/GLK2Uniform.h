@@ -42,4 +42,14 @@
  */
 @property(nonatomic) GLint arrayLength;
 
+#pragma mark - Interpretation of OpenGL's badly-typed "type" feature
+
+@property(nonatomic,readonly) BOOL isInteger, isFloat, isVector, isMatrix;
+
+/** 4x4 matrix returns "4", etc - OpenGL has this info, refuses to provide it, but bizarrely: requires the application to re-submit it */
+-(int) matrixWidth;
+
+/** 4x1 vector returns "4", etc - OpenGL has this info, refuses to provide it, but bizarrely: requires the application to re-submit it */
+-(int) vectorWidth;
+
 @end
