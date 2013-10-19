@@ -12,7 +12,7 @@
  */
 @interface GLK2DrawCall : NSObject
 
-@property(nonatomic) BOOL shouldClearColorBit;
+@property(nonatomic) BOOL shouldClearColorBit, shouldClearDepthBit;
 
 /** Every draw call MUST have a shaderprogram, or else it cannot draw objects nor pixels */
 @property(nonatomic,retain) GLK2ShaderProgram* shaderProgram;
