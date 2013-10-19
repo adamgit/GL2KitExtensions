@@ -240,6 +240,15 @@
     glLinkProgram(programRef);
     
     glGetProgramiv(programRef, GL_LINK_STATUS, &status);
+	
+	
+	int loglen;
+	char logbuffer[1000];
+	glValidateProgram(programRef);
+	glGetProgramInfoLog(programRef, sizeof(logbuffer), &loglen, logbuffer);
+	if (loglen > 0) {
+		NSLog(@"OpenGL Program Validation results at n%.*s", loglen, logbuffer);
+	}
 }
 
 #pragma mark - Support setting of the huge number of different types of "uniform"
