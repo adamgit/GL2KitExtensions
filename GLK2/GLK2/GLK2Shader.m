@@ -102,7 +102,7 @@
 	
 	if (loglen > 0)
 	{
-		return [NSString stringWithCharacters:logbuffer length:loglen];
+		return [NSString stringWithUTF8String:logbuffer];
 	}
 	else
 		return @"";
@@ -114,7 +114,7 @@
 	char logbuffer[1000];
 	glGetProgramInfoLog(program.glName, sizeof(logbuffer), &loglen, logbuffer);
 	if (loglen > 0) {
-		return [NSString stringWithCharacters:logbuffer length:loglen];
+		return [NSString stringWithUTF8String:logbuffer];
 	}
 	else
 		return @"";
