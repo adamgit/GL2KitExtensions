@@ -32,12 +32,12 @@
     [super dealloc];
 }
 
--(GLK2BufferObject*) addVBOForAttribute:(GLK2Attribute*) targetAttribute filledWithData:(void*) data bytesPerArrayElement:(GLsizeiptr) bytesPerDataItem  arrayLength:(int) numDataItems
+-(GLK2BufferObject*) addVBOForAttribute:(GLK2Attribute*) targetAttribute filledWithData:(const void*) data bytesPerArrayElement:(GLsizeiptr) bytesPerDataItem  arrayLength:(int) numDataItems
 {
 	return [self addVBOForAttribute:targetAttribute filledWithData:data bytesPerArrayElement:bytesPerDataItem arrayLength:numDataItems updateFrequency:GLK2BufferObjectFrequencyStatic];
 }
 
--(GLK2BufferObject*) addVBOForAttribute:(GLK2Attribute*) targetAttribute filledWithData:(void*) data bytesPerArrayElement:(GLsizeiptr) bytesPerDataItem arrayLength:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
+-(GLK2BufferObject*) addVBOForAttribute:(GLK2Attribute*) targetAttribute filledWithData:(const void*) data bytesPerArrayElement:(GLsizeiptr) bytesPerDataItem arrayLength:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
 {
 	NSAssert(targetAttribute != nil, @"Can't add a VBO for a nil vertex-attribute");
 	
@@ -45,7 +45,7 @@
 	return [self addVBOForAttributes:@[targetAttribute] filledWithData:data inFormat:[GLK2BufferFormat bufferFormatWithSingleTypeOfFloats:bytesPerDataItem/4 bytesPerItem:bytesPerDataItem] numVertices:numDataItems updateFrequency:freq];
 }
 
--(GLK2BufferObject*) addVBOForAttributes:(NSArray*) targetAttributes filledWithData:(void*) data inFormat:(GLK2BufferFormat*) bFormat numVertices:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
+-(GLK2BufferObject*) addVBOForAttributes:(NSArray*) targetAttributes filledWithData:(const void*) data inFormat:(GLK2BufferFormat*) bFormat numVertices:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
 {
 	/** Create a VBO on the GPU, to store data */
 	GLK2BufferObject* newVBO = [GLK2BufferObject vertexBufferObject];
