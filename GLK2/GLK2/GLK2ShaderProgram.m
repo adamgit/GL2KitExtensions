@@ -11,10 +11,23 @@
 
 @implementation GLK2ShaderProgram
 
++(NSString*) fetchLogForGLLinkShaderProgram:(GLK2ShaderProgram*) program
+{
+	int loglen;
+	char logbuffer[1000];
+	glGetProgramInfoLog(program.glName, sizeof(logbuffer), &loglen, logbuffer);
+	if (loglen > 0) {
+		return [NSString stringWithCharacters:logbuffer length:loglen];
+	}
+	else
+		return @"";
+}
+
+
 +(GLK2ShaderProgram*) shaderProgramFromVertexFilename:(NSString*) vFilename fragmentFilename:(NSString*) fFilename
 {
 	GLK2ShaderProgram* newProgram = [[[GLK2ShaderProgram alloc] init] autorelease];
-
+	
 	GLK2Shader* vertexShader = [GLK2Shader shaderFromFilename:vFilename type:GLK2ShaderTypeVertex];
 	GLK2Shader* fragmentShader = [GLK2Shader shaderFromFilename:fFilename type:GLK2ShaderTypeFragment];
 	
@@ -66,9 +79,8 @@
 	if( fragmentShader == _fragmentShader )
 		return;
 	
-	if( _fragmentShader != nil )
-		glDetachShader( self.glName, _fragmentShader.glName );
-		
+	NSAssert( fragmentShader == nil || _fragmentShader == nil, @"Fragment shader can only be assigned once: either it must be nil to start with, or you have to be assigning to nil now because the ShaderProgram is dealloc'ing");
+	
 	[_fragmentShader release];
 	_fragmentShader = fragmentShader;
 	[_fragmentShader retain];
@@ -83,8 +95,7 @@
 	if( vertexShader == _vertexShader )
 		return;
 	
-	if( _vertexShader != nil )
-		glDetachShader( self.glName, _vertexShader.glName );
+	NSAssert( vertexShader == nil || _vertexShader == nil, @"Vertex shader can only be assigned once: either it must be nil to start with, or you have to be assigning to nil now because the ShaderProgram is dealloc'ing");
 	
 	[_vertexShader release];
 	_vertexShader = vertexShader;
@@ -190,9 +201,9 @@
 -(void) link
 {
     // Link program.
-    [GLK2ShaderProgram linkProgram: self.glName];
+    [GLK2ShaderProgram linkProgram: self];
 	self.status = GLK2ShaderProgramStatusLinked;
-		
+	
 	self.vertexShader.status = GLK2ShaderStatusLinked;
 	self.fragmentShader.status = GLK2ShaderStatusLinked;
 	
@@ -234,21 +245,21 @@
 
 #pragma mark - OpenGL low-level invocations
 
-+(void) linkProgram:(GLuint) programRef
++(void) linkProgram:(GLK2ShaderProgram*) program
 {
     GLint status;
-    glLinkProgram(programRef);
+    glLinkProgram(program.glName);
     
-    glGetProgramiv(programRef, GL_LINK_STATUS, &status);
+    glGetProgramiv(program.glName, GL_LINK_STATUS, &status);
 	
+	if( status == GL_FALSE )
+		@throw [NSException exceptionWithName:@"ShaderProgram Link failure" reason:@"Link failure" userInfo:@{ @"Linker output":[self fetchLogForGLLinkShaderProgram:program] } ];
 	
-	int loglen;
-	char logbuffer[1000];
-	glValidateProgram(programRef);
-	glGetProgramInfoLog(programRef, sizeof(logbuffer), &loglen, logbuffer);
-	if (loglen > 0) {
-		NSLog(@"OpenGL Program Validation results at n%.*s", loglen, logbuffer);
-	}
+	glValidateProgram( program.glName );
+	
+	NSString* validationOutput = [self fetchLogForGLLinkShaderProgram:program];
+	if( validationOutput.length > 0 )
+		@throw [NSException exceptionWithName:@"ShaderProgram Validation of linker failure" reason:@"Validate failure" userInfo:@{ @"Linker output":[self fetchLogForGLLinkShaderProgram:program] } ];
 }
 
 #pragma mark - Support setting of the huge number of different types of "uniform"
@@ -275,12 +286,12 @@
 		{
 			[self setIntBasedValue:value forUniform:uniform];
 		}break;
-		
+			
 		case GL_SAMPLER_2D:
 		{
 			[self setIntBasedValue:value forUniform:uniform];
 		}break;
-		
+			
 		default:
 			NSAssert(FALSE, @"Uniform %@ has an unknown / unsupported type in shader source file", uniform.nameInSourceFile );
 	}
