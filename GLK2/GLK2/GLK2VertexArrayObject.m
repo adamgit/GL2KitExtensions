@@ -22,7 +22,15 @@
 
 - (void)dealloc
 {
+	NSArray* tempVBOS = [NSArray arrayWithArray:self.VBOs];
+	for( GLK2BufferObject* vbo in tempVBOS )
+	{
+		[self detachVBO:vbo];
+	}
+	
+	self.attributeArraysByVBOName = nil;
 	self.VBOs = nil;
+	
 	if( self.glName > 0 )
 	{
 		NSLog(@"[%@] glDeleteVertexArraysOES(%i)", [self class], self.glName);

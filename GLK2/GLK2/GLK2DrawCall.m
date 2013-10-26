@@ -13,6 +13,11 @@
 {
 	self.texturesFromSamplers = nil;
 	self.textureUnitSlots = nil;
+	self.shaderProgram = nil;
+	self.VAO = nil;
+	self.uniformCalculator = nil;
+	
+	NSLog(@"Drawcall dealloced: %@", [self class] );
 	
 	[super dealloc];
 }

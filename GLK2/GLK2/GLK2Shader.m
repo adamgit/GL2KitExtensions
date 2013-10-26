@@ -32,14 +32,11 @@
 {
 	self.filename = nil;
 	
-	/*Don't do this: OpenGL memory-management for shaders is ridiculously convoluted
-	 if (self.glName)
-	 {
-	 glDeleteShader(self.glName); // MUST go last (it's used by other things during dealloc side-effects)
-	 NSLog(@"[%@] dealloc: Deleted GL shader with GL name = %i", [self class], self.glName );
-	 }
-	 else
-	 NSLog(@"[%@] dealloc: NOT deleting GL shader (no GL name)", [self class] );
+	/**
+	 
+	 Do NOT "glDeleteShader" when this deallocs; the way OpenGL committee designed Shaders is incompatible
+	 with the rest of GL, and you delete IMMEDIATELY AFTER CREATING, rather than waiting until you stop using it
+	 
 	 */
 	
 	[super dealloc];
@@ -50,23 +47,20 @@
 	NSAssert( self.status == GLK2ShaderStatusUncompiled, @"Can't compile; already compiled");
 	
 	NSString *shaderPathname;
-	NSString* stringShaderType;
 	
-    // Create and compile shader.
+	// Create and compile shader.
 	switch( self.type )
 	{
 		case GLK2ShaderTypeFragment:
 		{
 			self.type = GL_FRAGMENT_SHADER;
 			shaderPathname = [[NSBundle mainBundle] pathForResource:self.filename ofType: @"fsh"];
-			stringShaderType = @"fragment";
 		}break;
 			
 		case GLK2ShaderTypeVertex:
 		{
 			self.type = GL_VERTEX_SHADER;
 			shaderPathname = [[NSBundle mainBundle] pathForResource:self.filename ofType: @"vsh"];
-			stringShaderType = @"vertex";
 		}break;
 	}
 	

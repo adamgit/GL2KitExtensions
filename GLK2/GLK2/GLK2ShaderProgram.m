@@ -17,7 +17,7 @@
 	char logbuffer[1000];
 	glGetProgramInfoLog(program.glName, sizeof(logbuffer), &loglen, logbuffer);
 	if (loglen > 0) {
-		return [NSString stringWithCharacters:logbuffer length:loglen];
+		return [NSString stringWithUTF8String:logbuffer];
 	}
 	else
 		return @"";
@@ -31,14 +31,24 @@
 	GLK2Shader* vertexShader = [GLK2Shader shaderFromFilename:vFilename type:GLK2ShaderTypeVertex];
 	GLK2Shader* fragmentShader = [GLK2Shader shaderFromFilename:fFilename type:GLK2ShaderTypeFragment];
 	
-	// Attach shader to program.
-	[vertexShader compile];
-	[fragmentShader compile];
-	newProgram.vertexShader = vertexShader;
-	newProgram.fragmentShader = fragmentShader;
-	
-	/** GL spec: "link" */
-	[newProgram link];
+	@try
+	{
+		// Attach shader to program.
+		[vertexShader compile];
+		[fragmentShader compile];
+		newProgram.vertexShader = vertexShader;
+		newProgram.fragmentShader = fragmentShader;
+		
+		/** GL spec: "link" */
+		[newProgram link];
+		
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Exception trying to compile / link shaders:\n %@ : %@", exception, [exception userInfo] );
+		@throw exception;
+	}
+	@finally {
+	}
 	
 	return newProgram;
 }

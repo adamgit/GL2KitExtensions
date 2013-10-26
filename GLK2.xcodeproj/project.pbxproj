@@ -19,6 +19,7 @@
 		6663635D18114D97009882F7 /* GLK2BufferFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6663635C18114D97009882F7 /* GLK2BufferFormat.m */; };
 		6688242E17F46B3E00E19A08 /* GLK2Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242B17F46B3E00E19A08 /* GLK2Shader.m */; };
 		6688242F17F46B3E00E19A08 /* GLK2ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */; };
+		66A5B9E7181BFC9C00F2C983 /* GLK2HardwareMaximums.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A5B9E6181BFC9C00F2C983 /* GLK2HardwareMaximums.m */; };
 		66D9C3B717D6691B00960535 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B617D6691B00960535 /* UIKit.framework */; };
 		66D9C3B917D6691B00960535 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B817D6691B00960535 /* Foundation.framework */; };
 		66D9C3BB17D6691B00960535 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3BA17D6691B00960535 /* CoreGraphics.framework */; };
@@ -61,6 +62,8 @@
 		6688242B17F46B3E00E19A08 /* GLK2Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Shader.m; sourceTree = "<group>"; };
 		6688242C17F46B3E00E19A08 /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
 		6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2ShaderProgram.m; sourceTree = "<group>"; };
+		66A5B9E5181BFC9C00F2C983 /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
+		66A5B9E6181BFC9C00F2C983 /* GLK2HardwareMaximums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2HardwareMaximums.m; sourceTree = "<group>"; };
 		66D9C3B317D6691B00960535 /* GLK2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLK2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D9C3B617D6691B00960535 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66D9C3B817D6691B00960535 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -192,6 +195,8 @@
 				6613C1091809E34F0075937A /* GLK2GetError.m */,
 				6663635B18114D97009882F7 /* GLK2BufferFormat.h */,
 				6663635C18114D97009882F7 /* GLK2BufferFormat.m */,
+				66A5B9E5181BFC9C00F2C983 /* GLK2HardwareMaximums.h */,
+				66A5B9E6181BFC9C00F2C983 /* GLK2HardwareMaximums.m */,
 			);
 			path = GLK2;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				66D9C3DB17D6691B00960535 /* ViewController.m in Sources */,
 				66F07116180957030069DF31 /* GLK2Texture.m in Sources */,
 				66D9C3E417D669A200960535 /* GLK2DrawCall.m in Sources */,
+				66A5B9E7181BFC9C00F2C983 /* GLK2HardwareMaximums.m in Sources */,
 				6688242E17F46B3E00E19A08 /* GLK2Shader.m in Sources */,
 				6688242F17F46B3E00E19A08 /* GLK2ShaderProgram.m in Sources */,
 				66496F041805E2F20095DF41 /* GLK2BufferObject.m in Sources */,

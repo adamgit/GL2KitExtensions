@@ -45,20 +45,34 @@
 	[EAGLContext setCurrentContext:self.localContext]; // VERY important! GL silently stops working without this
 	
 	/*****************************************************
-	 This is the main thing that changes from app to app: the set of draw-calls
-	 */
-	self.drawCalls = [self createAllDrawCalls];
-	
-	/*****************************************************
-	 Enable GL rendering by:
+	 Finish enabling GL rendering by:
 	    - giving the GLKView an EAGLContext to render to
 	    - "bindDrawable" (in GL terms: this is identical to binding the screen's FrameBufferObject)
 	    - ... DO NOT mess with delegates; GLKViewController did that already, automatically, for you
+	 
+	 ...NB: ideally, we would do this AFTER creating all drawcalls etc. However, some internal Apple
+	 state crashes/errors/fails (some of each!) if you haven't called bindDrawable yet.
+	 
+	 WORSE: ***** NOTE CAREFULLY! ***** there are CRITICAL bugs in Apple's GLKView class that it will
+	      *** CRASH OPENGL *** if you try to get a valid framebuffer so you can setup GL, then configure your GLKView.
+	      GLKView has inadequate internal state-management, and corrupts itself, dependent on what you changed.
+	      Just: don't. It's not worth fighting Apple's undocumented behaviour!
 	 */
 	GLKView *view = (GLKView *)self.view;
 	view.context = self.localContext;
 	view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
 	[view bindDrawable];
+	
+	/*****************************************************
+	 One-time read of hardware info
+	 */
+	self.hardwareMaximums = [[GLK2HardwareMaximums new] autorelease];
+	[self.hardwareMaximums readAllGLMaximums];
+	
+	/*****************************************************
+	 This is the main thing that changes from app to app: the set of draw-calls
+	 */
+	self.drawCalls = [self createAllDrawCalls];
 }
 
 -(NSMutableArray*) createAllDrawCalls
