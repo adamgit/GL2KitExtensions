@@ -17,6 +17,7 @@
 		66496F051805E2F20095DF41 /* GLK2VertexArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 66496F011805E2F20095DF41 /* GLK2VertexArrayObject.m */; };
 		66496F0C1805E4770095DF41 /* GLK2Uniform.m in Sources */ = {isa = PBXBuildFile; fileRef = 66496F0B1805E4770095DF41 /* GLK2Uniform.m */; };
 		6663635D18114D97009882F7 /* GLK2BufferFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6663635C18114D97009882F7 /* GLK2BufferFormat.m */; };
+		667CA202181D6CB300E49B68 /* GL2KTextureLoaderPVRv1.m in Sources */ = {isa = PBXBuildFile; fileRef = 667CA201181D6CB300E49B68 /* GL2KTextureLoaderPVRv1.m */; };
 		6688242E17F46B3E00E19A08 /* GLK2Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242B17F46B3E00E19A08 /* GLK2Shader.m */; };
 		6688242F17F46B3E00E19A08 /* GLK2ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */; };
 		669D0933181C53EA00F8B07C /* GLK2Texture+CoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 669D0932181C53EA00F8B07C /* GLK2Texture+CoreGraphics.m */; };
@@ -59,6 +60,8 @@
 		6663635B18114D97009882F7 /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
 		6663635C18114D97009882F7 /* GLK2BufferFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2BufferFormat.m; sourceTree = "<group>"; };
 		6665247D180EEE7B00728DC3 /* UniformCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniformCalculator.h; sourceTree = "<group>"; };
+		667CA200181D6CB300E49B68 /* GL2KTextureLoaderPVRv1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL2KTextureLoaderPVRv1.h; sourceTree = "<group>"; };
+		667CA201181D6CB300E49B68 /* GL2KTextureLoaderPVRv1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GL2KTextureLoaderPVRv1.m; sourceTree = "<group>"; };
 		6688242A17F46B3E00E19A08 /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
 		6688242B17F46B3E00E19A08 /* GLK2Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Shader.m; sourceTree = "<group>"; };
 		6688242C17F46B3E00E19A08 /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				6663635C18114D97009882F7 /* GLK2BufferFormat.m */,
 				66A5B9E5181BFC9C00F2C983 /* GLK2HardwareMaximums.h */,
 				66A5B9E6181BFC9C00F2C983 /* GLK2HardwareMaximums.m */,
+				667CA200181D6CB300E49B68 /* GL2KTextureLoaderPVRv1.h */,
+				667CA201181D6CB300E49B68 /* GL2KTextureLoaderPVRv1.m */,
 			);
 			path = GLK2;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				667CA202181D6CB300E49B68 /* GL2KTextureLoaderPVRv1.m in Sources */,
 				66496F0C1805E4770095DF41 /* GLK2Uniform.m in Sources */,
 				6613C10A1809E34F0075937A /* GLK2GetError.m in Sources */,
 				6663635D18114D97009882F7 /* GLK2BufferFormat.m in Sources */,
@@ -390,7 +396,7 @@
 				INFOPLIST_FILE = "GLK2/GLK2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65DC952B-FDAE-4BF3-B990-60EC10FD2802";
+				PROVISIONING_PROFILE = "7988B5BB-DDED-4387-A79A-F21A782B9B58";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -406,7 +412,7 @@
 				INFOPLIST_FILE = "GLK2/GLK2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65DC952B-FDAE-4BF3-B990-60EC10FD2802";
+				PROVISIONING_PROFILE = "7988B5BB-DDED-4387-A79A-F21A782B9B58";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
