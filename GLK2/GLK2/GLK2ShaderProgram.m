@@ -269,7 +269,14 @@
 	
 	NSString* validationOutput = [self fetchLogForGLLinkShaderProgram:program];
 	if( validationOutput.length > 0 )
+	{
+#define VALIDATION_FAILURE_TRIGGERS_EXCEPTION 0
+#if VALIDATION_FAILURE_TRIGGERS_EXCEPTION
 		@throw [NSException exceptionWithName:@"ShaderProgram Validation of linker failure" reason:@"Validate failure" userInfo:@{ @"Linker output":[self fetchLogForGLLinkShaderProgram:program] } ];
+#else
+		NSLog( @"ShaderProgram Validation of linker failure: %@", [self fetchLogForGLLinkShaderProgram:program] );
+#endif
+	}
 }
 
 #pragma mark - Support setting of the huge number of different types of "uniform"
@@ -367,7 +374,7 @@
 		case GL_FLOAT_MAT2:
 		{
 			glUniformMatrix2fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );
-		}break; 
+		}break;
 		case GL_FLOAT_MAT3:
 		{
 			glUniformMatrix3fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );

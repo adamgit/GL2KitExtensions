@@ -86,4 +86,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+	NSLog(@"Dealloc: %@, glDeleteTexures( 1, %i)", [self class], self.glName );
+    glDeleteTextures(1, &_glName);
+	
+	[super dealloc];
+}
+
 @end
