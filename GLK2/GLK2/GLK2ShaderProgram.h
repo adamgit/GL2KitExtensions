@@ -4,7 +4,7 @@
  ShaderProgram is a boilerplate concept that is REQUIRED to be identical for all OpenGL apps; this class is intended to be
  reused everywhere without changes. A ShaderProgram in OpenGL ES 2 is "1 x vertex shader + 1 x fragment shader, combined into
  a single item".
-
+ 
  (NB: this version is incomplete, a basic implementation only, next version will add a few missing features, and then never
  need to be edited again)
  */
@@ -54,6 +54,26 @@ typedef enum GLK2ShaderProgramStatus
 
 #pragma mark - Set the value of a Uniform
 
+/**
+ NOTE: it is always safe to call this from anywhere in the program, so long as the renderer's thread is blocked,
+ OR you are inside that thread.
+ 
+ The simpler/faster version of this method only works if you are actually inside the render-loop itself, which is
+ only true for the renderer
+ */
+-(void) setValueOutsideRenderLoopRestoringProgramAfterwards:(const void*) value forUniform:(GLK2Uniform*) uniform;
+
+/** NOTE: this must ONLY be invoked inside the main render-loop, and ONLY when the render-loop has set the
+ current glProgram to this one.
+ 
+ When you need to set values outside the render-loop - e.g. nearly always: because you're configuring a new shader/
+ drawcall - instead use setValueOutsideRenderLoopRestoringProgramAfterwards:forUniform -- that method will switch to
+ this shaderprogram, set the value, and then switch BACK to the original program being used by the main renderer.
+ 
+ If you incorrectly use this method when you should have used the other, GL state will leak between drawcalls/shaders
+ and CHAOS! will break loose upon thy rendering... You will also think you've gone insane when you try to debug it,
+ and 1 proves to be equal to 0. (voice of bitter experience)
+ */
 -(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform;
 
 /** automatically calls glCreateProgram() */
