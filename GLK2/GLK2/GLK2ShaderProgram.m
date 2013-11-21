@@ -231,6 +231,26 @@
 	self.vertexAttributesByName = [self fetchAllAttributesAfterLinking];
 }
 
+-(void) validate
+{
+#if DEBUG
+	glValidateProgram( self.glName );
+	
+	NSString* validationOutput = [GLK2ShaderProgram fetchLogForGLLinkShaderProgram:self];
+	if( validationOutput.length > 0 )
+	{
+#define VALIDATION_FAILURE_TRIGGERS_EXCEPTION 1
+#if VALIDATION_FAILURE_TRIGGERS_EXCEPTION
+		@throw [NSException exceptionWithName:@"ShaderProgram Validation failure" reason:@"Validate failure" userInfo:@{ @"Validater output":validationOutput } ];
+#else
+		NSLog( @"ShaderProgram Validation failure: %@", validationOutput );
+#endif
+	}
+#else
+	NSLog( @"MAJOR ERROR: you are calling GLSL 'validate' in a production app; this is very dangerous. Apple's drivers do some crazy stuff in here, including gigabytes of memory usage, FAILS on working code, etc. This should ONLY be used as a debug tool" );
+#endif
+}
+
 #pragma mark - runtime methods for application to use
 
 -(GLK2Attribute*) attributeNamed:(NSString*) name
@@ -264,19 +284,6 @@
 	
 	if( status == GL_FALSE )
 		@throw [NSException exceptionWithName:@"ShaderProgram Link failure" reason:@"Link failure" userInfo:@{ @"Linker output":[self fetchLogForGLLinkShaderProgram:program] } ];
-	
-	glValidateProgram( program.glName );
-	
-	NSString* validationOutput = [self fetchLogForGLLinkShaderProgram:program];
-	if( validationOutput.length > 0 )
-	{
-#define VALIDATION_FAILURE_TRIGGERS_EXCEPTION 0
-#if VALIDATION_FAILURE_TRIGGERS_EXCEPTION
-		@throw [NSException exceptionWithName:@"ShaderProgram Validation of linker failure" reason:@"Validate failure" userInfo:@{ @"Linker output":[self fetchLogForGLLinkShaderProgram:program] } ];
-#else
-		NSLog( @"ShaderProgram Validation of linker failure: %@", [self fetchLogForGLLinkShaderProgram:program] );
-#endif
-	}
 }
 
 #pragma mark - Support setting of the huge number of different types of "uniform"
