@@ -17,6 +17,7 @@
 -(GLKMatrix3*) matrix3ForUniform:(GLK2Uniform*) v;
 -(GLKMatrix4*) matrix4ForUniform:(GLK2Uniform*) v;
 
--(float) floatForUniform:(GLK2Uniform*) v;
+-(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value; // REQUIRED because C IS A TERRIBLE LANGUAGE
+-(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value; // REQUIRED because C IS A TERRIBLE LANGUAGE
 
 @end

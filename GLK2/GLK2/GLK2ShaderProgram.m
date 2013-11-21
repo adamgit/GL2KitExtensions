@@ -154,6 +154,9 @@
 		GLK2Uniform* newUniform = [GLK2Uniform uniformNamed:stringName GLType:uniformType GLLocation:uniformLocation numElementsInArray:uniformSize];
 		
 		[result setObject:newUniform forKey:stringName];
+#if DEBUG
+		NSLog(@"Stored uniform: '%@' with location: %i", stringName, uniformLocation );
+#endif
 	}
 	
 	free(nextUniformName);
@@ -184,7 +187,9 @@
 	GLint numAttributesFound;
 	glGetProgramiv( self.glName, GL_ACTIVE_ATTRIBUTES, &numAttributesFound);
 	
+#if DEBUG
 	NSLog(@"[%@] ---- WARNING: this is not recommended; I am implementing it to check it works, but you should very rarely use glGetActiveAttrib - instead you should be using an explicit glBindAttribLoction BEFORE linking", [self class]);
+#endif
 	/** iterate through all the attributes found, and store them on CPU somewhere */
 	for( int i = 0; i < numAttributesFound; i++ )
 	{
@@ -201,6 +206,9 @@
 		GLK2Attribute* newAttribute = [GLK2Attribute attributeNamed:stringName GLType:attributeType GLLocation:attributeLocation GLSize:attributeSize];
 		
 		[result setObject:newAttribute forKey:stringName];
+#if DEBUG
+		NSLog(@"Stored attribute: '%@' with location: %i", stringName, attributeLocation );
+#endif
 	}
 	
 	free( nextAttributeName );
@@ -287,6 +295,22 @@
 }
 
 #pragma mark - Support setting of the huge number of different types of "uniform"
+
+-(void) setValueOutsideRenderLoopRestoringProgramAfterwards:(const void*) value forUniform:(GLK2Uniform*) uniform 
+{
+	GLint currentProgram;
+	glGetIntegerv( GL_CURRENT_PROGRAM, &currentProgram);
+	
+	
+	/** Do the bit that needs to be atomic - mustn't allow the renderer to get a go in here! - if we're on main thread, this will be safe */
+	{
+		glUseProgram(self.glName);
+		
+		[self setValue:value forUniform:uniform];
+		
+		glUseProgram(currentProgram);
+	}
+}
 
 -(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform
 {
@@ -381,7 +405,7 @@
 		case GL_FLOAT_MAT2:
 		{
 			glUniformMatrix2fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );
-		}break;
+		}break; 
 		case GL_FLOAT_MAT3:
 		{
 			glUniformMatrix3fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );

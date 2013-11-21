@@ -170,7 +170,7 @@ typedef struct _PVRTexHeader
 				
 				NSLog(@"[%@] WARNING: skipped mipmap level that was too large for this hardware (%i x %i pixels). Texture: %@", [self class], width, height, pvrTexture.textureSourceFileInfo );
 			}
-
+			
 			
 			dataOffset += dataSize;
 			
@@ -206,6 +206,8 @@ typedef struct _PVRTexHeader
 	{
 		NSLog(@"Error before starting texture upload: glError: 0x%04X", err);
 	}
+	
+	glBindTexture(GL_TEXTURE_2D, cpuTexture.glName);
 	
 	if ([cpuTexture.imageData count] > 1)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -250,7 +252,7 @@ typedef struct _PVRTexHeader
 		heightOfCurrentMipLevel = MAX(heightOfCurrentMipLevel >> 1, 1);
 	}
 	
-	[cpuTexture.imageData removeAllObjects];
+	[cpuTexture.imageData removeAllObjects]; // NB: Apple does this to quickly trigger release's on the raw data in RAM, hopefully
 	
 	return TRUE;
 	
@@ -258,7 +260,28 @@ typedef struct _PVRTexHeader
 
 + (PVRTextureV1*)pvrTextureWithContentsOfFile:(NSString *)path
 {
-	NSData *data = [NSData dataWithContentsOfFile:path];
+	/**
+	 NOTE: Apple's example loader loads your entire PVR into RAM *twice*.
+	 
+	 A full size, uncompressed PVR could be 4k x 4k * 4 bpp * 1.33 = 85 megabytes.
+	 
+	 Apple's code is very wrong to be loading the whole of this and DOUBLING it!
+	 
+	 They also load all Mip levels - even though they know for a fact this will
+	 crash the PVR chip / GPU.
+	 
+	 So, we selectively ignore invalid mips (saving some memory), but we also
+	 aggressively discard the NSData object (the full original file) Apple loads into RAM.
+	 We do this by ignoring the standard ObjectiveC allocation, and instead using an
+	 explicit retain (alloc) / release pair - and doing the release as early as possible.
+	 
+	 In testing, this makes a huge difference on real apps. e.g. without ARC, Apple's autorelease pools
+	 don't drain fast enough, and an iPad Mini will frequently crash even though it has
+	 plenty of RAM - because the texture loader had filled-up memory with temporary objects
+	 that Apple was slow to reclaim
+	 */
+	
+	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
 	if (!data )
 	{
 		NSLog(@"Failed to load PVR, no data at path = %@", path);
@@ -269,6 +292,7 @@ typedef struct _PVRTexHeader
 	newTexture.textureSourceFileInfo = path;
 	
 	BOOL parsedPVRFileOK = [GL2KTextureLoaderPVRv1 unpackPVRData:data intoPVRTexture:newTexture];
+	[data release]; // release it quick! A 4kx4k uncompressed with mips could be than 85 megabytes!
 	if ( ! parsedPVRFileOK )
 	{
 		NSLog(@"Failed to load PVR, file at path wasn't a VERSION1 .pvr file = %@", path);
@@ -282,7 +306,7 @@ typedef struct _PVRTexHeader
 		[newTexture release]; // don't wait for the autorelease
 		return nil;
 	}
-		
+	
 	[newTexture autorelease]; // now we know it's keepable
 	return newTexture;
 }
