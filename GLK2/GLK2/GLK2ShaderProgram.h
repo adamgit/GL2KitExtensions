@@ -52,6 +52,10 @@ typedef enum GLK2ShaderProgramStatus
 -(GLK2Uniform*) uniformNamed:(NSString*) name;
 -(NSArray*) allUniforms;
 
+#pragma mark - GLSL validation - do NOT use in a live app!
+
+-(void) validate;
+
 #pragma mark - Set the value of a Uniform
 
 /**
