@@ -33,6 +33,11 @@ typedef enum GLK2BufferObjectNature
  */
 +(GLK2BufferObject*) vertexBufferObject;
 
+/**
+ Create a VBO and immediately upload some data to it - don't forget the format! You'll need this later in order to
+ attach it to one or more VAO's */
++(GLK2BufferObject*) newVBOFilledWithData:(const void*) data inFormat:(GLK2BufferFormat*) bFormat numVertices:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq;
+
 /** OpenGL uses integers as "names" instead of Strings, because Strings in C are a pain to work with, and slower */
 @property(nonatomic, readonly) GLuint glName;
 

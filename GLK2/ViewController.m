@@ -88,32 +88,47 @@
 	simpleClearingCall.shouldClearColorBit = TRUE;
 	[result addObject: simpleClearingCall];
 	
+#define SHOW_2_NOT_3 1
+#if SHOW_2_NOT_3
 	/** -- Draw Call 2:
 	 
 	 draw a triangle onto the screen
 	 */
-	GLK2ShaderProgram* sharedProgramForBlueTriangles = [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexPositionUnprojected" fragmentFilename:@"FragmentColourOnly"];
+	GLK2ShaderProgram* sharedProgramForBlueTriangles = [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexPositionUnprojectedAndShifted" fragmentFilename:@"FragmentXYParameterized"];
+	//GLK2ShaderProgram* sharedProgramForBlueTriangles = [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexPositionUnprojected" fragmentFilename:@"FragmentColourOnly"];
 
+	/**   ... Make some geometry */
+	
+	GLfloat z = -0.5; // must be more than -1 * zNear, and ABS() less than zFar
+	GLKVector3 cpuBuffer[3] = 
+	{
+		GLKVector3Make(-1,  -1, z),
+		GLKVector3Make(-0.5, 0, z),
+		GLKVector3Make( 0,  -1, z)
+	};
+	GLK2BufferObject* sharedVBOPositions = [GLK2BufferObject newVBOFilledWithData:cpuBuffer inFormat:[GLK2BufferFormat bufferFormatWithSingleTypeOfFloats:3 bytesPerItem:sizeof(GLKVector3)] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
+	
+	GLKVector2 attributesVirtualXY [3] = 
+	{
+		GLKVector2Make( 0, 0 ),
+		GLKVector2Make( 0, 1 ),
+		GLKVector2Make( 1, 0 )
+	};
+	GLK2BufferObject* sharedVBOVirtualXYs = [GLK2BufferObject newVBOFilledWithData:attributesVirtualXY inFormat:[GLK2BufferFormat bufferFormatWithSingleTypeOfFloats:2 bytesPerItem:sizeof(GLKVector2)] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
+	
+	GLK2Attribute* attPosition = [sharedProgramForBlueTriangles attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
+	GLK2Attribute* attXY = [sharedProgramForBlueTriangles attributeNamed:@"virtualXY"];
+	GLK2Uniform* uniPositionOffset = [sharedProgramForBlueTriangles uniformNamed:@"positionOffset" ];	
+	
 	for( int i=0; i<4; i++ )
 	{
 		GLK2DrawCall* draw1Triangle = [[GLK2DrawCall new] autorelease];
 		
+		draw1Triangle.numVerticesToDraw = 3;
+		
 		/**   ... Upload a program */
 		draw1Triangle.shaderProgram = sharedProgramForBlueTriangles;
 		glUseProgram( draw1Triangle.shaderProgram.glName );
-		
-		GLK2Attribute* attribute = [draw1Triangle.shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
-		
-		/**   ... Make some geometry */
-		
-		GLfloat z = -0.5; // must be more than -1 * zNear, and ABS() less than zFar
-		draw1Triangle.numVerticesToDraw = 3;
-		GLKVector3 cpuBuffer[3] = 
-		{
-			GLKVector3Make(-1 + i%2,  -1 + i/2, z),
-			GLKVector3Make(-0.5 + i%2, 0 + i/2, z),
-			GLKVector3Make( 0 + i%2,  -1 + i/2, z)
-		};
 		
 		/**   ... create a VAO to hold a VBO, and upload the geometry into that new VBO
 		 
@@ -123,15 +138,17 @@
 		 the code easier to read if we specify our data in vec3, upload as vec3, and let OpenGL do the final conversion.
 		 */
 		draw1Triangle.VAO = [[GLK2VertexArrayObject new] autorelease];
-		[draw1Triangle.VAO addVBOForAttribute:attribute filledWithData:cpuBuffer bytesPerArrayElement:sizeof(GLKVector3) arrayLength: draw1Triangle.numVerticesToDraw];
+		[draw1Triangle.VAO addVBO:sharedVBOPositions forAttributes:@[attPosition] numVertices:3];
+
+		[draw1Triangle.VAO addVBO:sharedVBOVirtualXYs forAttributes:@[attXY] numVertices:3];
 		
 		/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
 		[result addObject: draw1Triangle];
 	}
 	
-	GLfloat z = -0.5; // must be more than -1 * zNear, and ABS() less than zFar
-	
-	
+#else
+#define DRAWCALL3_IS_TEXTURES_NOT_ALGORITHMIC 0
+#if DRAWCALL3_IS_TEXTURES_NOT_ALGORITHMIC
 	/** -- Draw Call 3:
 	 
 	 draw a TEXTURED pair of 2 triangles onto the screen, arranged into a square ("quad")
@@ -208,6 +225,64 @@
 	
 	/**   ... Finally: add the draw Call 2 into the list of draw-calls we're rendering as a "frame" on-screen */
 	[result addObject: drawTexturedQuad];
+
+#else
+
+	/** -- Draw Call 3:
+	 
+	 draw a ALGO FAKE-TEXTURED pair of 2 triangles onto the screen, arranged into a square ("quad")
+	 */
+	GLK2DrawCall* drawFakeTexturedQuad = [[GLK2DrawCall new] autorelease];
+	
+	drawFakeTexturedQuad.shaderProgram = [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexPassThroughAlgorithmData" fragmentFilename:@"FragmentFunkyAlgorithm1"];
+	glUseProgram( drawFakeTexturedQuad.shaderProgram.glName );
+	
+	GLK2Attribute* attributePosition = [drawFakeTexturedQuad.shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
+	GLK2Attribute* attributeAlgoX = [drawFakeTexturedQuad.shaderProgram attributeNamed:@"algorithmVirtualX"]; // will fail if you haven't called glUseProgram yet
+	GLK2Attribute* attributeAlgoY = [drawFakeTexturedQuad.shaderProgram attributeNamed:@"algorithmVirtualY"]; // will fail if you haven't called glUseProgram yet
+	
+	/**   ... Make some geometry */
+	drawFakeTexturedQuad.numVerticesToDraw = 3;
+	GLKVector3 cpuBufferQuad[3] = 
+	{
+		GLKVector3Make(-0.5,-0.5, z),
+		GLKVector3Make(-0.5, 0.5, z),
+		GLKVector3Make( 0.5, 0.5, z)
+	};
+	
+	/**   ... attach a virtual X and Y value to the geometry, that our shader will "interpret" later */
+	
+	float frequencyIncreaserX = 4;
+	float frequencyIncreaserY = 2.8;
+	GLfloat cpuBufferQuadVirtualXs[3] = 
+	{
+		0,
+		0,
+		1 * frequencyIncreaserX
+	};
+	GLfloat cpuBufferQuadVirtualYs[3] = 
+	{
+		0,
+		1 * frequencyIncreaserY,
+		1 * frequencyIncreaserY
+	};
+	
+	/**   ... create a VAO to hold a VBO, and upload the geometry into that new VBO
+	 
+	 NOTE: our "position" attribute is a vec4 in the shader source, but we're sending GLKVector3's (not GLKVector4's).
+	 This is ABSOLUTELY FINE, OpenGL will up-convert for us - but we have to warn OpenGL that the data being uploaded
+	 is vec3 instead of vec4. OpenGL assumes nothing, so if we used vec4's, we'd still have to give this info. It makes
+	 the code easier to read if we specify our data in vec3, upload as vec3, and let OpenGL do the final conversion.
+	 */
+	drawFakeTexturedQuad.VAO = [[GLK2VertexArrayObject new] autorelease];
+	[drawFakeTexturedQuad.VAO addVBOForAttribute:attributePosition filledWithData:cpuBufferQuad bytesPerArrayElement:sizeof(GLKVector3) arrayLength:drawFakeTexturedQuad.numVerticesToDraw];
+	[drawFakeTexturedQuad.VAO addVBOForAttribute:attributeAlgoX filledWithData:cpuBufferQuadVirtualXs bytesPerArrayElement:sizeof(GLfloat) arrayLength:drawFakeTexturedQuad.numVerticesToDraw];
+	[drawFakeTexturedQuad.VAO addVBOForAttribute:attributeAlgoY filledWithData:cpuBufferQuadVirtualYs bytesPerArrayElement:sizeof(GLfloat) arrayLength:drawFakeTexturedQuad.numVerticesToDraw];
+		
+	/**   ... Finally: add the draw Call into the list of draw-calls we're rendering as a "frame" on-screen */
+	[result addObject: drawFakeTexturedQuad];
+#endif
+#endif
 	
 	return result;
 }
@@ -217,6 +292,7 @@
 	[self renderSingleFrame];
 }
 
+int indexOfCurrentParameterizedDrawcall = 0;
 -(void) renderSingleFrame
 {
 	if( [EAGLContext currentContext] == nil ) // skip until we have a context
@@ -228,6 +304,7 @@
 	if( self.drawCalls == nil || self.drawCalls.count < 1 )
 		NSLog(@"no drawcalls specified; rendering nothing");
 	
+	indexOfCurrentParameterizedDrawcall = 0; // reset it
 	for( GLK2DrawCall* drawCall in self.drawCalls )
 	{
 		[self renderSingleDrawCall:drawCall];
@@ -254,6 +331,16 @@
 	//else PROBLEM: unbinding causes us to lose the texture in textureSimpl2, and I have no idea why
 		//glBindVertexArrayOES( 0 /** means "none */ );
 	
+	
+	GLK2Uniform* uniPositionOffset = [drawCall.shaderProgram uniformNamed:@"positionOffset" ];	
+	if( uniPositionOffset != nil )
+	{
+		GLKVector2 offset = GLKVector2Make( indexOfCurrentParameterizedDrawcall%2, indexOfCurrentParameterizedDrawcall/2 );
+		[drawCall.shaderProgram setValue:&offset forUniform:uniPositionOffset];
+		
+		indexOfCurrentParameterizedDrawcall++;
+	}
+	
 	GLK2Uniform* uniformTexOffsetU = [drawCall.shaderProgram uniformNamed:@"textureOffsetU"]; // will fail if you haven't called glUseProgram yet
 	if( uniformTexOffsetU != nil )
 	{
@@ -261,6 +348,17 @@
 		
 		float newOffset = (framesOutOfFramesPerSecond / (float) self.framesPerSecond);
 		[drawCall.shaderProgram setValue:&newOffset forUniform:uniformTexOffsetU];
+	}
+	
+	GLK2Uniform* uniformTimeInSecs = [drawCall.shaderProgram uniformNamed:@"timeInSeconds"]; // will fail if you haven't called glUseProgram yet
+	if( uniformTimeInSecs != nil )
+	{
+		//double newValue = self.framesDisplayed / 60.0;
+		
+		int framesOutOfFramesPerSecond = self.framesDisplayed;// % self.framesPerSecond;
+		
+		float newValue = (framesOutOfFramesPerSecond / (float) self.framesPerSecond);
+		[drawCall.shaderProgram setValue:&newValue forUniform:uniformTimeInSecs];
 	}
 	
 #if TRUE

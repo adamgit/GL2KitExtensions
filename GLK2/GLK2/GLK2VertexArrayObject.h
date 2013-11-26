@@ -14,6 +14,9 @@
 /** Fully configurable creation of VBO + upload of data into that VBO */
 -(GLK2BufferObject*) addVBOForAttribute:(GLK2Attribute*) targetAttribute filledWithData:(const void*) data bytesPerArrayElement:(GLsizeiptr) bytesPerDataItem arrayLength:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq;
 
+/** If you have a VBO already uploaded to the GPU (e.g. used elsewhere), you can ADDITIONALLY add it to this VAO */
+-(void) addVBO:(GLK2BufferObject*) vbo forAttributes:(NSArray*) targetAttributes numVertices:(int) numDataItems;
+
 /**
  If you forget which VBO was which, you can use this to find the one that used the EXACT set of attributes (a single attribute, or an interleaved set) */
 -(GLK2BufferObject*) VBOContainingOrderedAttributes:(NSArray*) targetAttributes;

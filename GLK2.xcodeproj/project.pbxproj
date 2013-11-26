@@ -22,6 +22,10 @@
 		6688242F17F46B3E00E19A08 /* GLK2ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688242D17F46B3E00E19A08 /* GLK2ShaderProgram.m */; };
 		669D0933181C53EA00F8B07C /* GLK2Texture+CoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 669D0932181C53EA00F8B07C /* GLK2Texture+CoreGraphics.m */; };
 		66A5B9E7181BFC9C00F2C983 /* GLK2HardwareMaximums.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A5B9E6181BFC9C00F2C983 /* GLK2HardwareMaximums.m */; };
+		66A70369184526100079B0C3 /* VertexPositionUnprojectedAndShifted.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 66A70368184526100079B0C3 /* VertexPositionUnprojectedAndShifted.vsh */; };
+		66A7036B18453F8A0079B0C3 /* FragmentXYParameterized.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 66A7036A18453F8A0079B0C3 /* FragmentXYParameterized.fsh */; };
+		66B1B38F183A47D700026CB1 /* VertexPassThroughAlgorithmData.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 66B1B38E183A47D700026CB1 /* VertexPassThroughAlgorithmData.vsh */; };
+		66B1B391183A47F700026CB1 /* FragmentFunkyAlgorithm1.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 66B1B390183A47F700026CB1 /* FragmentFunkyAlgorithm1.fsh */; };
 		66D9C3B717D6691B00960535 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B617D6691B00960535 /* UIKit.framework */; };
 		66D9C3B917D6691B00960535 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3B817D6691B00960535 /* Foundation.framework */; };
 		66D9C3BB17D6691B00960535 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D9C3BA17D6691B00960535 /* CoreGraphics.framework */; };
@@ -70,6 +74,10 @@
 		669D0932181C53EA00F8B07C /* GLK2Texture+CoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GLK2Texture+CoreGraphics.m"; sourceTree = "<group>"; };
 		66A5B9E5181BFC9C00F2C983 /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
 		66A5B9E6181BFC9C00F2C983 /* GLK2HardwareMaximums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2HardwareMaximums.m; sourceTree = "<group>"; };
+		66A70368184526100079B0C3 /* VertexPositionUnprojectedAndShifted.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexPositionUnprojectedAndShifted.vsh; sourceTree = "<group>"; };
+		66A7036A18453F8A0079B0C3 /* FragmentXYParameterized.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentXYParameterized.fsh; sourceTree = "<group>"; };
+		66B1B38E183A47D700026CB1 /* VertexPassThroughAlgorithmData.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexPassThroughAlgorithmData.vsh; sourceTree = "<group>"; };
+		66B1B390183A47F700026CB1 /* FragmentFunkyAlgorithm1.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentFunkyAlgorithm1.fsh; sourceTree = "<group>"; };
 		66D9C3B317D6691B00960535 /* GLK2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLK2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D9C3B617D6691B00960535 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66D9C3B817D6691B00960535 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,7 +160,11 @@
 				662DA6F917F8809C00EC8FF6 /* MainStoryboard-iPad.storyboard */,
 				662DA6FE17F8826500EC8FF6 /* FragmentColourOnly.fsh */,
 				66F0711B18097AF70069DF31 /* FragmentTextureOnly.fsh */,
+				66B1B390183A47F700026CB1 /* FragmentFunkyAlgorithm1.fsh */,
+				66A7036A18453F8A0079B0C3 /* FragmentXYParameterized.fsh */,
 				662DA6FC17F881F400EC8FF6 /* VertexPositionUnprojected.vsh */,
+				66A70368184526100079B0C3 /* VertexPositionUnprojectedAndShifted.vsh */,
+				66B1B38E183A47D700026CB1 /* VertexPassThroughAlgorithmData.vsh */,
 				66F0711918097AE10069DF31 /* VertexUnprojectedWithTexture.vsh */,
 				66094FEA180B1829003041C7 /* tex2.png */,
 				66F071171809793C0069DF31 /* black-with-white-stripe.png */,
@@ -261,6 +273,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B1B38F183A47D700026CB1 /* VertexPassThroughAlgorithmData.vsh in Resources */,
+				66A70369184526100079B0C3 /* VertexPositionUnprojectedAndShifted.vsh in Resources */,
+				66A7036B18453F8A0079B0C3 /* FragmentXYParameterized.fsh in Resources */,
+				66B1B391183A47F700026CB1 /* FragmentFunkyAlgorithm1.fsh in Resources */,
 				66D9C3C517D6691B00960535 /* InfoPlist.strings in Resources */,
 				662DA6FD17F881F400EC8FF6 /* VertexPositionUnprojected.vsh in Resources */,
 				66094FEB180B1829003041C7 /* tex2.png in Resources */,

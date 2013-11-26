@@ -15,6 +15,17 @@
 	return newObject;
 }
 
++(GLK2BufferObject*) newVBOFilledWithData:(const void*) data inFormat:(GLK2BufferFormat*) bFormat numVertices:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
+{
+	/** Create a VBO on the GPU, to store data */
+	GLK2BufferObject* newVBO = [GLK2BufferObject vertexBufferObject];
+	
+	/** Send the vertex data to the new VBO */
+	[newVBO upload:data numItems:numDataItems usageHint:[newVBO getUsageEnumValueFromFrequency:freq nature:GLK2BufferObjectNatureDraw] withNewFormat:bFormat];
+	
+	return newVBO;
+}
+
 - (id)init
 {
     self = [super init];

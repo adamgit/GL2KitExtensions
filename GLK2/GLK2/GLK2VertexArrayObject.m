@@ -56,13 +56,20 @@
 -(GLK2BufferObject*) addVBOForAttributes:(NSArray*) targetAttributes filledWithData:(const void*) data inFormat:(GLK2BufferFormat*) bFormat numVertices:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
 {
 	/** Create a VBO on the GPU, to store data */
-	GLK2BufferObject* newVBO = [GLK2BufferObject vertexBufferObject];
-	[self.VBOs addObject:newVBO]; // so we can auto-release it when this class deallocs
-	[self.attributeArraysByVBOName setObject:targetAttributes forKey:@(newVBO.glName)];
-	NSLog(@"VAO[%i] now has %i VBOs", self.glName, [self.VBOs count]);
+	GLK2BufferObject* newVBO = [GLK2BufferObject newVBOFilledWithData:data inFormat:bFormat numVertices:numDataItems updateFrequency:freq];
 	
-	/** Send the vertex data to the new VBO */
-	[newVBO upload:data numItems:numDataItems usageHint:[newVBO getUsageEnumValueFromFrequency:freq nature:GLK2BufferObjectNatureDraw] withNewFormat:bFormat];
+	/** Add to this VAO */
+	[self addVBO:newVBO forAttributes:targetAttributes numVertices:numDataItems];
+	return newVBO;
+}
+
+-(void) addVBO:(GLK2BufferObject*) vbo forAttributes:(NSArray*) targetAttributes numVertices:(int) numDataItems
+{
+	NSAssert( ![self.VBOs containsObject:vbo], @"Can't add a VBO, it's already added to this VAO");
+	
+	[self.VBOs addObject:vbo]; // so we can auto-release it when this class deallocs
+	[self.attributeArraysByVBOName setObject:targetAttributes forKey:@(vbo.glName)];
+	NSLog(@"VAO[%i] now has %i VBOs", self.glName, [self.VBOs count]);
 	
 	/** Configure the VAO (state) */
 	glBindVertexArrayOES( self.glName );
@@ -71,16 +78,15 @@
 	for( GLK2Attribute* targetAttribute in targetAttributes )
 	{
 		i++;
-		GLuint numFloatsForItem = [newVBO.currentFormat sizePerItemInFloatsForSubTypeIndex:i];
-		GLsizeiptr bytesPerItem = [newVBO.currentFormat bytesPerItemForSubTypeIndex:i];
+		GLuint numFloatsForItem = [vbo.currentFormat sizePerItemInFloatsForSubTypeIndex:i];
+		GLsizeiptr bytesPerItem = [vbo.currentFormat bytesPerItemForSubTypeIndex:i];
 		
+		glBindBuffer( vbo.glBufferType, vbo.glName );
 		glEnableVertexAttribArray( targetAttribute.glLocation );
-		glVertexAttribPointer( targetAttribute.glLocation, numFloatsForItem, GL_FLOAT, GL_FALSE, newVBO.totalBytesPerItem, (const GLvoid*) bytesForPreviousItems);
+		glVertexAttribPointer( targetAttribute.glLocation, numFloatsForItem, GL_FLOAT, GL_FALSE, vbo.totalBytesPerItem, (const GLvoid*) bytesForPreviousItems);
 		bytesForPreviousItems += bytesPerItem;
 	}
 	glBindVertexArrayOES(0); //unbind the vertex array, as a precaution against accidental changes by other classes
-	
-	return newVBO;
 }
 
 -(GLK2BufferObject*) VBOContainingOrderedAttributes:(NSArray*) targetAttributes
