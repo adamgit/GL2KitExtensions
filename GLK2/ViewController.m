@@ -331,6 +331,7 @@ int indexOfCurrentParameterizedDrawcall = 0;
 	//else PROBLEM: unbinding causes us to lose the texture in textureSimpl2, and I have no idea why
 		//glBindVertexArrayOES( 0 /** means "none */ );
 	
+	[self setAllUniformValuesForShaderInDrawCall:drawCall];
 	
 	GLK2Uniform* uniPositionOffset = [drawCall.shaderProgram uniformNamed:@"positionOffset" ];	
 	if( uniPositionOffset != nil )
@@ -375,4 +376,87 @@ int indexOfCurrentParameterizedDrawcall = 0;
 	/** Finally: kick-off the draw-call, telling GL how to interpret the data we've given it (triangles, lines, points - or a variation of one of those) */
 	glDrawArrays( GL_TRIANGLES, 0, drawCall.numVerticesToDraw );
 }
+
+-(void) setAllUniformValuesForShaderInDrawCall:(GLK2DrawCall*) drawCall
+{
+	if( drawCall.uniformCalculator != nil )
+	{
+		for( GLK2Uniform* uniform in [drawCall.shaderProgram allUniforms] )
+		{			
+			if( uniform.isFloat )
+			{
+				float* floatPointer = NULL;
+				if( uniform.isMatrix )
+				{
+					switch( uniform.matrixWidth )
+					{
+						case 2:
+						{
+							GLKMatrix2* matrixValue = [drawCall.uniformCalculator matrix2ForUniform:uniform];
+							floatPointer = matrixValue->m;
+						}break;
+						case 3:
+						{
+							GLKMatrix3* matrixValue = [drawCall.uniformCalculator matrix3ForUniform:uniform];
+							floatPointer = matrixValue->m;
+						}break;
+						case 4:
+						{
+							GLKMatrix4* matrixValue = [drawCall.uniformCalculator matrix4ForUniform:uniform];
+							floatPointer = matrixValue->m;
+						}break;
+					}
+				}
+				else if( uniform.isVector )
+				{
+					switch( uniform.vectorWidth )
+					{
+						case 2:
+						{
+							GLKVector2* vectorValue = [drawCall.uniformCalculator vector2ForUniform:uniform];
+							floatPointer = vectorValue->v;
+						}break;
+						case 3:
+						{
+							GLKVector3* vectorValue = [drawCall.uniformCalculator vector3ForUniform:uniform];
+							floatPointer = vectorValue->v;
+						}break;
+						case 4:
+						{
+							GLKVector4* vectorValue = [drawCall.uniformCalculator vector4ForUniform:uniform];
+							floatPointer = vectorValue->v;
+						}break;
+					}
+				}
+				else
+				{
+					if( ! [drawCall.uniformCalculator floatForUniform:uniform returnIn:floatPointer] )
+						floatPointer = 0; // kill the pointer
+				}
+				
+				if( floatPointer != NULL ) // prevent the next line from clobbering the value!
+					[drawCall.shaderProgram setValue:floatPointer forUniform:uniform];
+			}
+			else
+			{
+				int* intPointer = NULL;
+				if( uniform.isVector )
+				{
+					NSAssert(FALSE, @"Int vectors not supported yet");
+				}
+				else
+				{
+					if( ! [drawCall.uniformCalculator intForUniform:uniform returnIn:intPointer] )
+						intPointer = 0; // kill the pointer
+				}
+				
+				if( intPointer != NULL ) // prevent the next line from clobbering the value!
+					[drawCall.shaderProgram setValue:intPointer forUniform:uniform];
+				
+			}
+		}
+	}
+	
+}
+
 @end
