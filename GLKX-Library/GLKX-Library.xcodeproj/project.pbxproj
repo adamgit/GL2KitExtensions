@@ -1,0 +1,575 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6672C7B7184A228000A23414 /* GLKX_Library.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DDE1CB184A1919008C4E55 /* GLKX_Library.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6672C7E9184A23AC00A23414 /* GLK2Attribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7CC184A23AC00A23414 /* GLK2Attribute.h */; };
+		6672C7EA184A23AC00A23414 /* GLK2Attribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7CD184A23AC00A23414 /* GLK2Attribute.m */; };
+		6672C7EB184A23AC00A23414 /* GLK2BufferObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7CE184A23AC00A23414 /* GLK2BufferObject.h */; };
+		6672C7EC184A23AC00A23414 /* GLK2BufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7CF184A23AC00A23414 /* GLK2BufferObject.m */; };
+		6672C7ED184A23AC00A23414 /* GLK2DrawCall.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7D0184A23AC00A23414 /* GLK2DrawCall.h */; };
+		6672C7EE184A23AC00A23414 /* GLK2DrawCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7D1184A23AC00A23414 /* GLK2DrawCall.m */; };
+		6672C7EF184A23AC00A23414 /* GLK2Shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7D2184A23AC00A23414 /* GLK2Shader.h */; };
+		6672C7F0184A23AC00A23414 /* GLK2Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7D3184A23AC00A23414 /* GLK2Shader.m */; };
+		6672C7F1184A23AC00A23414 /* GLK2ShaderProgram.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7D4184A23AC00A23414 /* GLK2ShaderProgram.h */; };
+		6672C7F2184A23AC00A23414 /* GLK2ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7D5184A23AC00A23414 /* GLK2ShaderProgram.m */; };
+		6672C7F3184A23AC00A23414 /* GLK2Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7D6184A23AC00A23414 /* GLK2Texture.h */; };
+		6672C7F4184A23AC00A23414 /* GLK2Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7D7184A23AC00A23414 /* GLK2Texture.m */; };
+		6672C7F5184A23AC00A23414 /* GLK2Uniform.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7D8184A23AC00A23414 /* GLK2Uniform.h */; };
+		6672C7F6184A23AC00A23414 /* GLK2Uniform.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7D9184A23AC00A23414 /* GLK2Uniform.m */; };
+		6672C7F7184A23AC00A23414 /* GLK2VertexArrayObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7DA184A23AC00A23414 /* GLK2VertexArrayObject.h */; };
+		6672C7F8184A23AC00A23414 /* GLK2VertexArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7DB184A23AC00A23414 /* GLK2VertexArrayObject.m */; };
+		6672C7F9184A23AC00A23414 /* GLK2BufferFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7DD184A23AC00A23414 /* GLK2BufferFormat.h */; };
+		6672C7FA184A23AC00A23414 /* GLK2BufferFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7DE184A23AC00A23414 /* GLK2BufferFormat.m */; };
+		6672C7FB184A23AC00A23414 /* GLK2GetError.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7DF184A23AC00A23414 /* GLK2GetError.h */; };
+		6672C7FC184A23AC00A23414 /* GLK2GetError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7E0184A23AC00A23414 /* GLK2GetError.m */; };
+		6672C7FD184A23AC00A23414 /* GLK2HardwareMaximums.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7E1184A23AC00A23414 /* GLK2HardwareMaximums.h */; };
+		6672C7FE184A23AC00A23414 /* GLK2HardwareMaximums.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7E2184A23AC00A23414 /* GLK2HardwareMaximums.m */; };
+		6672C7FF184A23AC00A23414 /* GLK2Texture+CoreGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7E3184A23AC00A23414 /* GLK2Texture+CoreGraphics.h */; };
+		6672C800184A23AC00A23414 /* GLK2Texture+CoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7E4184A23AC00A23414 /* GLK2Texture+CoreGraphics.m */; };
+		6672C801184A23AC00A23414 /* GLK2TextureLoaderPVRv1.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7E5184A23AC00A23414 /* GLK2TextureLoaderPVRv1.h */; };
+		6672C802184A23AC00A23414 /* GLK2TextureLoaderPVRv1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7E6184A23AC00A23414 /* GLK2TextureLoaderPVRv1.m */; };
+		6672C803184A23AC00A23414 /* GLK2UniformValueGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7E7184A23AC00A23414 /* GLK2UniformValueGenerator.h */; };
+		6672C804184A23AC00A23414 /* GLK2UniformValueGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7E8184A23AC00A23414 /* GLK2UniformValueGenerator.m */; };
+		66DDE1A6184A188C008C4E55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1A5184A188C008C4E55 /* Foundation.framework */; };
+		66DDE1B4184A188C008C4E55 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1B3184A188C008C4E55 /* XCTest.framework */; };
+		66DDE1B5184A188C008C4E55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1A5184A188C008C4E55 /* Foundation.framework */; };
+		66DDE1B7184A188C008C4E55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1B6184A188C008C4E55 /* UIKit.framework */; };
+		66DDE1BA184A188C008C4E55 /* libGLKX-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1A2184A188C008C4E55 /* libGLKX-Library.a */; };
+		66DDE1C0184A188C008C4E55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE1BE184A188C008C4E55 /* InfoPlist.strings */; };
+		66DDE1C2184A188C008C4E55 /* GLKX_LibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE1C1184A188C008C4E55 /* GLKX_LibraryTests.m */; };
+		66DDE1F8184A19CB008C4E55 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1F7184A19CB008C4E55 /* GLKit.framework */; };
+		66DDE235184A1AEA008C4E55 /* GLKX-Library-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 66DDE217184A1AEA008C4E55 /* GLKX-Library-Prefix.pch */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66DDE1B8184A188C008C4E55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66DDE19A184A188C008C4E55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66DDE1A1184A188C008C4E55;
+			remoteInfo = "GLKX-Library";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		66DDE1A0184A188C008C4E55 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6672C7CC184A23AC00A23414 /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
+		6672C7CD184A23AC00A23414 /* GLK2Attribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Attribute.m; sourceTree = "<group>"; };
+		6672C7CE184A23AC00A23414 /* GLK2BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferObject.h; sourceTree = "<group>"; };
+		6672C7CF184A23AC00A23414 /* GLK2BufferObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2BufferObject.m; sourceTree = "<group>"; };
+		6672C7D0184A23AC00A23414 /* GLK2DrawCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCall.h; sourceTree = "<group>"; };
+		6672C7D1184A23AC00A23414 /* GLK2DrawCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2DrawCall.m; sourceTree = "<group>"; };
+		6672C7D2184A23AC00A23414 /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
+		6672C7D3184A23AC00A23414 /* GLK2Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Shader.m; sourceTree = "<group>"; };
+		6672C7D4184A23AC00A23414 /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
+		6672C7D5184A23AC00A23414 /* GLK2ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2ShaderProgram.m; sourceTree = "<group>"; };
+		6672C7D6184A23AC00A23414 /* GLK2Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Texture.h; sourceTree = "<group>"; };
+		6672C7D7184A23AC00A23414 /* GLK2Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Texture.m; sourceTree = "<group>"; };
+		6672C7D8184A23AC00A23414 /* GLK2Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Uniform.h; sourceTree = "<group>"; };
+		6672C7D9184A23AC00A23414 /* GLK2Uniform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Uniform.m; sourceTree = "<group>"; };
+		6672C7DA184A23AC00A23414 /* GLK2VertexArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2VertexArrayObject.h; sourceTree = "<group>"; };
+		6672C7DB184A23AC00A23414 /* GLK2VertexArrayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2VertexArrayObject.m; sourceTree = "<group>"; };
+		6672C7DD184A23AC00A23414 /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
+		6672C7DE184A23AC00A23414 /* GLK2BufferFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2BufferFormat.m; sourceTree = "<group>"; };
+		6672C7DF184A23AC00A23414 /* GLK2GetError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2GetError.h; sourceTree = "<group>"; };
+		6672C7E0184A23AC00A23414 /* GLK2GetError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2GetError.m; sourceTree = "<group>"; };
+		6672C7E1184A23AC00A23414 /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
+		6672C7E2184A23AC00A23414 /* GLK2HardwareMaximums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2HardwareMaximums.m; sourceTree = "<group>"; };
+		6672C7E3184A23AC00A23414 /* GLK2Texture+CoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLK2Texture+CoreGraphics.h"; sourceTree = "<group>"; };
+		6672C7E4184A23AC00A23414 /* GLK2Texture+CoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GLK2Texture+CoreGraphics.m"; sourceTree = "<group>"; };
+		6672C7E5184A23AC00A23414 /* GLK2TextureLoaderPVRv1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2TextureLoaderPVRv1.h; sourceTree = "<group>"; };
+		6672C7E6184A23AC00A23414 /* GLK2TextureLoaderPVRv1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2TextureLoaderPVRv1.m; sourceTree = "<group>"; };
+		6672C7E7184A23AC00A23414 /* GLK2UniformValueGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2UniformValueGenerator.h; sourceTree = "<group>"; };
+		6672C7E8184A23AC00A23414 /* GLK2UniformValueGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2UniformValueGenerator.m; sourceTree = "<group>"; };
+		66DDE1A2184A188C008C4E55 /* libGLKX-Library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libGLKX-Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66DDE1A5184A188C008C4E55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		66DDE1B2184A188C008C4E55 /* GLKX-LibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GLKX-LibraryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66DDE1B3184A188C008C4E55 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		66DDE1B6184A188C008C4E55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		66DDE1BD184A188C008C4E55 /* GLKX-LibraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GLKX-LibraryTests-Info.plist"; sourceTree = "<group>"; };
+		66DDE1BF184A188C008C4E55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		66DDE1C1184A188C008C4E55 /* GLKX_LibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLKX_LibraryTests.m; sourceTree = "<group>"; };
+		66DDE1CB184A1919008C4E55 /* GLKX_Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLKX_Library.h; sourceTree = "<group>"; };
+		66DDE1F7184A19CB008C4E55 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		66DDE217184A1AEA008C4E55 /* GLKX-Library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLKX-Library-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66DDE19F184A188C008C4E55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DDE1F8184A19CB008C4E55 /* GLKit.framework in Frameworks */,
+				66DDE1A6184A188C008C4E55 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66DDE1AF184A188C008C4E55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DDE1B4184A188C008C4E55 /* XCTest.framework in Frameworks */,
+				66DDE1B7184A188C008C4E55 /* UIKit.framework in Frameworks */,
+				66DDE1B5184A188C008C4E55 /* Foundation.framework in Frameworks */,
+				66DDE1BA184A188C008C4E55 /* libGLKX-Library.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6672C7CB184A23AC00A23414 /* OpenGL Basics */ = {
+			isa = PBXGroup;
+			children = (
+				6672C7CC184A23AC00A23414 /* GLK2Attribute.h */,
+				6672C7CD184A23AC00A23414 /* GLK2Attribute.m */,
+				6672C7CE184A23AC00A23414 /* GLK2BufferObject.h */,
+				6672C7CF184A23AC00A23414 /* GLK2BufferObject.m */,
+				6672C7D0184A23AC00A23414 /* GLK2DrawCall.h */,
+				6672C7D1184A23AC00A23414 /* GLK2DrawCall.m */,
+				6672C7D2184A23AC00A23414 /* GLK2Shader.h */,
+				6672C7D3184A23AC00A23414 /* GLK2Shader.m */,
+				6672C7D4184A23AC00A23414 /* GLK2ShaderProgram.h */,
+				6672C7D5184A23AC00A23414 /* GLK2ShaderProgram.m */,
+				6672C7D6184A23AC00A23414 /* GLK2Texture.h */,
+				6672C7D7184A23AC00A23414 /* GLK2Texture.m */,
+				6672C7D8184A23AC00A23414 /* GLK2Uniform.h */,
+				6672C7D9184A23AC00A23414 /* GLK2Uniform.m */,
+				6672C7DA184A23AC00A23414 /* GLK2VertexArrayObject.h */,
+				6672C7DB184A23AC00A23414 /* GLK2VertexArrayObject.m */,
+			);
+			path = "OpenGL Basics";
+			sourceTree = "<group>";
+		};
+		6672C7DC184A23AC00A23414 /* OpenGL Supplemental */ = {
+			isa = PBXGroup;
+			children = (
+				6672C7DD184A23AC00A23414 /* GLK2BufferFormat.h */,
+				6672C7DE184A23AC00A23414 /* GLK2BufferFormat.m */,
+				6672C7DF184A23AC00A23414 /* GLK2GetError.h */,
+				6672C7E0184A23AC00A23414 /* GLK2GetError.m */,
+				6672C7E1184A23AC00A23414 /* GLK2HardwareMaximums.h */,
+				6672C7E2184A23AC00A23414 /* GLK2HardwareMaximums.m */,
+				6672C7E3184A23AC00A23414 /* GLK2Texture+CoreGraphics.h */,
+				6672C7E4184A23AC00A23414 /* GLK2Texture+CoreGraphics.m */,
+				6672C7E5184A23AC00A23414 /* GLK2TextureLoaderPVRv1.h */,
+				6672C7E6184A23AC00A23414 /* GLK2TextureLoaderPVRv1.m */,
+				6672C7E7184A23AC00A23414 /* GLK2UniformValueGenerator.h */,
+				6672C7E8184A23AC00A23414 /* GLK2UniformValueGenerator.m */,
+			);
+			path = "OpenGL Supplemental";
+			sourceTree = "<group>";
+		};
+		66DDE199184A188C008C4E55 = {
+			isa = PBXGroup;
+			children = (
+				66DDE1A7184A188C008C4E55 /* GLKX-Library */,
+				66DDE1BB184A188C008C4E55 /* GLKX-LibraryTests */,
+				66DDE1A4184A188C008C4E55 /* Frameworks */,
+				66DDE1A3184A188C008C4E55 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		66DDE1A3184A188C008C4E55 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE1A2184A188C008C4E55 /* libGLKX-Library.a */,
+				66DDE1B2184A188C008C4E55 /* GLKX-LibraryTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66DDE1A4184A188C008C4E55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE1F7184A19CB008C4E55 /* GLKit.framework */,
+				66DDE1A5184A188C008C4E55 /* Foundation.framework */,
+				66DDE1B3184A188C008C4E55 /* XCTest.framework */,
+				66DDE1B6184A188C008C4E55 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66DDE1A7184A188C008C4E55 /* GLKX-Library */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE1CB184A1919008C4E55 /* GLKX_Library.h */,
+				66DDE217184A1AEA008C4E55 /* GLKX-Library-Prefix.pch */,
+				6672C7CB184A23AC00A23414 /* OpenGL Basics */,
+				6672C7DC184A23AC00A23414 /* OpenGL Supplemental */,
+			);
+			path = "GLKX-Library";
+			sourceTree = "<group>";
+		};
+		66DDE1BB184A188C008C4E55 /* GLKX-LibraryTests */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE1C1184A188C008C4E55 /* GLKX_LibraryTests.m */,
+				66DDE1BC184A188C008C4E55 /* Supporting Files */,
+			);
+			path = "GLKX-LibraryTests";
+			sourceTree = "<group>";
+		};
+		66DDE1BC184A188C008C4E55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE1BD184A188C008C4E55 /* GLKX-LibraryTests-Info.plist */,
+				66DDE1BE184A188C008C4E55 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		66DDE1F9184A1AD9008C4E55 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6672C7FF184A23AC00A23414 /* GLK2Texture+CoreGraphics.h in Headers */,
+				6672C7ED184A23AC00A23414 /* GLK2DrawCall.h in Headers */,
+				6672C7F7184A23AC00A23414 /* GLK2VertexArrayObject.h in Headers */,
+				6672C801184A23AC00A23414 /* GLK2TextureLoaderPVRv1.h in Headers */,
+				6672C7FB184A23AC00A23414 /* GLK2GetError.h in Headers */,
+				6672C803184A23AC00A23414 /* GLK2UniformValueGenerator.h in Headers */,
+				6672C7EF184A23AC00A23414 /* GLK2Shader.h in Headers */,
+				6672C7F9184A23AC00A23414 /* GLK2BufferFormat.h in Headers */,
+				6672C7F5184A23AC00A23414 /* GLK2Uniform.h in Headers */,
+				66DDE235184A1AEA008C4E55 /* GLKX-Library-Prefix.pch in Headers */,
+				6672C7EB184A23AC00A23414 /* GLK2BufferObject.h in Headers */,
+				6672C7F3184A23AC00A23414 /* GLK2Texture.h in Headers */,
+				6672C7F1184A23AC00A23414 /* GLK2ShaderProgram.h in Headers */,
+				6672C7B7184A228000A23414 /* GLKX_Library.h in Headers */,
+				6672C7E9184A23AC00A23414 /* GLK2Attribute.h in Headers */,
+				6672C7FD184A23AC00A23414 /* GLK2HardwareMaximums.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		66DDE1A1184A188C008C4E55 /* GLKX-Library */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66DDE1C5184A188C008C4E55 /* Build configuration list for PBXNativeTarget "GLKX-Library" */;
+			buildPhases = (
+				66DDE19E184A188C008C4E55 /* Sources */,
+				66DDE19F184A188C008C4E55 /* Frameworks */,
+				66DDE1A0184A188C008C4E55 /* CopyFiles */,
+				66DDE1F9184A1AD9008C4E55 /* Headers */,
+				6672C7B2184A20C100A23414 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GLKX-Library";
+			productName = "GLKX-Library";
+			productReference = 66DDE1A2184A188C008C4E55 /* libGLKX-Library.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66DDE1B1184A188C008C4E55 /* GLKX-LibraryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66DDE1C8184A188C008C4E55 /* Build configuration list for PBXNativeTarget "GLKX-LibraryTests" */;
+			buildPhases = (
+				66DDE1AE184A188C008C4E55 /* Sources */,
+				66DDE1AF184A188C008C4E55 /* Frameworks */,
+				66DDE1B0184A188C008C4E55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66DDE1B9184A188C008C4E55 /* PBXTargetDependency */,
+			);
+			name = "GLKX-LibraryTests";
+			productName = "GLKX-LibraryTests";
+			productReference = 66DDE1B2184A188C008C4E55 /* GLKX-LibraryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66DDE19A184A188C008C4E55 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = n/a;
+			};
+			buildConfigurationList = 66DDE19D184A188C008C4E55 /* Build configuration list for PBXProject "GLKX-Library" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 66DDE199184A188C008C4E55;
+			productRefGroup = 66DDE1A3184A188C008C4E55 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66DDE1A1184A188C008C4E55 /* GLKX-Library */,
+				66DDE1B1184A188C008C4E55 /* GLKX-LibraryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66DDE1B0184A188C008C4E55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DDE1C0184A188C008C4E55 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6672C7B2184A20C100A23414 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "##########################################\n#\n# c.f. http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n#\n# Version 2.7\n#\n# Latest Change:\n# - Supports iPhone 5 / iPod Touch 5 (uses Apple's workaround to lipo bug)\n# \n# Purpose:\n#   Automatically create a Universal static library for iPhone + iPad + iPhone Simulator from within XCode\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n\nset -e\nset -o pipefail\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '.\\{3\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -project \\\"${PROJECT_NAME}.xcodeproj\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\" BUILD_DIR=\\\"${BUILD_DIR}\\\" BUILD_ROOT=\\\"${BUILD_ROOT}\\\" SYMROOT=\\\"${SYMROOT}\\\"\n\nxcodebuild -configuration \"${CONFIGURATION}\" -project \"${PROJECT_NAME}.xcodeproj\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\"\n\nACTION=\"build\"\n\n#Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...I will output a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"lipo: for current configuration (${CONFIGURATION}) creating output file: ${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\"\nxcrun -sdk iphoneos lipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Added: StackOverflow suggestion to also copy \"include\" files\n#    (untested, but should work OK)\n#\necho \"Fetching headers from ${PUBLIC_HEADERS_FOLDER_PATH}\"\necho \"  (if you embed your library project in another project, you will need to add\"\necho \"   a \"User Search Headers\" build setting of: (NB INCLUDE THE DOUBLE QUOTES BELOW!)\"\necho '        \"$(TARGET_BUILD_DIR)/usr/local/include/\"'\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\" ]\nthen\nmkdir -p \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\n# * needs to be outside the double quotes?\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"* \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\nfi\nfi";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66DDE19E184A188C008C4E55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6672C7EC184A23AC00A23414 /* GLK2BufferObject.m in Sources */,
+				6672C7EA184A23AC00A23414 /* GLK2Attribute.m in Sources */,
+				6672C804184A23AC00A23414 /* GLK2UniformValueGenerator.m in Sources */,
+				6672C7F6184A23AC00A23414 /* GLK2Uniform.m in Sources */,
+				6672C802184A23AC00A23414 /* GLK2TextureLoaderPVRv1.m in Sources */,
+				6672C800184A23AC00A23414 /* GLK2Texture+CoreGraphics.m in Sources */,
+				6672C7FC184A23AC00A23414 /* GLK2GetError.m in Sources */,
+				6672C7F0184A23AC00A23414 /* GLK2Shader.m in Sources */,
+				6672C7EE184A23AC00A23414 /* GLK2DrawCall.m in Sources */,
+				6672C7F2184A23AC00A23414 /* GLK2ShaderProgram.m in Sources */,
+				6672C7F8184A23AC00A23414 /* GLK2VertexArrayObject.m in Sources */,
+				6672C7FA184A23AC00A23414 /* GLK2BufferFormat.m in Sources */,
+				6672C7FE184A23AC00A23414 /* GLK2HardwareMaximums.m in Sources */,
+				6672C7F4184A23AC00A23414 /* GLK2Texture.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66DDE1AE184A188C008C4E55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DDE1C2184A188C008C4E55 /* GLKX_LibraryTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66DDE1B9184A188C008C4E55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66DDE1A1184A188C008C4E55 /* GLKX-Library */;
+			targetProxy = 66DDE1B8184A188C008C4E55 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		66DDE1BE184A188C008C4E55 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66DDE1BF184A188C008C4E55 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		66DDE1C3184A188C008C4E55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		66DDE1C4184A188C008C4E55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66DDE1C6184A188C008C4E55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GLKX_Library.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GLKX-Library/GLKX-Library-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66DDE1C7184A188C008C4E55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GLKX_Library.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GLKX-Library/GLKX-Library-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		66DDE1C9184A188C008C4E55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GLKX-Library/GLKX-Library-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GLKX-LibraryTests/GLKX-LibraryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		66DDE1CA184A188C008C4E55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GLKX-Library/GLKX-Library-Prefix.pch";
+				INFOPLIST_FILE = "GLKX-LibraryTests/GLKX-LibraryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66DDE19D184A188C008C4E55 /* Build configuration list for PBXProject "GLKX-Library" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66DDE1C3184A188C008C4E55 /* Debug */,
+				66DDE1C4184A188C008C4E55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66DDE1C5184A188C008C4E55 /* Build configuration list for PBXNativeTarget "GLKX-Library" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66DDE1C6184A188C008C4E55 /* Debug */,
+				66DDE1C7184A188C008C4E55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66DDE1C8184A188C008C4E55 /* Build configuration list for PBXNativeTarget "GLKX-LibraryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66DDE1C9184A188C008C4E55 /* Debug */,
+				66DDE1CA184A188C008C4E55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66DDE19A184A188C008C4E55 /* Project object */;
+}

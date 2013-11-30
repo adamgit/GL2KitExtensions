@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6672C734184A1E1700A23414 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C733184A1E1700A23414 /* Foundation.framework */; };
+		6672C736184A1E1700A23414 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C735184A1E1700A23414 /* CoreGraphics.framework */; };
+		6672C738184A1E1700A23414 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C737184A1E1700A23414 /* UIKit.framework */; };
+		6672C79B184A1ED200A23414 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6672C76C184A1ED200A23414 /* Main_iPad.storyboard */; };
+		6672C79C184A1ED200A23414 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6672C76E184A1ED200A23414 /* Main_iPhone.storyboard */; };
+		6672C79D184A1ED200A23414 /* black-with-white-stripe.png in Resources */ = {isa = PBXBuildFile; fileRef = 6672C770184A1ED200A23414 /* black-with-white-stripe.png */; };
+		6672C79E184A1ED200A23414 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6672C771184A1ED200A23414 /* Images.xcassets */; };
+		6672C79F184A1ED200A23414 /* FragmentColourOnly.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C773184A1ED200A23414 /* FragmentColourOnly.fsh */; };
+		6672C7A0184A1ED200A23414 /* FragmentFunkyAlgorithm1.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C774184A1ED200A23414 /* FragmentFunkyAlgorithm1.fsh */; };
+		6672C7A1184A1ED200A23414 /* FragmentTextureOnly.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C775184A1ED200A23414 /* FragmentTextureOnly.fsh */; };
+		6672C7A2184A1ED200A23414 /* FragmentXYParameterized.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C776184A1ED200A23414 /* FragmentXYParameterized.fsh */; };
+		6672C7A3184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C777184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh */; };
+		6672C7A4184A1ED200A23414 /* VertexPositionUnprojected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C778184A1ED200A23414 /* VertexPositionUnprojected.vsh */; };
+		6672C7A5184A1ED200A23414 /* VertexPositionUnprojectedAndShifted.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C779184A1ED200A23414 /* VertexPositionUnprojectedAndShifted.vsh */; };
+		6672C7A6184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6672C77A184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh */; };
+		6672C7A7184A1ED200A23414 /* tex2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6672C77B184A1ED200A23414 /* tex2.png */; };
+		6672C7A8184A1ED200A23414 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C77E184A1ED200A23414 /* AppDelegate.m */; };
+		6672C7A9184A1ED200A23414 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C77F184A1ED200A23414 /* main.m */; };
+		6672C7AA184A1ED200A23414 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C781184A1ED200A23414 /* ViewController.m */; };
+		6672C7AC184A1ED200A23414 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6672C785184A1ED200A23414 /* InfoPlist.strings */; };
+		6672C81B184A249A00A23414 /* libGLKX-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C81A184A249A00A23414 /* libGLKX-Library.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6672C730184A1E1700A23414 /* GLKitExtended-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GLKitExtended-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6672C733184A1E1700A23414 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6672C735184A1E1700A23414 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6672C737184A1E1700A23414 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6672C755184A1E1700A23414 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6672C76D184A1ED200A23414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		6672C76F184A1ED200A23414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		6672C770184A1ED200A23414 /* black-with-white-stripe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-with-white-stripe.png"; sourceTree = "<group>"; };
+		6672C771184A1ED200A23414 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6672C773184A1ED200A23414 /* FragmentColourOnly.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentColourOnly.fsh; sourceTree = "<group>"; };
+		6672C774184A1ED200A23414 /* FragmentFunkyAlgorithm1.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentFunkyAlgorithm1.fsh; sourceTree = "<group>"; };
+		6672C775184A1ED200A23414 /* FragmentTextureOnly.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentTextureOnly.fsh; sourceTree = "<group>"; };
+		6672C776184A1ED200A23414 /* FragmentXYParameterized.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentXYParameterized.fsh; sourceTree = "<group>"; };
+		6672C777184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexPassThroughAlgorithmData.vsh; sourceTree = "<group>"; };
+		6672C778184A1ED200A23414 /* VertexPositionUnprojected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexPositionUnprojected.vsh; sourceTree = "<group>"; };
+		6672C779184A1ED200A23414 /* VertexPositionUnprojectedAndShifted.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexPositionUnprojectedAndShifted.vsh; sourceTree = "<group>"; };
+		6672C77A184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexUnprojectedWithTexture.vsh; sourceTree = "<group>"; };
+		6672C77B184A1ED200A23414 /* tex2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tex2.png; sourceTree = "<group>"; };
+		6672C77D184A1ED200A23414 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6672C77E184A1ED200A23414 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6672C77F184A1ED200A23414 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6672C780184A1ED200A23414 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6672C781184A1ED200A23414 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6672C783184A1ED200A23414 /* GLKitExtended-Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GLKitExtended-Demo-Info.plist"; sourceTree = "<group>"; };
+		6672C784184A1ED200A23414 /* GLKitExtended-Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLKitExtended-Demo-Prefix.pch"; sourceTree = "<group>"; };
+		6672C785184A1ED200A23414 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		6672C80A184A23CE00A23414 /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
+		6672C80B184A23CE00A23414 /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
+		6672C80C184A23CE00A23414 /* GLK2BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferObject.h; sourceTree = "<group>"; };
+		6672C80D184A23CE00A23414 /* GLK2DrawCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCall.h; sourceTree = "<group>"; };
+		6672C80E184A23CE00A23414 /* GLK2GetError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2GetError.h; sourceTree = "<group>"; };
+		6672C80F184A23CE00A23414 /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
+		6672C810184A23CE00A23414 /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
+		6672C811184A23CE00A23414 /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
+		6672C812184A23CE00A23414 /* GLK2Texture+CoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLK2Texture+CoreGraphics.h"; sourceTree = "<group>"; };
+		6672C813184A23CE00A23414 /* GLK2Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Texture.h; sourceTree = "<group>"; };
+		6672C814184A23CE00A23414 /* GLK2TextureLoaderPVRv1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2TextureLoaderPVRv1.h; sourceTree = "<group>"; };
+		6672C815184A23CE00A23414 /* GLK2Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Uniform.h; sourceTree = "<group>"; };
+		6672C816184A23CE00A23414 /* GLK2UniformValueGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2UniformValueGenerator.h; sourceTree = "<group>"; };
+		6672C817184A23CE00A23414 /* GLK2VertexArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2VertexArrayObject.h; sourceTree = "<group>"; };
+		6672C818184A23CE00A23414 /* GLKX_Library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLKX_Library.h; sourceTree = "<group>"; };
+		6672C81A184A249A00A23414 /* libGLKX-Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGLKX-Library.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6672C72D184A1E1700A23414 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6672C736184A1E1700A23414 /* CoreGraphics.framework in Frameworks */,
+				6672C738184A1E1700A23414 /* UIKit.framework in Frameworks */,
+				6672C734184A1E1700A23414 /* Foundation.framework in Frameworks */,
+				6672C81B184A249A00A23414 /* libGLKX-Library.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6672C727184A1E1700A23414 = {
+			isa = PBXGroup;
+			children = (
+				6672C76B184A1ED200A23414 /* Assets */,
+				6672C77C184A1ED200A23414 /* Classes */,
+				6672C782184A1ED200A23414 /* Configuration */,
+				6672C786184A1ED200A23414 /* Libraries */,
+				6672C732184A1E1700A23414 /* Frameworks */,
+				6672C731184A1E1700A23414 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6672C731184A1E1700A23414 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6672C730184A1E1700A23414 /* GLKitExtended-Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6672C732184A1E1700A23414 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6672C733184A1E1700A23414 /* Foundation.framework */,
+				6672C735184A1E1700A23414 /* CoreGraphics.framework */,
+				6672C737184A1E1700A23414 /* UIKit.framework */,
+				6672C755184A1E1700A23414 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6672C76B184A1ED200A23414 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				6672C76C184A1ED200A23414 /* Main_iPad.storyboard */,
+				6672C76E184A1ED200A23414 /* Main_iPhone.storyboard */,
+				6672C770184A1ED200A23414 /* black-with-white-stripe.png */,
+				6672C771184A1ED200A23414 /* Images.xcassets */,
+				6672C772184A1ED200A23414 /* Shaders */,
+				6672C77B184A1ED200A23414 /* tex2.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		6672C772184A1ED200A23414 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				6672C773184A1ED200A23414 /* FragmentColourOnly.fsh */,
+				6672C774184A1ED200A23414 /* FragmentFunkyAlgorithm1.fsh */,
+				6672C775184A1ED200A23414 /* FragmentTextureOnly.fsh */,
+				6672C776184A1ED200A23414 /* FragmentXYParameterized.fsh */,
+				6672C777184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh */,
+				6672C778184A1ED200A23414 /* VertexPositionUnprojected.vsh */,
+				6672C779184A1ED200A23414 /* VertexPositionUnprojectedAndShifted.vsh */,
+				6672C77A184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		6672C77C184A1ED200A23414 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6672C77D184A1ED200A23414 /* AppDelegate.h */,
+				6672C77E184A1ED200A23414 /* AppDelegate.m */,
+				6672C77F184A1ED200A23414 /* main.m */,
+				6672C780184A1ED200A23414 /* ViewController.h */,
+				6672C781184A1ED200A23414 /* ViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6672C782184A1ED200A23414 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				6672C783184A1ED200A23414 /* GLKitExtended-Demo-Info.plist */,
+				6672C784184A1ED200A23414 /* GLKitExtended-Demo-Prefix.pch */,
+				6672C785184A1ED200A23414 /* InfoPlist.strings */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		6672C786184A1ED200A23414 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				6672C787184A1ED200A23414 /* GLKitExtended */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		6672C787184A1ED200A23414 /* GLKitExtended */ = {
+			isa = PBXGroup;
+			children = (
+				6672C81A184A249A00A23414 /* libGLKX-Library.a */,
+				6672C806184A23CE00A23414 /* usr */,
+			);
+			path = GLKitExtended;
+			sourceTree = "<group>";
+		};
+		6672C806184A23CE00A23414 /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				6672C807184A23CE00A23414 /* local */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		6672C807184A23CE00A23414 /* local */ = {
+			isa = PBXGroup;
+			children = (
+				6672C808184A23CE00A23414 /* include */,
+			);
+			path = local;
+			sourceTree = "<group>";
+		};
+		6672C808184A23CE00A23414 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6672C809184A23CE00A23414 /* include */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		6672C809184A23CE00A23414 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6672C80A184A23CE00A23414 /* GLK2Attribute.h */,
+				6672C80B184A23CE00A23414 /* GLK2BufferFormat.h */,
+				6672C80C184A23CE00A23414 /* GLK2BufferObject.h */,
+				6672C80D184A23CE00A23414 /* GLK2DrawCall.h */,
+				6672C80E184A23CE00A23414 /* GLK2GetError.h */,
+				6672C80F184A23CE00A23414 /* GLK2HardwareMaximums.h */,
+				6672C810184A23CE00A23414 /* GLK2Shader.h */,
+				6672C811184A23CE00A23414 /* GLK2ShaderProgram.h */,
+				6672C812184A23CE00A23414 /* GLK2Texture+CoreGraphics.h */,
+				6672C813184A23CE00A23414 /* GLK2Texture.h */,
+				6672C814184A23CE00A23414 /* GLK2TextureLoaderPVRv1.h */,
+				6672C815184A23CE00A23414 /* GLK2Uniform.h */,
+				6672C816184A23CE00A23414 /* GLK2UniformValueGenerator.h */,
+				6672C817184A23CE00A23414 /* GLK2VertexArrayObject.h */,
+				6672C818184A23CE00A23414 /* GLKX_Library.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6672C72F184A1E1700A23414 /* GLKitExtended-Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6672C765184A1E1700A23414 /* Build configuration list for PBXNativeTarget "GLKitExtended-Demo" */;
+			buildPhases = (
+				6672C72C184A1E1700A23414 /* Sources */,
+				6672C72D184A1E1700A23414 /* Frameworks */,
+				6672C72E184A1E1700A23414 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GLKitExtended-Demo";
+			productName = "GLKitExtended-Demo";
+			productReference = 6672C730184A1E1700A23414 /* GLKitExtended-Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6672C728184A1E1700A23414 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = n/a;
+			};
+			buildConfigurationList = 6672C72B184A1E1700A23414 /* Build configuration list for PBXProject "GLKitExtended-Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6672C727184A1E1700A23414;
+			productRefGroup = 6672C731184A1E1700A23414 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6672C72F184A1E1700A23414 /* GLKitExtended-Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6672C72E184A1E1700A23414 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6672C7A4184A1ED200A23414 /* VertexPositionUnprojected.vsh in Resources */,
+				6672C7A3184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh in Resources */,
+				6672C7A6184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh in Resources */,
+				6672C7A2184A1ED200A23414 /* FragmentXYParameterized.fsh in Resources */,
+				6672C79F184A1ED200A23414 /* FragmentColourOnly.fsh in Resources */,
+				6672C7A1184A1ED200A23414 /* FragmentTextureOnly.fsh in Resources */,
+				6672C7A0184A1ED200A23414 /* FragmentFunkyAlgorithm1.fsh in Resources */,
+				6672C7A5184A1ED200A23414 /* VertexPositionUnprojectedAndShifted.vsh in Resources */,
+				6672C7AC184A1ED200A23414 /* InfoPlist.strings in Resources */,
+				6672C79C184A1ED200A23414 /* Main_iPhone.storyboard in Resources */,
+				6672C7A7184A1ED200A23414 /* tex2.png in Resources */,
+				6672C79E184A1ED200A23414 /* Images.xcassets in Resources */,
+				6672C79B184A1ED200A23414 /* Main_iPad.storyboard in Resources */,
+				6672C79D184A1ED200A23414 /* black-with-white-stripe.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6672C72C184A1E1700A23414 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6672C7A9184A1ED200A23414 /* main.m in Sources */,
+				6672C7A8184A1ED200A23414 /* AppDelegate.m in Sources */,
+				6672C7AA184A1ED200A23414 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6672C76C184A1ED200A23414 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6672C76D184A1ED200A23414 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		6672C76E184A1ED200A23414 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6672C76F184A1ED200A23414 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6672C763184A1E1700A23414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6672C764184A1E1700A23414 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6672C766184A1E1700A23414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Configuration/GLKitExtended-Demo-Prefix.pch";
+				INFOPLIST_FILE = "Configuration/GLKitExtended-Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/adam/Documents/PROJECTS/GL2KitExtensions/GLKX-Demo/Libraries/GLKitExtended",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6672C767184A1E1700A23414 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Configuration/GLKitExtended-Demo-Prefix.pch";
+				INFOPLIST_FILE = "Configuration/GLKitExtended-Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/adam/Documents/PROJECTS/GL2KitExtensions/GLKX-Demo/Libraries/GLKitExtended",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6672C72B184A1E1700A23414 /* Build configuration list for PBXProject "GLKitExtended-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6672C763184A1E1700A23414 /* Debug */,
+				6672C764184A1E1700A23414 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6672C765184A1E1700A23414 /* Build configuration list for PBXNativeTarget "GLKitExtended-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6672C766184A1E1700A23414 /* Debug */,
+				6672C767184A1E1700A23414 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6672C728184A1E1700A23414 /* Project object */;
+}
