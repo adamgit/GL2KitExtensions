@@ -12,6 +12,9 @@
  */
 @interface GLK2DrawCall : NSObject
 
+/** Massively helpful when debugging: give each one a human-readable title */
+@property(nonatomic,readonly) NSString* title;
+
 @property(nonatomic) BOOL shouldClearColorBit, shouldClearDepthBit;
 
 /** Every draw call MUST have a shaderprogram, or else it cannot draw objects nor pixels */
@@ -57,6 +60,11 @@
  - depth test ON 
  
  ... everything else: OFF
+ */
+-(id) initWithTitle:(NSString*) title;
+
+/**
+ Delegates to initWithTitle, using a random string for the title
  */
 - (id)init;
 

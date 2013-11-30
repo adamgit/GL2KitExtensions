@@ -2,6 +2,7 @@
 
 @interface GLK2DrawCall()
 @property(nonatomic,retain) NSMutableArray* textureUnitSlots;
+@property(nonatomic,retain, readwrite) NSString* title;
 @end
 
 @implementation GLK2DrawCall
@@ -22,10 +23,12 @@
 	[super dealloc];
 }
 
-- (id)init
+- (id)initWithTitle:(NSString *)title
 {
 	self = [super init];
 	if (self) {
+		self.title = title;
+		
 		[self setClearColourRed:1.0f green:0 blue:1.0f alpha:1.0f];
 		self.requiresDepthTest = TRUE;
 		
@@ -38,6 +41,11 @@
 			[self.textureUnitSlots addObject:[NSNull null]]; // marks this slto as "currently empty"
 	}
 	return self;
+}
+
+- (id)init
+{
+	return [self initWithTitle:[NSString stringWithFormat:@"Drawcall-%i", arc4random_uniform(INT_MAX)]];
 }
 
 #pragma mark - glClear
