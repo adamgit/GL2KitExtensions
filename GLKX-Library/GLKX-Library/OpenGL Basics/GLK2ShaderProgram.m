@@ -5,7 +5,6 @@
 
 @interface GLK2ShaderProgram()
 @property(nonatomic,retain) NSMutableDictionary * vertexAttributesByName;
-@property(nonatomic,retain) NSMutableDictionary* uniformVariablesByName;
 @property(nonatomic, readwrite) GLuint glName;
 @end
 
@@ -71,7 +70,6 @@
 	self.vertexShader = nil;
 	self.fragmentShader = nil;
 	self.vertexAttributesByName = nil;
-	self.uniformVariablesByName = nil;
 	
 	if (self.glName)
 	{
@@ -114,54 +112,6 @@
 	/** react */
 	if( _vertexShader != nil )
 		glAttachShader( self.glName, _vertexShader.glName );
-}
-
-/** OpenGL spec is poorly designed and makes this a wordy chunk of boilerplate code that
- has to be repeated at least twice in your app
- */
--(NSMutableDictionary*) fetchAllUniformsAfterLinking
-{
-	NSMutableDictionary* result = [[NSMutableDictionary new] autorelease];
-	
-	/********************************************************************
-	 *
-	 * Query OpenGL for the data on all the "Uniforms" (anything
-	 * in your shader source files that has type "uniform")
-	 */
-	/** Allocate enough memory to store the string name of each uniform
-	 (OpenGL is a C API. C is a horrible, dead language. Deal with it)
-	 */
-	GLint numCharactersInLongestName;
-	glGetProgramiv( self.glName, GL_ACTIVE_UNIFORM_MAX_LENGTH, &numCharactersInLongestName);
-	char* nextUniformName = malloc( sizeof(char) * numCharactersInLongestName );
-	
-	/** how many uniforms did OpenGL find? */
-	GLint numUniformsFound;
-	glGetProgramiv( self.glName, GL_ACTIVE_UNIFORMS, &numUniformsFound);
-	
-	/** iterate through all the uniforms found, and store them on CPU somewhere */
-	for( int i = 0; i < numUniformsFound; i++ )
-	{
-		GLint uniformSize, uniformLocation;
-		GLenum uniformType;
-		NSString* stringName; // converted from GL C string, for use in standard ObjC calls and classes
-		
-		/** From two items: the glProgram object, and the text/string of uniform-name ... we get all other data, using 2 calls */
-		glGetActiveUniform( self.glName, i, numCharactersInLongestName, NULL /**length of string written to final arg; not needed*/, &uniformSize, &uniformType, nextUniformName );
-		uniformLocation = glGetUniformLocation( self.glName, nextUniformName );
-		stringName = [NSString stringWithUTF8String:nextUniformName];
-		
-		GLK2Uniform* newUniform = [GLK2Uniform uniformNamed:stringName GLType:uniformType GLLocation:uniformLocation numElementsInArray:uniformSize];
-		
-		[result setObject:newUniform forKey:stringName];
-#if DEBUG
-		NSLog(@"Stored uniform: '%@' with location: %i", stringName, uniformLocation );
-#endif
-	}
-	
-	free(nextUniformName);
-	
-	return result;
 }
 
 /** OpenGL spec is poorly designed and makes this a wordy chunk of boilerplate code that
@@ -235,7 +185,6 @@
         glDeleteShader( self.fragmentShader.glName ); // OpenGL will 'retain' internally according to spec
     }
 	
-	self.uniformVariablesByName = [self fetchAllUniformsAfterLinking];
 	self.vertexAttributesByName = [self fetchAllAttributesAfterLinking];
 }
 
@@ -266,20 +215,11 @@
 	return [self.vertexAttributesByName objectForKey:name];
 }
 
--(GLK2Uniform*) uniformNamed:(NSString*) name
-{
-	return [self.uniformVariablesByName objectForKey:name];
-}
-
 -(NSArray*) allAttributes
 {
 	return [self.vertexAttributesByName allValues];
 }
 
--(NSArray*) allUniforms
-{
-	return [self.uniformVariablesByName allValues];
-}
 
 #pragma mark - OpenGL low-level invocations
 
@@ -292,134 +232,6 @@
 	
 	if( status == GL_FALSE )
 		@throw [NSException exceptionWithName:@"ShaderProgram Link failure" reason:@"Link failure" userInfo:@{ @"Linker output":[self fetchLogForGLLinkShaderProgram:program] } ];
-}
-
-#pragma mark - Support setting of the huge number of different types of "uniform"
-
--(void) setValueOutsideRenderLoopRestoringProgramAfterwards:(const void*) value forUniform:(GLK2Uniform*) uniform 
-{
-	GLint currentProgram;
-	glGetIntegerv( GL_CURRENT_PROGRAM, &currentProgram);
-	
-	
-	/** Do the bit that needs to be atomic - mustn't allow the renderer to get a go in here! - if we're on main thread, this will be safe */
-	{
-		glUseProgram(self.glName);
-		
-		[self setValue:value forUniform:uniform];
-		
-		glUseProgram(currentProgram);
-	}
-}
-
--(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform
-{
-	switch( uniform.glType )
-	{
-		case GL_FLOAT:
-		case GL_FLOAT_VEC2:
-		case GL_FLOAT_VEC3:
-		case GL_FLOAT_VEC4:
-		case GL_FLOAT_MAT2:
-		case GL_FLOAT_MAT3:
-		case GL_FLOAT_MAT4:
-		{
-			[self setFloatBasedValue:value forUniform:uniform transposeMatrix:FALSE];
-		}break;
-			
-		case GL_INT:
-		case GL_INT_VEC2:
-		case GL_INT_VEC3:
-		case GL_INT_VEC4:
-		{
-			[self setIntBasedValue:value forUniform:uniform];
-		}break;
-			
-		case GL_SAMPLER_2D:
-		{
-			[self setIntBasedValue:value forUniform:uniform];
-		}break;
-			
-		default:
-			NSAssert(FALSE, @"Uniform %@ has an unknown / unsupported type in shader source file", uniform.nameInSourceFile );
-	}
-}
-
--(void) setIntBasedValue:(const GLint*) valuePointer forUniform:(GLK2Uniform*) uniform
-{
-	switch( uniform.glType )
-	{
-			/** the basic datatypes first */
-		case GL_INT:
-		case GL_SAMPLER_2D:
-		{
-			glUniform1i( uniform.glLocation, *valuePointer );
-		}break;
-			
-			/** 2 + 3 + 4 element vectors */
-		case GL_INT_VEC2:
-		{
-			glUniform2iv( uniform.glLocation, uniform.arrayLength, valuePointer );
-		}break;
-		case GL_INT_VEC3:
-		{
-			glUniform3iv( uniform.glLocation, uniform.arrayLength, valuePointer );
-		}break;
-		case GL_INT_VEC4:
-		{
-			glUniform4iv( uniform.glLocation, uniform.arrayLength, valuePointer );
-		}break;
-			
-		default:
-		{
-			NSAssert( FALSE, @"Impossible glType: %i", uniform.glType );
-		}
-	}
-}
-
--(void) setFloatBasedValue:(const GLfloat*) valuePointer forUniform:(GLK2Uniform*) uniform transposeMatrix:(BOOL) shouldTranspose
-{
-	switch( uniform.glType )
-	{
-			/** the basic datatypes first */
-		case GL_FLOAT:
-		{
-			glUniform1f( uniform.glLocation, *valuePointer );
-		}break;
-			
-			/** 2 + 3 + 4 element vectors */
-		case GL_FLOAT_VEC2:
-		{
-			glUniform2fv( uniform.glLocation, uniform.arrayLength, valuePointer );
-		}break;
-		case GL_FLOAT_VEC3:
-		{
-			glUniform3fv( uniform.glLocation, uniform.arrayLength, valuePointer );
-		}break;
-		case GL_FLOAT_VEC4:
-		{
-			glUniform4fv( uniform.glLocation, uniform.arrayLength, valuePointer );
-		}break;
-			
-			/** Floats ONLY: 2 + 3 + 4 width matrices */
-		case GL_FLOAT_MAT2:
-		{
-			glUniformMatrix2fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );
-		}break; 
-		case GL_FLOAT_MAT3:
-		{
-			glUniformMatrix3fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );
-		}break;
-		case GL_FLOAT_MAT4:
-		{
-			glUniformMatrix4fv( uniform.glLocation, uniform.arrayLength, shouldTranspose, valuePointer );
-		}break;
-			
-		default:
-		{
-			NSAssert( FALSE, @"Impossible glType: %i", uniform.glType );
-		}
-	}
 }
 
 @end
