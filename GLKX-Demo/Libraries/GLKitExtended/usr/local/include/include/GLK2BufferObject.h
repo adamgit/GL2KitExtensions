@@ -84,11 +84,11 @@ typedef enum GLK2BufferObjectNature
  
  To automatically get the correct value for usageHint, use "getUsageEnumValueFromFrequency:nature:"
  */
--(void) upload:(void *) dataArray numItems:(int) count usageHint:(GLenum) usage withNewFormat:(GLK2BufferFormat*) bFormat;
+-(void) upload:(const void *) dataArray numItems:(int) count usageHint:(GLenum) usage withNewFormat:(GLK2BufferFormat*) bFormat;
 
 /**
  Uses the existing buffer format (self.contentsFormat) - will fail if that is not set
  */
--(void) upload:(void *) dataArray numItems:(int) count usageHint:(GLenum) usage;
+-(void) upload:(const void *) dataArray numItems:(int) count usageHint:(GLenum) usage;
 
 @end

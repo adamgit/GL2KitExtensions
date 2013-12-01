@@ -92,6 +92,8 @@
  */
 -(GLuint)setTexture:(GLK2Texture *)texture forSampler:(GLK2Uniform *)sampler
 {
+	NSAssert( sampler != nil, @"Cannot set a texture for non-existent sampler = nil");
+	
 	if( texture != nil )
 	{
 		/** do we already have this sampler stored? */
@@ -130,12 +132,8 @@
 					glGetIntegerv( GL_CURRENT_PROGRAM, &currentProgram);
 					
 					NSAssert( self.shaderProgram != nil, @"Cannot set textures on a drawcall until you've given it a shader program (it's possible, but not implemented here)");
-					glUseProgram(self.shaderProgram.glName);
-					glUniform1i( sampler.glLocation, [self textureUnitOffsetForSampler:sampler] );
-					// Or, alternatively (identically): [self.shaderProgram setValue:[self textureUnitOffsetForSampler:sampler] forUniform:sampler];
-					
-					// restore the current program, if it's wasn't ours:
-					glUseProgram(currentProgram);
+					GLint textureUnitOffsetOpenGLMakesThisHard = [self textureUnitOffsetForSampler:sampler];
+					[self.shaderProgram setValueOutsideRenderLoopRestoringProgramAfterwards:&textureUnitOffsetOpenGLMakesThisHard forUniform:sampler];
 					break;
 				}
 			}

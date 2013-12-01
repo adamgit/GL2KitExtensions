@@ -12,6 +12,9 @@
  */
 @interface GLK2DrawCall : NSObject
 
+/** Massively helpful when debugging: give each one a human-readable title */
+@property(nonatomic,readonly) NSString* title;
+
 @property(nonatomic) BOOL shouldClearColorBit, shouldClearDepthBit;
 
 /** Every draw call MUST have a shaderprogram, or else it cannot draw objects nor pixels */
@@ -42,7 +45,7 @@
 @property(nonatomic) GLuint numVerticesToDraw;
 
 /** Each drawcall, this is inspected to calculate new values for every "uniform" in the pair of shaders */
-@property(nonatomic,retain) GLK2UniformValueGenerator* uniformValueGenerator;
+@property(nonatomic,retain) NSObject<GLK2UniformValueGenerator>* uniformValueGenerator;
 
 /** Textures in GL ES 2 are different from old-style OpenGL, and you MUST track the named
  shader-uniform / shader-sampler2d variable that each texture is 'attached' to; because of
@@ -57,6 +60,11 @@
  - depth test ON 
  
  ... everything else: OFF
+ */
+-(id) initWithTitle:(NSString*) title;
+
+/**
+ Delegates to initWithTitle, using a random string for the title
  */
 - (id)init;
 

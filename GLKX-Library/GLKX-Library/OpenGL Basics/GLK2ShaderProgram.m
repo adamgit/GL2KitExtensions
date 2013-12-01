@@ -7,6 +7,9 @@
 @property(nonatomic,retain) NSMutableDictionary * vertexAttributesByName;
 @property(nonatomic,retain) NSMutableDictionary* uniformVariablesByName;
 @property(nonatomic, readwrite) GLuint glName;
+
+@property(nonatomic,retain) NSMutableDictionary* uniformsHistoricValuesByName; // workaround OpenGL's non-existently awful debugging
+
 @end
 
 @implementation GLK2ShaderProgram
@@ -60,6 +63,8 @@
 	{
         self.glName = glCreateProgram();
 		self.vertexAttributesByName = [NSMutableDictionary dictionary];
+		self.uniformVariablesByName = [NSMutableDictionary dictionary];
+		self.uniformsHistoricValuesByName = [NSMutableDictionary dictionary];
 		
 		NSLog(@"[%@] Created new GL program with GL name = %i", [self class], self.glName );
     }
@@ -72,6 +77,7 @@
 	self.fragmentShader = nil;
 	self.vertexAttributesByName = nil;
 	self.uniformVariablesByName = nil;
+	self.uniformsHistoricValuesByName = nil;
 	
 	if (self.glName)
 	{
@@ -314,6 +320,9 @@
 
 -(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform
 {
+	/** Workaround OpenGL's awful debugging */
+	[self.uniformsHistoricValuesByName setObject:@"a value" forKey:uniform.nameInSourceFile];
+	
 	switch( uniform.glType )
 	{
 		case GL_FLOAT:
@@ -420,6 +429,23 @@
 			NSAssert( FALSE, @"Impossible glType: %i", uniform.glType );
 		}
 	}
+}
+
+#pragma mark - Fix OpenGL
+
+-(NSArray *)uniformsWithoutValues
+{
+	NSMutableArray* result = [NSMutableArray array];
+	
+	for( NSString* name in self.uniformVariablesByName )
+	{
+		if( [self.uniformsHistoricValuesByName objectForKey:name] == nil )
+		{
+			[result addObject:[self.uniformVariablesByName objectForKey:name]];
+		}
+	}
+	
+	return result;
 }
 
 @end

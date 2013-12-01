@@ -117,6 +117,11 @@
 	}
 }
 
+-(NSString *)description
+{
+	return [NSString stringWithFormat:@"<GLK2Uniform:\"%@\" @ %i: %@%@>", self.nameInSourceFile, self.glLocation, self.isVector? [NSString stringWithFormat:@"vec%i", self.vectorWidth] : self.isMatrix? [NSString stringWithFormat:@"mat%i", self.matrixWidth] : self.isFloat? @"float" : self.isInteger? @"int" : @"unknown type", self.arrayLength<2? @"" : [NSString stringWithFormat:@" (%i array elements)", self.arrayLength]  ];
+}
+
 #pragma mark - methods Apple requires us to implement to use this as a key in an NSDictionary
 
 -(id)copyWithZone:(NSZone *)zone

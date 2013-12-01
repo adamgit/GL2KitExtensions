@@ -27,25 +27,29 @@
 
 #import "GLK2Uniform.h"
 
-@interface GLK2UniformValueGenerator : NSObject
+@class GLK2DrawCall;
+
+@protocol GLK2UniformValueGenerator <NSObject>
+
+@optional
 
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */
--(GLKVector2*) vector2ForUniform:(GLK2Uniform*) v;
+-(GLKVector2*) vector2ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall;
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */
--(GLKVector3*) vector3ForUniform:(GLK2Uniform*) v;
+-(GLKVector3*) vector3ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall;
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */
--(GLKVector4*) vector4ForUniform:(GLK2Uniform*) v;
+-(GLKVector4*) vector4ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall;
 
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */
--(GLKMatrix2*) matrix2ForUniform:(GLK2Uniform*) v;
+-(GLKMatrix2*) matrix2ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall;
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */
--(GLKMatrix3*) matrix3ForUniform:(GLK2Uniform*) v;
+-(GLKMatrix3*) matrix3ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall;
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */
--(GLKMatrix4*) matrix4ForUniform:(GLK2Uniform*) v;
+-(GLKMatrix4*) matrix4ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall;
 
 /** Returns FALSE if this object has no value / wants you to leave the value alone, because C doesn't support null primitives */
--(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value;
+-(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value inDrawCall:(GLK2DrawCall*) drawCall;
 /** Returns FALSE if this object has no value / wants you to leave the value alone, because C doesn't support null primitives */
--(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value;
+-(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value inDrawCall:(GLK2DrawCall*) drawCall;
 
 @end

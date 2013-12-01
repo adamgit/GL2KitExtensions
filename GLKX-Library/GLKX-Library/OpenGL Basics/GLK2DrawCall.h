@@ -45,7 +45,7 @@
 @property(nonatomic) GLuint numVerticesToDraw;
 
 /** Each drawcall, this is inspected to calculate new values for every "uniform" in the pair of shaders */
-@property(nonatomic,retain) GLK2UniformValueGenerator* uniformValueGenerator;
+@property(nonatomic,retain) NSObject<GLK2UniformValueGenerator>* uniformValueGenerator;
 
 /** Textures in GL ES 2 are different from old-style OpenGL, and you MUST track the named
  shader-uniform / shader-sampler2d variable that each texture is 'attached' to; because of

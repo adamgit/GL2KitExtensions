@@ -387,17 +387,17 @@ int indexOfCurrentParameterizedDrawcall = 0;
 					{
 						case 2:
 						{
-							GLKMatrix2* matrixValue = [drawCall.uniformValueGenerator matrix2ForUniform:uniform];
+							GLKMatrix2* matrixValue = [drawCall.uniformValueGenerator matrix2ForUniform:uniform inDrawCall:drawCall];
 							floatPointer = matrixValue->m;
 						}break;
 						case 3:
 						{
-							GLKMatrix3* matrixValue = [drawCall.uniformValueGenerator matrix3ForUniform:uniform];
+							GLKMatrix3* matrixValue = [drawCall.uniformValueGenerator matrix3ForUniform:uniform inDrawCall:drawCall];
 							floatPointer = matrixValue->m;
 						}break;
 						case 4:
 						{
-							GLKMatrix4* matrixValue = [drawCall.uniformValueGenerator matrix4ForUniform:uniform];
+							GLKMatrix4* matrixValue = [drawCall.uniformValueGenerator matrix4ForUniform:uniform inDrawCall:drawCall];
 							floatPointer = matrixValue->m;
 						}break;
 					}
@@ -408,24 +408,24 @@ int indexOfCurrentParameterizedDrawcall = 0;
 					{
 						case 2:
 						{
-							GLKVector2* vectorValue = [drawCall.uniformValueGenerator vector2ForUniform:uniform];
+							GLKVector2* vectorValue = [drawCall.uniformValueGenerator vector2ForUniform:uniform inDrawCall:drawCall];
 							floatPointer = vectorValue->v;
 						}break;
 						case 3:
 						{
-							GLKVector3* vectorValue = [drawCall.uniformValueGenerator vector3ForUniform:uniform];
+							GLKVector3* vectorValue = [drawCall.uniformValueGenerator vector3ForUniform:uniform inDrawCall:drawCall];
 							floatPointer = vectorValue->v;
 						}break;
 						case 4:
 						{
-							GLKVector4* vectorValue = [drawCall.uniformValueGenerator vector4ForUniform:uniform];
+							GLKVector4* vectorValue = [drawCall.uniformValueGenerator vector4ForUniform:uniform inDrawCall:drawCall];
 							floatPointer = vectorValue->v;
 						}break;
 					}
 				}
 				else
 				{
-					if( ! [drawCall.uniformValueGenerator floatForUniform:uniform returnIn:floatPointer] )
+					if( ! [drawCall.uniformValueGenerator floatForUniform:uniform returnIn:floatPointer inDrawCall:drawCall] )
 						floatPointer = 0; // kill the pointer
 				}
 				
@@ -441,7 +441,7 @@ int indexOfCurrentParameterizedDrawcall = 0;
 				}
 				else
 				{
-					if( ! [drawCall.uniformValueGenerator intForUniform:uniform returnIn:intPointer] )
+					if( ! [drawCall.uniformValueGenerator intForUniform:uniform returnIn:intPointer inDrawCall:drawCall] )
 						intPointer = 0; // kill the pointer
 				}
 				

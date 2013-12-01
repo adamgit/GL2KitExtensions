@@ -64,6 +64,9 @@ typedef enum GLK2ShaderProgramStatus
  
  The simpler/faster version of this method only works if you are actually inside the render-loop itself, which is
  only true for the renderer
+ 
+ Note: both methods set internal state that helps with debugging; you can use either - but don't use the private
+ internal methods!
  */
 -(void) setValueOutsideRenderLoopRestoringProgramAfterwards:(const void*) value forUniform:(GLK2Uniform*) uniform;
 
@@ -77,8 +80,24 @@ typedef enum GLK2ShaderProgramStatus
  If you incorrectly use this method when you should have used the other, GL state will leak between drawcalls/shaders
  and CHAOS! will break loose upon thy rendering... You will also think you've gone insane when you try to debug it,
  and 1 proves to be equal to 0. (voice of bitter experience)
+ 
+ Note: both methods set internal state that helps with debugging; you can use either - but don't use the private
+ internal methods!
  */
 -(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform;
+
+/**
+ OpenGL debugging is badly designed and almost unusable; all manufacturers provide hacks to give you what you need,
+ except Apple - who prevents you from using the manufacturer's tools (Imagination / PowerVR doesn't seem very happy
+ about this!).
+ 
+ One side-effect: OpenGL will silently break everything if a Uniform that needs to be set ... isn't ... for any reason
+ and will not give you any way of finding this out.
+ 
+ This method tracks (imperfectly, but accurate so long as you only use the public methods in this class) what uniforms
+ you've set / not set yet
+ */
+-(NSArray*) uniformsWithoutValues;
 
 /** automatically calls glCreateProgram() */
 - (id)init;
