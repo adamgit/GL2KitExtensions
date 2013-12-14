@@ -16,7 +16,6 @@
 	self.textureUnitSlots = nil;
 	self.shaderProgram = nil;
 	self.VAO = nil;
-	self.uniformValueGenerator = nil;
 	
 	NSLog(@"Drawcall dealloced: %@", [self class] );
 	
@@ -30,7 +29,6 @@
 		self.title = title;
 		
 		[self setClearColourRed:1.0f green:0 blue:1.0f alpha:1.0f];
-		self.requiresDepthTest = TRUE;
 		
 		self.texturesFromSamplers = [NSMutableDictionary dictionary];
 		
@@ -133,7 +131,9 @@
 					
 					NSAssert( self.shaderProgram != nil, @"Cannot set textures on a drawcall until you've given it a shader program (it's possible, but not implemented here)");
 					GLint textureUnitOffsetOpenGLMakesThisHard = [self textureUnitOffsetForSampler:sampler];
-					[self.shaderProgram setValueOutsideRenderLoopRestoringProgramAfterwards:&textureUnitOffsetOpenGLMakesThisHard forUniform:sampler];
+					glUseProgram(self.shaderProgram.glName);
+					glUniform1i( sampler.glLocation, textureUnitOffsetOpenGLMakesThisHard );
+					glUseProgram(currentProgram);
 					break;
 				}
 			}

@@ -20,10 +20,6 @@
 /** Every draw call MUST have a shaderprogram, or else it cannot draw objects nor pixels */
 @property(nonatomic,retain) GLK2ShaderProgram* shaderProgram;
 
-/** You nearly always want this on, so that overlapping triangles correctly overlap, instead of having one or the other
- overwriting the ones IN FRONT OF it */
-@property(nonatomic) BOOL requiresDepthTest;
-
 /** If this draw call has ANY geometry, it should go in a VBO (stores raw Vertex attributes),
  and the VBO should be embedded in a VAO (which stores the metadata about the geometry) */
 @property(nonatomic,retain) GLK2VertexArrayObject* VAO;
@@ -43,9 +39,6 @@
  on a per-drawcall basis.
  */
 @property(nonatomic) GLuint numVerticesToDraw;
-
-/** Each drawcall, this is inspected to calculate new values for every "uniform" in the pair of shaders */
-@property(nonatomic,retain) NSObject<GLK2UniformValueGenerator>* uniformValueGenerator;
 
 /** Textures in GL ES 2 are different from old-style OpenGL, and you MUST track the named
  shader-uniform / shader-sampler2d variable that each texture is 'attached' to; because of

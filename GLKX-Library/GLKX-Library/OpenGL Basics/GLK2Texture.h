@@ -51,24 +51,10 @@
 
 @interface GLK2Texture : NSObject
 
-/** Tries to load a texture in the same way as Apple's [UIImage imageNamed] method: by searching the bundle, and then
- delegating to Apple's broken GLKit texture-loader (because that loader explicitly is designed to do this, even though
- it's very buggy) */
-+(GLK2Texture*) textureNamed:(NSString*) filename;
-
 /** If you use Apple's broken GLKit texture-loader, you'll need to store and manipulate the output, but Apple blocks you
  from doing this (for no apparent reason). So this method lets you convert from Apple's badly designed proprietary class
  into an instance that you can safely use */
 +(GLK2Texture*) texturePreLoadedByApplesGLKit:(GLKTextureInfo*) appleMetadata;
-
-/**
- Note that a raw stream of bytes contains NO INFORMATION about width/height of texture, so you need to provide those
- details in the parametrs.
- 
- Critically important: this requires the data to be in RAW BYTES, exactly as you'd expect from the method name; this is
- INCOMPATIBLE with Apple's undocumented NSData-loading method (which crashes if you give it anything except
- an ENCODED jpeg or png or pvr-v1) */
-+(GLK2Texture *)textureFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh;
 
 /** OpenGL uses integers as "names" instead of Strings, because Strings in C are a pain to work with, and slower */
 @property(nonatomic, readonly) GLuint glName;

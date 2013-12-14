@@ -31,6 +31,8 @@
 
 @protocol GLK2UniformValueGenerator <NSObject>
 
+@optional
+
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */
 -(GLKVector2*) vector2ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall;
 /** Returns NULL pointer if this object has no value / wants you to leave the value alone */

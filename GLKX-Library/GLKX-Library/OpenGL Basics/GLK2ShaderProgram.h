@@ -56,49 +56,6 @@ typedef enum GLK2ShaderProgramStatus
 
 -(void) validate;
 
-#pragma mark - Set the value of a Uniform
-
-/**
- NOTE: it is always safe to call this from anywhere in the program, so long as the renderer's thread is blocked,
- OR you are inside that thread.
- 
- The simpler/faster version of this method only works if you are actually inside the render-loop itself, which is
- only true for the renderer
- 
- Note: both methods set internal state that helps with debugging; you can use either - but don't use the private
- internal methods!
- */
--(void) setValueOutsideRenderLoopRestoringProgramAfterwards:(const void*) value forUniform:(GLK2Uniform*) uniform;
-
-/** NOTE: this must ONLY be invoked inside the main render-loop, and ONLY when the render-loop has set the
- current glProgram to this one.
- 
- When you need to set values outside the render-loop - e.g. nearly always: because you're configuring a new shader/
- drawcall - instead use setValueOutsideRenderLoopRestoringProgramAfterwards:forUniform -- that method will switch to
- this shaderprogram, set the value, and then switch BACK to the original program being used by the main renderer.
- 
- If you incorrectly use this method when you should have used the other, GL state will leak between drawcalls/shaders
- and CHAOS! will break loose upon thy rendering... You will also think you've gone insane when you try to debug it,
- and 1 proves to be equal to 0. (voice of bitter experience)
- 
- Note: both methods set internal state that helps with debugging; you can use either - but don't use the private
- internal methods!
- */
--(void) setValue:(const void*) value forUniform:(GLK2Uniform*) uniform;
-
-/**
- OpenGL debugging is badly designed and almost unusable; all manufacturers provide hacks to give you what you need,
- except Apple - who prevents you from using the manufacturer's tools (Imagination / PowerVR doesn't seem very happy
- about this!).
- 
- One side-effect: OpenGL will silently break everything if a Uniform that needs to be set ... isn't ... for any reason
- and will not give you any way of finding this out.
- 
- This method tracks (imperfectly, but accurate so long as you only use the public methods in this class) what uniforms
- you've set / not set yet
- */
--(NSArray*) uniformsWithoutValues;
-
 /** automatically calls glCreateProgram() */
 - (id)init;
 

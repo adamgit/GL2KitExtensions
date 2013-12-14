@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6656884A185D1E1D00F707E1 /* VertexTextureMappingUnprojected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 66568849185D1E1D00F707E1 /* VertexTextureMappingUnprojected.vsh */; };
+		6656884C185D1E3100F707E1 /* FragmentTextureMapOnly.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6656884B185D1E3100F707E1 /* FragmentTextureMapOnly.fsh */; };
+		66568863185D1F7700F707E1 /* libGLKX-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6656884E185D1F7700F707E1 /* libGLKX-Library.a */; };
 		6672C734184A1E1700A23414 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C733184A1E1700A23414 /* Foundation.framework */; };
 		6672C736184A1E1700A23414 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C735184A1E1700A23414 /* CoreGraphics.framework */; };
 		6672C738184A1E1700A23414 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C737184A1E1700A23414 /* UIKit.framework */; };
@@ -27,10 +30,28 @@
 		6672C7A9184A1ED200A23414 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C77F184A1ED200A23414 /* main.m */; };
 		6672C7AA184A1ED200A23414 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C781184A1ED200A23414 /* ViewController.m */; };
 		6672C7AC184A1ED200A23414 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6672C785184A1ED200A23414 /* InfoPlist.strings */; };
-		66D6D60D184B8555005FD70B /* libGLKX-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D6D60C184B8555005FD70B /* libGLKX-Library.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66568849185D1E1D00F707E1 /* VertexTextureMappingUnprojected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexTextureMappingUnprojected.vsh; sourceTree = "<group>"; };
+		6656884B185D1E3100F707E1 /* FragmentTextureMapOnly.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentTextureMapOnly.fsh; sourceTree = "<group>"; };
+		6656884E185D1F7700F707E1 /* libGLKX-Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGLKX-Library.a"; sourceTree = "<group>"; };
+		66568853185D1F7700F707E1 /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
+		66568854185D1F7700F707E1 /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
+		66568855185D1F7700F707E1 /* GLK2BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferObject.h; sourceTree = "<group>"; };
+		66568856185D1F7700F707E1 /* GLK2DrawCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCall.h; sourceTree = "<group>"; };
+		66568857185D1F7700F707E1 /* GLK2ExampleUniformValueGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ExampleUniformValueGenerator.h; sourceTree = "<group>"; };
+		66568858185D1F7700F707E1 /* GLK2GetError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2GetError.h; sourceTree = "<group>"; };
+		66568859185D1F7700F707E1 /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
+		6656885A185D1F7700F707E1 /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
+		6656885B185D1F7700F707E1 /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
+		6656885C185D1F7700F707E1 /* GLK2Texture+CoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLK2Texture+CoreGraphics.h"; sourceTree = "<group>"; };
+		6656885D185D1F7700F707E1 /* GLK2Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Texture.h; sourceTree = "<group>"; };
+		6656885E185D1F7700F707E1 /* GLK2TextureLoaderPVRv1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2TextureLoaderPVRv1.h; sourceTree = "<group>"; };
+		6656885F185D1F7700F707E1 /* GLK2Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Uniform.h; sourceTree = "<group>"; };
+		66568860185D1F7700F707E1 /* GLK2UniformValueGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2UniformValueGenerator.h; sourceTree = "<group>"; };
+		66568861185D1F7700F707E1 /* GLK2VertexArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2VertexArrayObject.h; sourceTree = "<group>"; };
+		66568862185D1F7700F707E1 /* GLKX_Library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLKX_Library.h; sourceTree = "<group>"; };
 		6672C730184A1E1700A23414 /* GLKitExtended-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GLKitExtended-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6672C733184A1E1700A23414 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6672C735184A1E1700A23414 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,23 +78,6 @@
 		6672C783184A1ED200A23414 /* GLKitExtended-Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GLKitExtended-Demo-Info.plist"; sourceTree = "<group>"; };
 		6672C784184A1ED200A23414 /* GLKitExtended-Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLKitExtended-Demo-Prefix.pch"; sourceTree = "<group>"; };
 		6672C785184A1ED200A23414 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		66D6D60C184B8555005FD70B /* libGLKX-Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGLKX-Library.a"; sourceTree = "<group>"; };
-		66D6D612184B8567005FD70B /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
-		66D6D613184B8567005FD70B /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
-		66D6D614184B8567005FD70B /* GLK2BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferObject.h; sourceTree = "<group>"; };
-		66D6D615184B8567005FD70B /* GLK2DrawCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCall.h; sourceTree = "<group>"; };
-		66D6D616184B8567005FD70B /* GLK2ExampleUniformValueGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ExampleUniformValueGenerator.h; sourceTree = "<group>"; };
-		66D6D617184B8567005FD70B /* GLK2GetError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2GetError.h; sourceTree = "<group>"; };
-		66D6D618184B8567005FD70B /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
-		66D6D619184B8567005FD70B /* GLK2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Shader.h; sourceTree = "<group>"; };
-		66D6D61A184B8567005FD70B /* GLK2ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2ShaderProgram.h; sourceTree = "<group>"; };
-		66D6D61B184B8567005FD70B /* GLK2Texture+CoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLK2Texture+CoreGraphics.h"; sourceTree = "<group>"; };
-		66D6D61C184B8567005FD70B /* GLK2Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Texture.h; sourceTree = "<group>"; };
-		66D6D61D184B8567005FD70B /* GLK2TextureLoaderPVRv1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2TextureLoaderPVRv1.h; sourceTree = "<group>"; };
-		66D6D61E184B8567005FD70B /* GLK2Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Uniform.h; sourceTree = "<group>"; };
-		66D6D61F184B8567005FD70B /* GLK2UniformValueGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2UniformValueGenerator.h; sourceTree = "<group>"; };
-		66D6D620184B8567005FD70B /* GLK2VertexArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2VertexArrayObject.h; sourceTree = "<group>"; };
-		66D6D621184B8567005FD70B /* GLKX_Library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLKX_Library.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,13 +88,69 @@
 				6672C736184A1E1700A23414 /* CoreGraphics.framework in Frameworks */,
 				6672C738184A1E1700A23414 /* UIKit.framework in Frameworks */,
 				6672C734184A1E1700A23414 /* Foundation.framework in Frameworks */,
-				66D6D60D184B8555005FD70B /* libGLKX-Library.a in Frameworks */,
+				66568863185D1F7700F707E1 /* libGLKX-Library.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6656884D185D1F7300F707E1 /* GLKitExtended */ = {
+			isa = PBXGroup;
+			children = (
+				6656884E185D1F7700F707E1 /* libGLKX-Library.a */,
+				6656884F185D1F7700F707E1 /* usr */,
+			);
+			path = GLKitExtended;
+			sourceTree = "<group>";
+		};
+		6656884F185D1F7700F707E1 /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				66568850185D1F7700F707E1 /* local */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		66568850185D1F7700F707E1 /* local */ = {
+			isa = PBXGroup;
+			children = (
+				66568851185D1F7700F707E1 /* include */,
+			);
+			path = local;
+			sourceTree = "<group>";
+		};
+		66568851185D1F7700F707E1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				66568852185D1F7700F707E1 /* include */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		66568852185D1F7700F707E1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				66568853185D1F7700F707E1 /* GLK2Attribute.h */,
+				66568854185D1F7700F707E1 /* GLK2BufferFormat.h */,
+				66568855185D1F7700F707E1 /* GLK2BufferObject.h */,
+				66568856185D1F7700F707E1 /* GLK2DrawCall.h */,
+				66568857185D1F7700F707E1 /* GLK2ExampleUniformValueGenerator.h */,
+				66568858185D1F7700F707E1 /* GLK2GetError.h */,
+				66568859185D1F7700F707E1 /* GLK2HardwareMaximums.h */,
+				6656885A185D1F7700F707E1 /* GLK2Shader.h */,
+				6656885B185D1F7700F707E1 /* GLK2ShaderProgram.h */,
+				6656885C185D1F7700F707E1 /* GLK2Texture+CoreGraphics.h */,
+				6656885D185D1F7700F707E1 /* GLK2Texture.h */,
+				6656885E185D1F7700F707E1 /* GLK2TextureLoaderPVRv1.h */,
+				6656885F185D1F7700F707E1 /* GLK2Uniform.h */,
+				66568860185D1F7700F707E1 /* GLK2UniformValueGenerator.h */,
+				66568861185D1F7700F707E1 /* GLK2VertexArrayObject.h */,
+				66568862185D1F7700F707E1 /* GLKX_Library.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		6672C727184A1E1700A23414 = {
 			isa = PBXGroup;
 			children = (
@@ -142,10 +202,12 @@
 				6672C774184A1ED200A23414 /* FragmentFunkyAlgorithm1.fsh */,
 				6672C775184A1ED200A23414 /* FragmentTextureOnly.fsh */,
 				6672C776184A1ED200A23414 /* FragmentXYParameterized.fsh */,
+				6656884B185D1E3100F707E1 /* FragmentTextureMapOnly.fsh */,
 				6672C777184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh */,
 				6672C778184A1ED200A23414 /* VertexPositionUnprojected.vsh */,
 				6672C779184A1ED200A23414 /* VertexPositionUnprojectedAndShifted.vsh */,
 				6672C77A184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh */,
+				66568849185D1E1D00F707E1 /* VertexTextureMappingUnprojected.vsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -175,65 +237,9 @@
 		6672C786184A1ED200A23414 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				6672C787184A1ED200A23414 /* GLKitExtended */,
+				6656884D185D1F7300F707E1 /* GLKitExtended */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		6672C787184A1ED200A23414 /* GLKitExtended */ = {
-			isa = PBXGroup;
-			children = (
-				66D6D60C184B8555005FD70B /* libGLKX-Library.a */,
-				66D6D60E184B8567005FD70B /* usr */,
-			);
-			path = GLKitExtended;
-			sourceTree = "<group>";
-		};
-		66D6D60E184B8567005FD70B /* usr */ = {
-			isa = PBXGroup;
-			children = (
-				66D6D60F184B8567005FD70B /* local */,
-			);
-			path = usr;
-			sourceTree = "<group>";
-		};
-		66D6D60F184B8567005FD70B /* local */ = {
-			isa = PBXGroup;
-			children = (
-				66D6D610184B8567005FD70B /* include */,
-			);
-			path = local;
-			sourceTree = "<group>";
-		};
-		66D6D610184B8567005FD70B /* include */ = {
-			isa = PBXGroup;
-			children = (
-				66D6D611184B8567005FD70B /* include */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		66D6D611184B8567005FD70B /* include */ = {
-			isa = PBXGroup;
-			children = (
-				66D6D612184B8567005FD70B /* GLK2Attribute.h */,
-				66D6D613184B8567005FD70B /* GLK2BufferFormat.h */,
-				66D6D614184B8567005FD70B /* GLK2BufferObject.h */,
-				66D6D615184B8567005FD70B /* GLK2DrawCall.h */,
-				66D6D616184B8567005FD70B /* GLK2ExampleUniformValueGenerator.h */,
-				66D6D617184B8567005FD70B /* GLK2GetError.h */,
-				66D6D618184B8567005FD70B /* GLK2HardwareMaximums.h */,
-				66D6D619184B8567005FD70B /* GLK2Shader.h */,
-				66D6D61A184B8567005FD70B /* GLK2ShaderProgram.h */,
-				66D6D61B184B8567005FD70B /* GLK2Texture+CoreGraphics.h */,
-				66D6D61C184B8567005FD70B /* GLK2Texture.h */,
-				66D6D61D184B8567005FD70B /* GLK2TextureLoaderPVRv1.h */,
-				66D6D61E184B8567005FD70B /* GLK2Uniform.h */,
-				66D6D61F184B8567005FD70B /* GLK2UniformValueGenerator.h */,
-				66D6D620184B8567005FD70B /* GLK2VertexArrayObject.h */,
-				66D6D621184B8567005FD70B /* GLKX_Library.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +294,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6656884A185D1E1D00F707E1 /* VertexTextureMappingUnprojected.vsh in Resources */,
+				6656884C185D1E3100F707E1 /* FragmentTextureMapOnly.fsh in Resources */,
 				6672C7A4184A1ED200A23414 /* VertexPositionUnprojected.vsh in Resources */,
 				6672C7A3184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh in Resources */,
 				6672C7A6184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh in Resources */,
@@ -424,6 +432,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/adam/Documents/PROJECTS/GL2KitExtensions/GLKX-Demo/Libraries/GLKitExtended",
+					"/Users/adam/Documents/projects/githubprojects/GL2KitExtensions/GLKX-Demo/Libraries/GLKitExtended",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -442,6 +451,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/adam/Documents/PROJECTS/GL2KitExtensions/GLKX-Demo/Libraries/GLKitExtended",
+					"/Users/adam/Documents/projects/githubprojects/GL2KitExtensions/GLKX-Demo/Libraries/GLKitExtended",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
