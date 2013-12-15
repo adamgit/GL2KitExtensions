@@ -50,7 +50,7 @@
 	NSAssert(targetAttribute != nil, @"Can't add a VBO for a nil vertex-attribute");
 	
 	
-	return [self addVBOForAttributes:@[targetAttribute] filledWithData:data inFormat:[GLK2BufferFormat bufferFormatWithSingleTypeOfFloats:(GLuint)(bytesPerDataItem/4) bytesPerItem:bytesPerDataItem] numVertices:numDataItems updateFrequency:freq];
+	return [self addVBOForAttributes:@[targetAttribute] filledWithData:data inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:(GLuint)(bytesPerDataItem/4)] numVertices:numDataItems updateFrequency:freq];
 }
 
 -(GLK2BufferObject*) addVBOForAttributes:(NSArray*) targetAttributes filledWithData:(const void*) data inFormat:(GLK2BufferFormat*) bFormat numVertices:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
@@ -66,6 +66,19 @@
 -(void) addVBO:(GLK2BufferObject*) vbo forAttributes:(NSArray*) targetAttributes numVertices:(int) numDataItems
 {
 	NSAssert( ![self.VBOs containsObject:vbo], @"Can't add a VBO, it's already added to this VAO");
+	/** Check if we already have a buffer that's mapped to any of those Attributes; GL does NOT ALLOW two buffers
+	 to provide data for the same Attribute (sadly, pathetically) */
+	for( NSNumber* numberOfName in self.attributeArraysByVBOName )
+	{
+		NSArray* attsForNumber = [self.attributeArraysByVBOName objectForKey:numberOfName];
+		for( GLK2Attribute* previouslyMappedAttribute in attsForNumber )
+		{
+			for( GLK2Attribute* newMappingAttribute in targetAttributes )
+			{
+				NSAssert( previouslyMappedAttribute.glLocation != newMappingAttribute.glLocation, @"Attribute named: %@ was already mapped to a VBO in this VAO; you should detach VBO %i before adding VBO %i", newMappingAttribute.nameInSourceFile, [numberOfName intValue], vbo.glName );
+			}
+		}
+	}
 	
 	[self.VBOs addObject:vbo]; // so we can auto-release it when this class deallocs
 	[self.attributeArraysByVBOName setObject:targetAttributes forKey:@(vbo.glName)];
@@ -131,6 +144,11 @@
 	
 	NSLog(@"VAO[%i]: released VBO with name = %i; if I was last remaining VAO, ObjC should dealloc it, and OpenGL will then delete it", self.glName, bufferToDetach.glName );
 	[bufferToDetach release];
+}
+
+-(BOOL)containsVBO:(GLK2BufferObject *)buffer
+{
+	return [self.VBOs containsObject:buffer];
 }
 
 @end

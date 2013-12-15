@@ -71,6 +71,8 @@
 -(float*) clearColourArray;
 -(void) setClearColourRed:(float) r green:(float) g blue:(float) b alpha:(float) a;
 
+#pragma mark Texturing and texture-mapping methods
+
 /** When the draw-call runs, it will look up all the 'sampler2D' objects in the Shader sourcecode,
  and then try to find an appropriate OpenGL Texture / GLK2Texture for each one.
  

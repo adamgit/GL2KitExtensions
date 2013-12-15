@@ -51,6 +51,16 @@
 
 @interface GLK2Texture : NSObject
 
+/**
+ Creates a new empty texture on the GPU. You'll have to fill this later with one of the uploading methods.
+ 
+ Generally, you do NOT want this method - it's best to upload a texture immmediately, or not create it until you
+ need it. But in some cases (e.g. when multiple drawcalls are going to share a texture) it's safer to create the
+ GPU texture first, and pass this texture object to each drawcall during config, so that they never get out of
+ synch, and upload the texture data later.
+ */
++(GLK2Texture*) textureNewEmpty;
+
 /** Tries to load a texture in the same way as Apple's [UIImage imageNamed] method: by searching the bundle, and then
  delegating to Apple's broken GLKit texture-loader (because that loader explicitly is designed to do this, even though
  it's very buggy) */
@@ -83,5 +93,7 @@
  use this method
  */
 - (id)initWithName:(GLuint) name;
+
+-(void) uploadFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh;
 
 @end

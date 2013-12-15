@@ -6,13 +6,13 @@
 
 @implementation GLK2BufferFormat
 
-+(GLK2BufferFormat *)bufferFormatWithSingleTypeOfFloats:(GLuint)numFloats bytesPerItem:(GLsizeiptr)bytesPerItem
++(GLK2BufferFormat *)bufferFormatOneAttributeMadeOfGLFloats:(GLuint)numFloats
 {
 	GLK2BufferFormat* newValue = [[GLK2BufferFormat new] autorelease];
 	
 	newValue.numberOfSubTypes = 1;
 	newValue.numFloatsPerItem = @[ @(numFloats) ];
-	newValue.bytesPerItem = @[ @(bytesPerItem) ];
+	newValue.bytesPerItem = @[ @( sizeof(GLfloat) * numFloats ) ];
 	
 	return newValue;
 }

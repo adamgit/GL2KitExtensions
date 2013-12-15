@@ -30,8 +30,22 @@ typedef enum GLK2BufferObjectNature
 
 /**
  Pre-Configures the buffertype to "GL_ARRAY_BUFFER", as required for VBO's
+ 
+ The format argument is required (although you could provide "nil") because a VBO where you don't know
+ the format is effectively junk data; it's very dangerous (in bugs / debugging terms) to allow yourself
+ to create VBO's with no format
  */
-+(GLK2BufferObject*) vertexBufferObject;
++(GLK2BufferObject *)vertexBufferObjectWithFormat:(GLK2BufferFormat*) newFormat;
+
+/**
+ Uploads an empty buffer exactly large enough to hold the specified number of 'items', so that you can later fill it up
+ using glBufferSubData. Even though glBufferSubData might be horribly slow, this method is needed in the cases
+ where you have to store different data over time into the same buffer with the SAME attribute.
+ 
+ If you are storing different data in different attributes, create new Buffers for each attribute - it's
+ faster and much easier to implement
+ */
++(GLK2BufferObject *)vertexBufferObjectWithFormat:(GLK2BufferFormat*) newFormat allocateCapacity:(NSUInteger) numItemsToPreAllocate;
 
 /**
  Create a VBO and immediately upload some data to it - don't forget the format! You'll need this later in order to
@@ -90,5 +104,12 @@ typedef enum GLK2BufferObjectNature
  Uses the existing buffer format (self.contentsFormat) - will fail if that is not set
  */
 -(void) upload:(const void *) dataArray numItems:(int) count usageHint:(GLenum) usage;
+
+/** Wraps glBufferSubData -- NB this will ONLY work if you've already done a call to one of the "upload:" methods,
+ OR if you created the buffer with a specific initial capacity; if not, the GPU won't have any memory allocated yet
+ for you to upload into!
+
+ */
+-(void)uploadToOffset:(GLintptr)startOffset withData:(const void *)dataArray numItems:(int)count;
 
 @end

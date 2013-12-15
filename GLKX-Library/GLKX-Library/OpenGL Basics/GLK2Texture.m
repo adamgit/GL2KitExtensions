@@ -11,6 +11,13 @@
 
 @implementation GLK2Texture
 
++(GLK2Texture *)textureNewEmpty
+{
+	GLK2Texture* newValue = [[GLK2Texture new] autorelease];
+	
+	return newValue;
+}
+
 +(GLK2Texture *)texturePreLoadedByApplesGLKit:(GLKTextureInfo *)appleMetadata
 {
 	GLK2Texture* newValue = [[[GLK2Texture alloc] initWithName:appleMetadata.name] autorelease];
@@ -20,13 +27,9 @@
 
 +(GLK2Texture *)textureFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh
 {
-	GLK2Texture* newValue = [[GLK2Texture new] autorelease];
+	GLK2Texture* newValue = [self textureNewEmpty];
 	
-	/*************** 2. Upload NSData to OpenGL */
-	glBindTexture( GL_TEXTURE_2D, newValue.glName);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pWide, pHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, [rawData bytes]);
+	[newValue uploadFromNSData:rawData pixelsWide:pWide pixelsHigh:pHigh];
 	
 	return newValue;
 }
@@ -92,6 +95,15 @@
     glDeleteTextures(1, &_glName);
 	
 	[super dealloc];
+}
+
+-(void) uploadFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh
+{
+	/*************** 2. Upload NSData to OpenGL */
+	glBindTexture( GL_TEXTURE_2D, self.glName);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pWide, pHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, [rawData bytes]);
 }
 
 @end

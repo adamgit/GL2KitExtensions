@@ -26,4 +26,8 @@
  */
 -(void) detachVBO:(GLK2BufferObject*) bufferToDetach;
 
+/** OpenGL's association of VAO's/VBO's has a very poor API, so you have to manually check and associate
+ them whenever needed */
+-(BOOL) containsVBO:(GLK2BufferObject*) buffer;
+ 
 @end

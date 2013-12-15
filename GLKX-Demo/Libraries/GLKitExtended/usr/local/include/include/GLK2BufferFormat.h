@@ -6,10 +6,29 @@
  This class holds that data
  */
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
 @interface GLK2BufferFormat : NSObject
 
-+(GLK2BufferFormat*) bufferFormatWithSingleTypeOfFloats:(GLuint) numFloats bytesPerItem:(GLsizeiptr) bytesPerItem;
+/**
+ It would be much cleaner to accept e.g. "GLKVector3" as argument, but Apple chose to implement
+ their OpenGL code in C, and C is a weak language, which has no introspection for struct types.
+ 
+ i.e. there is no way for us to detect the difference between a GLKVector2 and a GLKVector3 etc.
+ 
+ So, instead, we ask for the number of GL_FLOAT's.
+ 
+ NB: this method is the "most commonly used simple VBO (1 x attribute containing a single GLKit
+ struct - e.g. GLKVector3 or GLKMatrix4)" ... which explains the lack of detailed options.
+ */
++(GLK2BufferFormat *)bufferFormatOneAttributeMadeOfGLFloats:(GLuint)numFloats;
+
+/**
+ Fully configurable instantiator: this lets you specify multiple attributes in a single
+ VBO, with any number of floats each, and any number of bytes per attribute (maybe you're using
+ 32bit floats, maybe you're using 16bit, maybe you're using 64bit, etc)
+ */
++(GLK2BufferFormat *)bufferFormatWithFloatsPerItem:(NSArray*) floatsArray bytesPerItem:(NSArray*) bytesArray;
 
 @property(nonatomic) int numberOfSubTypes;
 

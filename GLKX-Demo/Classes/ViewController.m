@@ -102,7 +102,7 @@
 		GLKVector3Make(-0.5, 0, z),
 		GLKVector3Make( 0,  -1, z)
 	};
-	GLK2BufferObject* sharedVBOPositions = [GLK2BufferObject newVBOFilledWithData:cpuBuffer inFormat:[GLK2BufferFormat bufferFormatWithSingleTypeOfFloats:3 bytesPerItem:sizeof(GLKVector3)] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
+	GLK2BufferObject* sharedVBOPositions = [GLK2BufferObject newVBOFilledWithData:cpuBuffer inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:3] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
 	
 	GLKVector2 attributesVirtualXY [3] = 
 	{
@@ -110,7 +110,7 @@
 		GLKVector2Make( 0, 1 ),
 		GLKVector2Make( 1, 0 )
 	};
-	GLK2BufferObject* sharedVBOVirtualXYs = [GLK2BufferObject newVBOFilledWithData:attributesVirtualXY inFormat:[GLK2BufferFormat bufferFormatWithSingleTypeOfFloats:2 bytesPerItem:sizeof(GLKVector2)] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
+	GLK2BufferObject* sharedVBOVirtualXYs = [GLK2BufferObject newVBOFilledWithData:attributesVirtualXY inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:2] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
 	
 	GLK2Attribute* attPosition = [sharedProgramForBlueTriangles attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
 	GLK2Attribute* attXY = [sharedProgramForBlueTriangles attributeNamed:@"virtualXY"];

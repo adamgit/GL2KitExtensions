@@ -30,8 +30,12 @@ typedef enum GLK2BufferObjectNature
 
 /**
  Pre-Configures the buffertype to "GL_ARRAY_BUFFER", as required for VBO's
+ 
+ The format argument is required (although you could provide "nil") because a VBO where you don't know
+ the format is effectively junk data; it's very dangerous (in bugs / debugging terms) to allow yourself
+ to create VBO's with no format
  */
-+(GLK2BufferObject*) vertexBufferObject;
++(GLK2BufferObject *)vertexBufferObjectWithFormat:(GLK2BufferFormat*) newFormat;
 
 /**
  Create a VBO and immediately upload some data to it - don't forget the format! You'll need this later in order to

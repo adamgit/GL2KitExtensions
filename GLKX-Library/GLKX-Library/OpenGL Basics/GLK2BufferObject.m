@@ -7,10 +7,22 @@
 
 @implementation GLK2BufferObject
 
-+(GLK2BufferObject *)vertexBufferObject
++(GLK2BufferObject *)vertexBufferObjectWithFormat:(GLK2BufferFormat*) newFormat
 {
 	GLK2BufferObject* newObject = [[GLK2BufferObject new] autorelease];
 	newObject.glBufferType = GL_ARRAY_BUFFER;
+	newObject.currentFormat = newFormat;
+	
+	return newObject;
+}
+
++(GLK2BufferObject *)vertexBufferObjectWithFormat:(GLK2BufferFormat*) newFormat allocateCapacity:(NSUInteger) numItemsToPreAllocate
+{
+	GLK2BufferObject* newObject = [self vertexBufferObjectWithFormat:newFormat];
+	
+	glBindBuffer( newObject.glBufferType, newObject.glName );
+	
+	glBufferData( GL_ARRAY_BUFFER, numItemsToPreAllocate * newObject.totalBytesPerItem, NULL, GL_DYNAMIC_DRAW);
 	
 	return newObject;
 }
@@ -18,10 +30,10 @@
 +(GLK2BufferObject*) newVBOFilledWithData:(const void*) data inFormat:(GLK2BufferFormat*) bFormat numVertices:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq
 {
 	/** Create a VBO on the GPU, to store data */
-	GLK2BufferObject* newVBO = [GLK2BufferObject vertexBufferObject];
+	GLK2BufferObject* newVBO = [GLK2BufferObject vertexBufferObjectWithFormat:bFormat];
 	
 	/** Send the vertex data to the new VBO */
-	[newVBO upload:data numItems:numDataItems usageHint:[newVBO getUsageEnumValueFromFrequency:freq nature:GLK2BufferObjectNatureDraw] withNewFormat:bFormat];
+	[newVBO upload:data numItems:numDataItems usageHint:[newVBO getUsageEnumValueFromFrequency:freq nature:GLK2BufferObjectNatureDraw]];
 	
 	return newVBO;
 }
@@ -149,4 +161,10 @@
 	glBufferData( GL_ARRAY_BUFFER, count * self.totalBytesPerItem, dataArray, usage);
 }
 
+-(void)uploadToOffset:(GLintptr)startOffset withData:(const void *)dataArray numItems:(int)count
+{
+	glBindBuffer( self.glBufferType, self.glName );
+	
+	glBufferSubData( GL_ARRAY_BUFFER, startOffset, count * self.totalBytesPerItem, dataArray);
+}
 @end
