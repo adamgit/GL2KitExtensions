@@ -10,6 +10,63 @@
 	float clearColour[4];
 }
 
++(GLK2DrawCall *)drawCallPoints
+{
+	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
+	
+	dc.glDrawCallType = GL_POINTS;
+	
+	return dc;
+}
++(GLK2DrawCall *)drawCallLines
+{
+	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
+	
+	dc.glDrawCallType = GL_LINES;
+	
+	return dc;
+}
++(GLK2DrawCall *)drawCallLineLoop
+{
+	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
+	
+	dc.glDrawCallType = GL_LINE_LOOP;
+	
+	return dc;
+}
++(GLK2DrawCall *)drawCallLineStrip
+{
+	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
+	
+	dc.glDrawCallType = GL_LINE_STRIP;
+	
+	return dc;
+}
++(GLK2DrawCall *)drawCallTriangles
+{
+	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
+	
+	dc.glDrawCallType = GL_TRIANGLES;
+	
+	return dc;
+}
++(GLK2DrawCall *)drawCallTriangleFan
+{
+	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
+	
+	dc.glDrawCallType = GL_TRIANGLE_FAN;
+	
+	return dc;
+}
++(GLK2DrawCall *)drawCallTriangleStrip
+{
+	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
+	
+	dc.glDrawCallType = GL_TRIANGLE_STRIP;
+	
+	return dc;
+}
+
 -(void)dealloc
 {
 	self.texturesFromSamplers = nil;
@@ -29,9 +86,12 @@
 	if (self) {
 		self.title = title;
 		
+		/** Defaults different to GL defaults */
 		[self setClearColourRed:1.0f green:0 blue:1.0f alpha:1.0f];
 		self.requiresDepthTest = TRUE;
+		self.requiresCullFace = TRUE;
 		
+		/** General class setup */
 		self.texturesFromSamplers = [NSMutableDictionary dictionary];
 		
 		GLint sizeOfTextureUnitSlotsArray; // MUST be fixed size, and have an entry for every index!

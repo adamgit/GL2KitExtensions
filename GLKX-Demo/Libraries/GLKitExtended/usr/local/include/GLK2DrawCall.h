@@ -24,6 +24,9 @@
  overwriting the ones IN FRONT OF it */
 @property(nonatomic) BOOL requiresDepthTest;
 
+/** In almost all apps you want it ON */
+@property(nonatomic) BOOL requiresCullFace;
+
 /** If this draw call has ANY geometry, it should go in a VBO (stores raw Vertex attributes),
  and the VBO should be embedded in a VAO (which stores the metadata about the geometry) */
 @property(nonatomic,retain) GLK2VertexArrayObject* VAO;
@@ -53,11 +56,24 @@
  have to keep re-doing it frame to frame */
 @property(nonatomic,retain) NSMutableDictionary* texturesFromSamplers;
 
+#pragma mark - All the possible Draw call types supported in GL ES 2
+
++(GLK2DrawCall*) drawCallPoints;
++(GLK2DrawCall*) drawCallLines;
++(GLK2DrawCall*) drawCallLineLoop;
++(GLK2DrawCall*) drawCallLineStrip;
++(GLK2DrawCall*) drawCallTriangles;
++(GLK2DrawCall*) drawCallTriangleStrip;
++(GLK2DrawCall*) drawCallTriangleFan;
+
+#pragma mark - init methods
+
 /**
  Defaults to:
  
  - clear color MAGENTA
  - depth test ON 
+ - cull back-facing polygons ON
  
  ... everything else: OFF
  */
@@ -70,6 +86,8 @@
 
 -(float*) clearColourArray;
 -(void) setClearColourRed:(float) r green:(float) g blue:(float) b alpha:(float) a;
+
+#pragma mark Texturing and texture-mapping methods
 
 /** When the draw-call runs, it will look up all the 'sampler2D' objects in the Shader sourcecode,
  and then try to find an appropriate OpenGL Texture / GLK2Texture for each one.
