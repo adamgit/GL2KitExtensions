@@ -83,6 +83,28 @@
 /** OpenGL uses integers as "names" instead of Strings, because Strings in C are a pain to work with, and slower */
 @property(nonatomic, readonly) GLuint glName;
 
+/** Defaults to TRUE: there is only one known case where you DON'T want this behaviour: Apple's badly-documented CoreVideo for pulling frames from Camera onto GL texture, where Apple REQUIRES you to manually buffer
+ textures from frame-to-frame until they "die" at a non-specified time of Apple's internal choosing */
+@property(nonatomic) BOOL willDeleteOnDealloc;
+
+#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
+/**
+ Setting this to true has the side-effect of retain'ing the object, so that you can safely release it;
+ it will then remain in memory until something checks this flag and decides to manually issue the final
+ release (or will remain in memory even longer if something else has meanwhile grabbed it)
+ 
+ Apple's fast implementation of Video textures (direct from on-board Camera) requires you to manually "hold-on"
+ to old textures until the new texture has been "swapped" in. Because CPU and GPU run in parallel, if you dealloc
+ the "old" textures immediately, they asynchronously delete the GPU texture while the GPU is still using them. This
+ property lets our render-loop wait until the end and do cleanup at end of each frame.
+ 
+ NB: I have copied this approach 100% from Apple - this is how Apple manages all user-interface and interaction
+ and networking and asynch-hardware access: "do magic at end of Run loop" - so I'm assuming they would choose to
+ implement it the same for GLKit, eventually.
+ */
+@property(nonatomic) BOOL shouldReleaseAtEndOfNextFrame;
+#endif
+
 /** Creates a new, blank, OpenGL texture on the GPU.
  
  If you already created a texture from some other source, use the initWithName: method instead
@@ -91,6 +113,9 @@
 
 /** If a texture was loaded by an external source - e.g. Apple's GLKit - you'll already have a name for it, and can
  use this method
+ 
+ NB: this is the designated initializer; this is particularly important w.r.t. GLK2TextureManager and subclassing
+ this class
  */
 - (id)initWithName:(GLuint) name;
 

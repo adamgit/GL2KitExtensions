@@ -10,6 +10,8 @@
 #import "GLK2HardwareMaximums.h"
 #import "OpenGLDrawCallRenderingViewController.h"
 
-@interface ViewController : OpenGLDrawCallRenderingViewController
+#import <AVFoundation/AVFoundation.h>
+
+@interface ViewController : OpenGLDrawCallRenderingViewController <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @end

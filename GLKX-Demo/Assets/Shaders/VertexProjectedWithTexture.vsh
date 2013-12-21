@@ -12,7 +12,5 @@ void main()
 	/** outputs: */
 	varyingtextureCoordinate = textureCoordinate;
 	gl_Position = projectionMatrix * position;
-	//gl_Position = mat4( 1.0, 0, 0, 0, 0, 1.0, 0, 0, 0, 0, 1.0, 0, 0, 0, 0, 1.0 ) * position;
-	//gl_Position = position * projectionMatrix;
-	//gl_Position = position;
+//	gl_Position = position;
 }

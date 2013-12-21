@@ -1,6 +1,7 @@
 #import "OpenGLDrawCallRenderingViewController.h"
 
 #import "GLKX_Library.h"
+#import "GLK2TextureManager.h"
 
 #pragma mark - Class Extension (private properties etc)
 @interface OpenGLDrawCallRenderingViewController ()
@@ -108,6 +109,15 @@
 {
 	[self willRenderFrame];
 	[self renderSingleFrame];
+	
+	for( GLK2Texture* texture in [GLK2TextureManager allKnownGLK2Textures])
+	{
+		if( texture.shouldReleaseAtEndOfNextFrame )
+		{
+			texture.shouldReleaseAtEndOfNextFrame = FALSE;
+			[texture release];
+		}
+	}
 }
 
 -(void) renderSingleFrame

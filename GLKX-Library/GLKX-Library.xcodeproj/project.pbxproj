@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660BC6001865F70F00F3BF83 /* GLK2TextureManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 660BC5FE1865F70F00F3BF83 /* GLK2TextureManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		660BC6011865F70F00F3BF83 /* GLK2TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 660BC5FF1865F70F00F3BF83 /* GLK2TextureManager.m */; };
 		6672C7B7184A228000A23414 /* GLKX_Library.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DDE1CB184A1919008C4E55 /* GLKX_Library.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6672C7E9184A23AC00A23414 /* GLK2Attribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 6672C7CC184A23AC00A23414 /* GLK2Attribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6672C7EA184A23AC00A23414 /* GLK2Attribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 6672C7CD184A23AC00A23414 /* GLK2Attribute.m */; };
@@ -46,6 +48,9 @@
 		66DDE1C2184A188C008C4E55 /* GLKX_LibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE1C1184A188C008C4E55 /* GLKX_LibraryTests.m */; };
 		66DDE1F8184A19CB008C4E55 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1F7184A19CB008C4E55 /* GLKit.framework */; };
 		66DDE235184A1AEA008C4E55 /* GLKX-Library-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 66DDE217184A1AEA008C4E55 /* GLKX-Library-Prefix.pch */; };
+		66F4144018610E9600BCBC8C /* GLK2Texture+CoreVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F4143E18610E9600BCBC8C /* GLK2Texture+CoreVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66F4144118610E9600BCBC8C /* GLK2Texture+CoreVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F4143F18610E9600BCBC8C /* GLK2Texture+CoreVideo.m */; };
+		66F4144318610F4500BCBC8C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F4144218610F4500BCBC8C /* CoreVideo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		660BC5FE1865F70F00F3BF83 /* GLK2TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2TextureManager.h; sourceTree = "<group>"; };
+		660BC5FF1865F70F00F3BF83 /* GLK2TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2TextureManager.m; sourceTree = "<group>"; };
 		6672C7CC184A23AC00A23414 /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
 		6672C7CD184A23AC00A23414 /* GLK2Attribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Attribute.m; sourceTree = "<group>"; };
 		6672C7CE184A23AC00A23414 /* GLK2BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferObject.h; sourceTree = "<group>"; };
@@ -111,6 +118,9 @@
 		66DDE1CB184A1919008C4E55 /* GLKX_Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLKX_Library.h; sourceTree = "<group>"; };
 		66DDE1F7184A19CB008C4E55 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		66DDE217184A1AEA008C4E55 /* GLKX-Library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLKX-Library-Prefix.pch"; sourceTree = "<group>"; };
+		66F4143E18610E9600BCBC8C /* GLK2Texture+CoreVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLK2Texture+CoreVideo.h"; sourceTree = "<group>"; };
+		66F4143F18610E9600BCBC8C /* GLK2Texture+CoreVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GLK2Texture+CoreVideo.m"; sourceTree = "<group>"; };
+		66F4144218610F4500BCBC8C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66F4144318610F4500BCBC8C /* CoreVideo.framework in Frameworks */,
 				66DDE1F8184A19CB008C4E55 /* GLKit.framework in Frameworks */,
 				66DDE1A6184A188C008C4E55 /* Foundation.framework in Frameworks */,
 			);
@@ -176,6 +187,10 @@
 				6672C7E6184A23AC00A23414 /* GLK2TextureLoaderPVRv1.m */,
 				66D6D5F1184B8018005FD70B /* GLK2ExampleUniformValueGenerator.h */,
 				66D6D5F2184B8018005FD70B /* GLK2ExampleUniformValueGenerator.m */,
+				66F4143E18610E9600BCBC8C /* GLK2Texture+CoreVideo.h */,
+				66F4143F18610E9600BCBC8C /* GLK2Texture+CoreVideo.m */,
+				660BC5FE1865F70F00F3BF83 /* GLK2TextureManager.h */,
+				660BC5FF1865F70F00F3BF83 /* GLK2TextureManager.m */,
 			);
 			path = "OpenGL Supplemental";
 			sourceTree = "<group>";
@@ -210,6 +225,7 @@
 		66DDE1A4184A188C008C4E55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66F4144218610F4500BCBC8C /* CoreVideo.framework */,
 				66DDE1F7184A19CB008C4E55 /* GLKit.framework */,
 				66DDE1A5184A188C008C4E55 /* Foundation.framework */,
 				66DDE1B3184A188C008C4E55 /* XCTest.framework */,
@@ -261,6 +277,7 @@
 				6672C7FB184A23AC00A23414 /* GLK2GetError.h in Headers */,
 				66D6D5F0184B7FF1005FD70B /* GLK2UniformValueGenerator.h in Headers */,
 				6672C7EF184A23AC00A23414 /* GLK2Shader.h in Headers */,
+				66F4144018610E9600BCBC8C /* GLK2Texture+CoreVideo.h in Headers */,
 				6672C7F9184A23AC00A23414 /* GLK2BufferFormat.h in Headers */,
 				6672C7F5184A23AC00A23414 /* GLK2Uniform.h in Headers */,
 				66DDE235184A1AEA008C4E55 /* GLKX-Library-Prefix.pch in Headers */,
@@ -271,6 +288,7 @@
 				6672C7B7184A228000A23414 /* GLKX_Library.h in Headers */,
 				6672C7E9184A23AC00A23414 /* GLK2Attribute.h in Headers */,
 				6672C7FD184A23AC00A23414 /* GLK2HardwareMaximums.h in Headers */,
+				660BC6001865F70F00F3BF83 /* GLK2TextureManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +402,8 @@
 				6672C7EE184A23AC00A23414 /* GLK2DrawCall.m in Sources */,
 				6672C7F2184A23AC00A23414 /* GLK2ShaderProgram.m in Sources */,
 				6672C7F8184A23AC00A23414 /* GLK2VertexArrayObject.m in Sources */,
+				66F4144118610E9600BCBC8C /* GLK2Texture+CoreVideo.m in Sources */,
+				660BC6011865F70F00F3BF83 /* GLK2TextureManager.m in Sources */,
 				6672C7FA184A23AC00A23414 /* GLK2BufferFormat.m in Sources */,
 				66D6D5F4184B8018005FD70B /* GLK2ExampleUniformValueGenerator.m in Sources */,
 				6672C7FE184A23AC00A23414 /* GLK2HardwareMaximums.m in Sources */,
