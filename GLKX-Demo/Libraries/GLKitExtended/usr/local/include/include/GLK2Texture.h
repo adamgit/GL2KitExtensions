@@ -87,6 +87,7 @@
  textures from frame-to-frame until they "die" at a non-specified time of Apple's internal choosing */
 @property(nonatomic) BOOL willDeleteOnDealloc;
 
+#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
 /**
  Setting this to true has the side-effect of retain'ing the object, so that you can safely release it;
  it will then remain in memory until something checks this flag and decides to manually issue the final
@@ -102,6 +103,7 @@
  implement it the same for GLKit, eventually.
  */
 @property(nonatomic) BOOL shouldReleaseAtEndOfNextFrame;
+#endif
 
 /** Creates a new, blank, OpenGL texture on the GPU.
  

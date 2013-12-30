@@ -9,6 +9,8 @@
 
 #import "GLK2Texture+CoreGraphics.h"
 
+#import "CommonGLEngineCode.h"
+
 @interface PlayableVideo : NSObject
 
 @property(nonatomic,retain) GLK2Texture* texture;
@@ -53,163 +55,6 @@
 - (void)dealloc
 {
     [super dealloc];
-}
-
--(GLK2DrawCall*) drawCallWithUnitTriangleAtOriginUsingShaders:(GLK2ShaderProgram*) shaderProgram
-{
-	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
-	
-	dc.shaderProgram = shaderProgram;
-	
-	/**   ... Make some geometry */
-	
-	GLfloat z = -0.0; // must be more than -1 * zNear, and ABS() less than zFar
-	GLKVector3 cpuBuffer[3] = 
-	{
-		GLKVector3Make(-0.5,  -0.5, z),
-		GLKVector3Make(-0.5, 0, z),
-		GLKVector3Make( 0,  -0.5, z)
-	};
-	GLK2BufferObject* sharedVBOPositions = [GLK2BufferObject newVBOFilledWithData:cpuBuffer inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:3] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
-	
-	GLKVector2 attributesVirtualXY [3] = 
-	{
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 0, 1 ),
-		GLKVector2Make( 1, 0 )
-	};
-	GLK2BufferObject* sharedVBOVirtualXYs = [GLK2BufferObject newVBOFilledWithData:attributesVirtualXY inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:2] numVertices:3 updateFrequency:GLK2BufferObjectFrequencyStatic];
-	
-	GLK2Attribute* attPosition = [shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
-	GLK2Attribute* attXY = [shaderProgram attributeNamed:@"textureCoordinate"];
-	
-	dc.numVerticesToDraw = 3;
-	dc.glDrawCallType = GL_TRIANGLES;
-	
-	dc.VAO = [[GLK2VertexArrayObject new] autorelease];
-	[dc.VAO addVBO:sharedVBOPositions forAttributes:@[attPosition] numVertices:3];
-	[dc.VAO addVBO:sharedVBOVirtualXYs forAttributes:@[attXY] numVertices:3];
-	
-	return dc;
-	
-}
-
--(GLK2DrawCall*) drawCallWithUnitCubeAtOriginUsingShaders:(GLK2ShaderProgram*) shaderProgram
-{
-	GLK2DrawCall* dc = [[GLK2DrawCall new] autorelease];
-	
-	dc.shaderProgram = shaderProgram;
-	
-	/**   ... Make some geometry */
-	
-	GLKVector3 cpuBuffer[36] = 
-	{
-		// bottom
-		GLKVector3Make(-0.5,-0.5, -0.5),
-		GLKVector3Make( 0.5, 0.5, -0.5),
-		GLKVector3Make( 0.5,-0.5, -0.5),
-		GLKVector3Make(-0.5,-0.5, -0.5),
-		GLKVector3Make(-0.5, 0.5, -0.5),
-		GLKVector3Make( 0.5, 0.5, -0.5),
-		
-		// top
-		GLKVector3Make(-0.5,-0.5, 0.5),
-		GLKVector3Make( 0.5,-0.5, 0.5),
-		GLKVector3Make( 0.5, 0.5, 0.5),
-		GLKVector3Make(-0.5,-0.5, 0.5),
-		GLKVector3Make( 0.5, 0.5, 0.5),
-		GLKVector3Make(-0.5, 0.5, 0.5),
-		
-		// north
-		GLKVector3Make(-0.5, 0.5,-0.5),
-		GLKVector3Make( 0.5, 0.5, 0.5),
-		GLKVector3Make( 0.5, 0.5,-0.5),
-		GLKVector3Make(-0.5, 0.5,-0.5),
-		GLKVector3Make(-0.5, 0.5, 0.5),
-		GLKVector3Make( 0.5, 0.5, 0.5),
-		
-		// south
-		GLKVector3Make(-0.5, -0.5,-0.5),
-		GLKVector3Make( 0.5, -0.5,-0.5),
-		GLKVector3Make( 0.5, -0.5, 0.5),
-		GLKVector3Make(-0.5, -0.5,-0.5),
-		GLKVector3Make( 0.5, -0.5, 0.5),
-		GLKVector3Make(-0.5, -0.5, 0.5),
-		
-		// east
-		GLKVector3Make( 0.5,-0.5,-0.5),
-		GLKVector3Make( 0.5, 0.5,-0.5),
-		GLKVector3Make( 0.5, 0.5, 0.5),
-		GLKVector3Make( 0.5,-0.5,-0.5),
-		GLKVector3Make( 0.5, 0.5, 0.5),
-		GLKVector3Make( 0.5,-0.5, 0.5),
-		
-		// west
-		GLKVector3Make(-0.5,-0.5,-0.5),
-		GLKVector3Make(-0.5, 0.5, 0.5),
-		GLKVector3Make(-0.5, 0.5,-0.5),
-		GLKVector3Make(-0.5,-0.5,-0.5),
-		GLKVector3Make(-0.5,-0.5, 0.5),
-		GLKVector3Make(-0.5, 0.5, 0.5),
-	};
-	GLK2BufferObject* sharedVBOPositions = [GLK2BufferObject newVBOFilledWithData:cpuBuffer inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:3] numVertices:36 updateFrequency:GLK2BufferObjectFrequencyStatic];
-	
-	GLKVector2 attributesVirtualXY [36] = 
-	{
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 0, 1 ),
-		GLKVector2Make( 1, 1 ),
-		
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 0, 1 ),
-		
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 0, 1 ),
-		GLKVector2Make( 1, 1 ),
-		
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 0, 1 ),
-		
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 0, 1 ),
-		
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 0, 0 ),
-		GLKVector2Make( 0, 1 ),
-		GLKVector2Make( 1, 1 ),
-	};
-	GLK2BufferObject* sharedVBOVirtualXYs = [GLK2BufferObject newVBOFilledWithData:attributesVirtualXY inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:2] numVertices:36 updateFrequency:GLK2BufferObjectFrequencyStatic];
-	
-	GLK2Attribute* attPosition = [shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
-	GLK2Attribute* attXY = [shaderProgram attributeNamed:@"textureCoordinate"];
-	
-	dc.numVerticesToDraw = 36;
-	dc.glDrawCallType = GL_TRIANGLES;
-	dc.VAO = [[GLK2VertexArrayObject new] autorelease];
-	[dc.VAO addVBO:sharedVBOPositions forAttributes:@[attPosition] numVertices:3];
-	[dc.VAO addVBO:sharedVBOVirtualXYs forAttributes:@[attXY] numVertices:3];
-	
-	return dc;
 }
 
 #define WORKING_VIDEO_FROM_FILE 0
@@ -470,7 +315,7 @@
 	|| self.textureVideoLuminance.glName != CVOpenGLESTextureGetName(appleCreatedTexture1) )
 	{
 		self.textureVideoLuminance = [GLK2Texture texturePreCreatedByApplesCoreVideo:appleCreatedTexture1];
-		self.textureVideoLuminance.willDeleteOnDealloc = FALSE; // FIXME: Apple doesn't tell us when it's safe to glDeleteTextures ??? BUT: it's asynch!
+		self.textureVideoLuminance.willDeleteOnDealloc = FALSE; // FIXME: Apple doesn't tell us when it's safe to glDeleteTextures ??? BUT: it's asynch! I suspect that the CVOpenGLESTextureCacheRef is meant to help with this - but it's been TWO YEARS! And Apple still can't be botherd to document their API
 	}
 	
 	[self.drawCallThatRendersVideoTextures setTexture:self.textureVideoLuminance forSampler:[self.drawCallThatRendersVideoTextures.shaderProgram uniformNamed:@"s_texture1"]];
@@ -493,7 +338,7 @@
 	|| self.textureVideoChroma.glName != CVOpenGLESTextureGetName(appleCreatedTexture2) )
 	{
 		self.textureVideoChroma = [GLK2Texture texturePreCreatedByApplesCoreVideo:appleCreatedTexture2];
-		self.textureVideoChroma.willDeleteOnDealloc = FALSE; // FIXME: Apple doesn't tell us when it's safe to glDeleteTextures ??? BUT: it's asynch!
+		self.textureVideoChroma.willDeleteOnDealloc = FALSE; // FIXME: Apple doesn't tell us when it's safe to glDeleteTextures ??? BUT: it's asynch! I suspect that the CVOpenGLESTextureCacheRef is meant to help with this - but it's been TWO YEARS! And Apple still can't be botherd to document their API
 	}
 	
 	[self.drawCallThatRendersVideoTextures setTexture:self.textureVideoChroma forSampler:[self.drawCallThatRendersVideoTextures.shaderProgram uniformNamed:@"s_texture2"]];
@@ -532,7 +377,7 @@
 #define TEST_ONE_CUBE_AT_ORIGIN 1
 	
 #if TEST_ONE_TRIANGLE_AT_ORIGIN
-	GLK2DrawCall* dcTri = [self drawCallWithUnitTriangleAtOriginUsingShaders:
+	GLK2DrawCall* dcTri = [CommonGLEngineCode drawCallWithUnitTriangleAtOriginUsingShaders:
 						   [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexProjectedWithTexture" fragmentFilename:@"FragmentWithTexture"]];
 	GLK2Uniform* samplerTexture1 = [dcTri.shaderProgram uniformNamed:@"s_texture1"];
 	GLK2Texture* texture = [GLK2Texture textureNamed:@"tex2"];
@@ -542,7 +387,7 @@
 #endif
 	
 #if TEST_ONE_CUBE_AT_ORIGIN
-	GLK2DrawCall* dcCube = [self drawCallWithUnitCubeAtOriginUsingShaders:
+	GLK2DrawCall* dcCube = [CommonGLEngineCode drawCallWithUnitCubeAtOriginUsingShaders:
 #if WORKING_VIDEO_FROM_FILE
 						   [GLK2ShaderProgram shaderProgramFromVertexFilename:@"VertexProjectedWithTexture" fragmentFilename:@"FragmentWithTexture"]];
 #else

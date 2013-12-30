@@ -17,6 +17,7 @@
 
 @interface GLK2TextureManager : NSObject
 
+#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
 /** The versions that use a GLK2Texture are preferred - but these versions work with any GL texture,
  no matter which library created it */
 +(void) didCreateTextureWithName:(GLuint) textureName;
@@ -52,5 +53,5 @@
 +(NSObject <NSCopying, NSSecureCoding, NSFastEnumeration> *)allKnownTextureNames;
 
 +(NSString*) debugInstanceDescription;
-
+#endif
 @end

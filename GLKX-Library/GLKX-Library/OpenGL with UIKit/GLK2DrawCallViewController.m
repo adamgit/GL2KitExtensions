@@ -1,15 +1,15 @@
-#import "OpenGLDrawCallRenderingViewController.h"
+#import "GLK2DrawCallViewController.h"
 
 #import "GLKX_Library.h"
 #import "GLK2TextureManager.h"
 
 #pragma mark - Class Extension (private properties etc)
-@interface OpenGLDrawCallRenderingViewController ()
+@interface GLK2DrawCallViewController ()
 @property(nonatomic, retain) NSMutableArray* drawCalls;
 @end
 
 #pragma mark - Main Class
-@implementation OpenGLDrawCallRenderingViewController
+@implementation GLK2DrawCallViewController
 {
 }
 
@@ -50,6 +50,29 @@
 	
     [super dealloc];
 }
+
+#pragma mark - Callbacks for subclasses
+
+-(NSMutableArray *)createAllDrawCalls
+{
+	// subclasses SHOULD override (they don't have to; BUT: its unusual not to!)
+	
+	NSLog(@"Subclass should have overridden this method (createAllDrawCalls)");
+	
+	return [NSMutableArray array];
+}
+
+-(void)willRenderFrame
+{
+	// subclasses CAN override (but don't have to!) 
+}
+
+-(void)willRenderDrawCallUsingVAOShaderProgramAndDefaultUniforms:(GLK2DrawCall *)drawCall
+{
+	// subclasses SHOULD override
+}
+
+#pragma mark - Apple UIKit lifecycle methods
 
 -(void) viewDidLoad
 {
@@ -99,17 +122,14 @@
 	self.drawCalls = [self createAllDrawCalls];
 }
 
--(void)willRenderFrame
-{
-	
-}
-
+#pragma mark - Core public methods 
 
 -(void) update
 {
 	[self willRenderFrame];
 	[self renderSingleFrame];
 	
+#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
 	for( GLK2Texture* texture in [GLK2TextureManager allKnownGLK2Textures])
 	{
 		if( texture.shouldReleaseAtEndOfNextFrame )
@@ -118,6 +138,7 @@
 			[texture release];
 		}
 	}
+#endif
 }
 
 -(void) renderSingleFrame
@@ -176,37 +197,6 @@
 		glEnable(  GL_CULL_FACE );
 	else
 		glDisable( GL_CULL_FACE );
-	
-#if SDFDSFDSFDSFDS
-	GLK2Uniform* uniPositionOffset = [drawCall.shaderProgram uniformNamed:@"positionOffset" ];	
-	if( uniPositionOffset != nil )
-	{
-		GLKVector2 offset = GLKVector2Make( indexOfCurrentParameterizedDrawcall%2, indexOfCurrentParameterizedDrawcall/2 );
-		[drawCall.shaderProgram setValue:&offset forUniform:uniPositionOffset];
-		
-		indexOfCurrentParameterizedDrawcall++;
-	}
-	
-	GLK2Uniform* uniformTexOffsetU = [drawCall.shaderProgram uniformNamed:@"textureOffsetU"]; // will fail if you haven't called glUseProgram yet
-	if( uniformTexOffsetU != nil )
-	{
-		long framesOutOfFramesPerSecond = self.framesDisplayed % self.framesPerSecond;
-		
-		float newOffset = (framesOutOfFramesPerSecond / (float) self.framesPerSecond);
-		[drawCall.shaderProgram setValue:&newOffset forUniform:uniformTexOffsetU];
-	}
-	
-	GLK2Uniform* uniformTimeInSecs = [drawCall.shaderProgram uniformNamed:@"timeInSeconds"]; // will fail if you haven't called glUseProgram yet
-	if( uniformTimeInSecs != nil )
-	{
-		//double newValue = self.framesDisplayed / 60.0;
-		
-		long framesOutOfFramesPerSecond = self.framesDisplayed;// % self.framesPerSecond;
-		
-		float newValue = (framesOutOfFramesPerSecond / (float) self.framesPerSecond);
-		[drawCall.shaderProgram setValue:&newValue forUniform:uniformTimeInSecs];
-	}
-#endif
 	
 	/**
 	 Re-bind / enable all the textures for this Draw call */
