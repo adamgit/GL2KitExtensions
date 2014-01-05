@@ -50,6 +50,8 @@
  */
 @property(nonatomic,retain) EAGLContext* localContext;
 
+@property(nonatomic, retain) NSMutableArray* drawCalls;
+
 /** Info about GL that you need to read-back frequently in your app */
 @property(nonatomic,retain) GLK2HardwareMaximums* hardwareMaximums;
 

@@ -373,7 +373,7 @@
 	[simpleClearingCall setClearColourRed:0.5 green:0 blue:0 alpha:1];
 	[result addObject: simpleClearingCall];
 	
-#define TEST_ONE_TRIANGLE_AT_ORIGIN 0
+#define TEST_ONE_TRIANGLE_AT_ORIGIN 1
 #define TEST_ONE_CUBE_AT_ORIGIN 1
 	
 #if TEST_ONE_TRIANGLE_AT_ORIGIN

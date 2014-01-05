@@ -5,7 +5,7 @@
 
 #pragma mark - Class Extension (private properties etc)
 @interface GLK2DrawCallViewController ()
-@property(nonatomic, retain) NSMutableArray* drawCalls;
+
 @end
 
 #pragma mark - Main Class
