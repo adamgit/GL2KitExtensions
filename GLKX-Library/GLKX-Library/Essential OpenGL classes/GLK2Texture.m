@@ -3,9 +3,6 @@
  */
 #import "GLK2Texture.h"
 
-#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
-#import "GLK2TextureManager.h" // unfortunately, we MUST send messages to the texture-manager, can't decouple these classes
-#endif
 #import "GLK2TextureLoaderPVRv1.h" // for textureNamed: auto-loading PVR's without Apple's bug
 
 @interface GLK2Texture()
@@ -89,18 +86,12 @@
     if (self) {
         self.glName = name;
 		self.willDeleteOnDealloc = TRUE;
-#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
-		[GLK2TextureManager didCreateTexture:self];
-#endif
     }
     return self;
 }
 
 - (void)dealloc
 {
-#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
-	[GLK2TextureManager willDestroyTexture:self];
-#endif
 	
 	if( self.willDeleteOnDealloc )
 	{
@@ -120,22 +111,4 @@
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pWide, pHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, [rawData bytes]);
 }
 
-#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
--(void)setShouldReleaseAtEndOfNextFrame:(BOOL)newValue
-{
-	if( newValue == _shouldReleaseAtEndOfNextFrame )
-		return; // ignore re-setting; don't want to keep retaining!
-	
-	_shouldReleaseAtEndOfNextFrame = newValue;
-	
-	if( _shouldReleaseAtEndOfNextFrame )
-	{
-		[self retain];
-	}
-	else
-	{
-		// Please make sure you actually release it then!
-	}
-}
-#endif
 @end

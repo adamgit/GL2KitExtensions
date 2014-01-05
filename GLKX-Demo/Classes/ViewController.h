@@ -7,7 +7,6 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
-#import "GLK2HardwareMaximums.h"
 #import "GLK2DrawCallViewController.h"
 
 #import <AVFoundation/AVFoundation.h>
