@@ -1,4 +1,6 @@
 /**
+ Introduced in: Part 7
+ 
  Trivial example / base class for implementing the GLK2UniformValueGenerator protocol
  
  (note how the .m file implements the different methods)

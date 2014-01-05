@@ -1,4 +1,6 @@
 /**
+ Introduced in: Refactoring-1 (approximately Part 7)
+ 
  Extension of Apple's GLKViewController that adds support for the
  GLK2DrawCall class. OpenGL revolves around Draw calls!
  

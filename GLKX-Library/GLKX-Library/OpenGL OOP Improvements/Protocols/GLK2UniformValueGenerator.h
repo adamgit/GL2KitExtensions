@@ -1,4 +1,6 @@
 /**
+ Introduced in: Part 7
+ 
  Each drawcall,  you can ask this object to provide values for any/all of the GL Uniforms
  in the current shader program.
  

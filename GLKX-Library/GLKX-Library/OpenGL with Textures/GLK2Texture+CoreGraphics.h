@@ -1,3 +1,7 @@
+/**
+ Introduced in: Part 7
+ */
+
 #import "GLK2Texture.h"
 #import <QuartzCore/QuartzCore.h>
 
