@@ -1,7 +1,6 @@
 #import "GLK2DrawCallViewController.h"
 
 #import "GLKX_Library.h"
-#import "GLK2TextureManager.h"
 
 #pragma mark - Class Extension (private properties etc)
 @interface GLK2DrawCallViewController ()
@@ -109,12 +108,6 @@
 	view.context = self.localContext;
 	view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
 	[view bindDrawable];
-	
-	/*****************************************************
-	 One-time read of hardware info
-	 */
-	self.hardwareMaximums = [[GLK2HardwareMaximums new] autorelease];
-	[self.hardwareMaximums readAllGLMaximums];
 	
 	/*****************************************************
 	 This is the main thing that changes from app to app: the set of draw-calls

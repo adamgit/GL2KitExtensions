@@ -40,7 +40,6 @@
 #import <GLKit/GLKit.h>
 
 #import "GLK2DrawCall.h"
-#import "GLK2HardwareMaximums.h"
 
 @interface GLK2DrawCallViewController : GLKViewController
 
@@ -53,9 +52,6 @@
 @property(nonatomic,retain) EAGLContext* localContext;
 
 @property(nonatomic, retain) NSMutableArray* drawCalls;
-
-/** Info about GL that you need to read-back frequently in your app */
-@property(nonatomic,retain) GLK2HardwareMaximums* hardwareMaximums;
 
 /**
  Every app needs to use its own code here: the exact set of draw-calls
