@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660D64B6187A33AF002CBFF0 /* GLK2Texture_MutableName.h in Headers */ = {isa = PBXBuildFile; fileRef = 660D64B5187A330A002CBFF0 /* GLK2Texture_MutableName.h */; };
 		6631F24D1870FC3000C6E1AC /* GLK2Attribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 6631F22A1870FC3000C6E1AC /* GLK2Attribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6631F24E1870FC3000C6E1AC /* GLK2Attribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631F22B1870FC3000C6E1AC /* GLK2Attribute.m */; };
 		6631F24F1870FC3000C6E1AC /* GLK2BufferFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 6631F22C1870FC3000C6E1AC /* GLK2BufferFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		660D64B5187A330A002CBFF0 /* GLK2Texture_MutableName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLK2Texture_MutableName.h; sourceTree = "<group>"; };
 		6631F22A1870FC3000C6E1AC /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
 		6631F22B1870FC3000C6E1AC /* GLK2Attribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Attribute.m; sourceTree = "<group>"; };
 		6631F22C1870FC3000C6E1AC /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				6631F2351870FC3000C6E1AC /* GLK2ShaderProgram.m */,
 				6631F2361870FC3000C6E1AC /* GLK2Texture.h */,
 				6631F2371870FC3000C6E1AC /* GLK2Texture.m */,
+				660D64B5187A330A002CBFF0 /* GLK2Texture_MutableName.h */,
 				6631F2381870FC3000C6E1AC /* GLK2Uniform.h */,
 				6631F2391870FC3000C6E1AC /* GLK2Uniform.m */,
 				6631F23A1870FC3000C6E1AC /* GLK2VertexArrayObject.h */,
@@ -290,6 +293,7 @@
 				6631F2641870FC3000C6E1AC /* GLK2Texture+CoreGraphics.h in Headers */,
 				6631F24F1870FC3000C6E1AC /* GLK2BufferFormat.h in Headers */,
 				6631F2681870FC3000C6E1AC /* GLK2TextureLoaderPVRv1.h in Headers */,
+				660D64B6187A33AF002CBFF0 /* GLK2Texture_MutableName.h in Headers */,
 				6631F2631870FC3000C6E1AC /* GLK2UniformValueGenerator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

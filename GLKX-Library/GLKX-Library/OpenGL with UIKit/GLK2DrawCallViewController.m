@@ -122,16 +122,6 @@
 	[self willRenderFrame];
 	[self renderSingleFrame];
 	
-#if DISABLED_FOR_NOW_BECAUSE_NOT_BEING_USED_ANY_MORE
-	for( GLK2Texture* texture in [GLK2TextureManager allKnownGLK2Textures])
-	{
-		if( texture.shouldReleaseAtEndOfNextFrame )
-		{
-			texture.shouldReleaseAtEndOfNextFrame = FALSE;
-			[texture release];
-		}
-	}
-#endif
 }
 
 -(void) renderSingleFrame

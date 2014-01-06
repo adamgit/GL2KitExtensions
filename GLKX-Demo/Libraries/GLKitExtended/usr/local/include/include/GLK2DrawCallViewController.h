@@ -1,4 +1,6 @@
 /**
+ Introduced in: Refactoring-1 (approximately Part 7)
+ 
  Extension of Apple's GLKViewController that adds support for the
  GLK2DrawCall class. OpenGL revolves around Draw calls!
  
@@ -38,7 +40,6 @@
 #import <GLKit/GLKit.h>
 
 #import "GLK2DrawCall.h"
-#import "GLK2HardwareMaximums.h"
 
 @interface GLK2DrawCallViewController : GLKViewController
 
@@ -50,8 +51,7 @@
  */
 @property(nonatomic,retain) EAGLContext* localContext;
 
-/** Info about GL that you need to read-back frequently in your app */
-@property(nonatomic,retain) GLK2HardwareMaximums* hardwareMaximums;
+@property(nonatomic, retain) NSMutableArray* drawCalls;
 
 /**
  Every app needs to use its own code here: the exact set of draw-calls
@@ -59,7 +59,13 @@
  */
 -(NSMutableArray*) createAllDrawCalls;
 
-/** Called prior to rendeirng a draw-call, enabling subclasses to e.g. change uniforms
+/**
+ Called once at start of each frame; sole purpose is to allow you to do per-frame
+ setup (note: per-drawcall setup of Uniforms is done in a different callback)
+ */
+-(void)willRenderFrame;
+
+/** Called prior to rendering a draw-call, enabling subclasses to e.g. change uniforms
  just prior to that draw-call being rendered
  
  NB: this is called AFTER the VAO and shader-program have been set - so you are safe

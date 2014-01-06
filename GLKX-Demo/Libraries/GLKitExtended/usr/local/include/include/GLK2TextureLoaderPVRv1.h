@@ -1,4 +1,6 @@
 /**
+ Introduced in: Part 7
+ 
  Based on Apple's example source code "PVRTexture.h / .m version 1.5", heavily modified
  
  Apple's code is very outdated, and only loads v1 PVR files. PVR supports these using
