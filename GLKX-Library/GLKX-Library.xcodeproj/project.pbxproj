@@ -38,6 +38,8 @@
 		6631F26E1870FC9900C6E1AC /* GLK2DrawCallViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6631F26C1870FC9900C6E1AC /* GLK2DrawCallViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6631F26F1870FC9900C6E1AC /* GLK2DrawCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631F26D1870FC9900C6E1AC /* GLK2DrawCallViewController.m */; };
 		6672C7B7184A228000A23414 /* GLKX_Library.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DDE1CB184A1919008C4E55 /* GLKX_Library.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		667C3AF618802C7F00C8FB3F /* GLK2HardwareMaximums.m in Sources */ = {isa = PBXBuildFile; fileRef = 667C3AF418802C7F00C8FB3F /* GLK2HardwareMaximums.m */; };
+		667C3AF718802C7F00C8FB3F /* GLK2HardwareMaximums.h in Headers */ = {isa = PBXBuildFile; fileRef = 667C3AF518802C7F00C8FB3F /* GLK2HardwareMaximums.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66DDE1A6184A188C008C4E55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1A5184A188C008C4E55 /* Foundation.framework */; };
 		66DDE1B4184A188C008C4E55 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1B3184A188C008C4E55 /* XCTest.framework */; };
 		66DDE1B5184A188C008C4E55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1A5184A188C008C4E55 /* Foundation.framework */; };
@@ -103,6 +105,8 @@
 		6631F2491870FC3000C6E1AC /* GLK2TextureLoaderPVRv1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2TextureLoaderPVRv1.m; sourceTree = "<group>"; };
 		6631F26C1870FC9900C6E1AC /* GLK2DrawCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCallViewController.h; sourceTree = "<group>"; };
 		6631F26D1870FC9900C6E1AC /* GLK2DrawCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2DrawCallViewController.m; sourceTree = "<group>"; };
+		667C3AF418802C7F00C8FB3F /* GLK2HardwareMaximums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2HardwareMaximums.m; sourceTree = "<group>"; };
+		667C3AF518802C7F00C8FB3F /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
 		66DDE1A2184A188C008C4E55 /* libGLKX-Library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libGLKX-Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DDE1A5184A188C008C4E55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		66DDE1B2184A188C008C4E55 /* GLKX-LibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GLKX-LibraryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +177,8 @@
 			children = (
 				6631F23D1870FC3000C6E1AC /* GLK2ExampleUniformValueGenerator.h */,
 				6631F23E1870FC3000C6E1AC /* GLK2ExampleUniformValueGenerator.m */,
+				667C3AF518802C7F00C8FB3F /* GLK2HardwareMaximums.h */,
+				667C3AF418802C7F00C8FB3F /* GLK2HardwareMaximums.m */,
 				6631F2411870FC3000C6E1AC /* Protocols */,
 			);
 			path = "OpenGL OOP Improvements";
@@ -295,6 +301,7 @@
 				6631F2681870FC3000C6E1AC /* GLK2TextureLoaderPVRv1.h in Headers */,
 				660D64B6187A33AF002CBFF0 /* GLK2Texture_MutableName.h in Headers */,
 				6631F2631870FC3000C6E1AC /* GLK2UniformValueGenerator.h in Headers */,
+				667C3AF718802C7F00C8FB3F /* GLK2HardwareMaximums.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				667C3AF618802C7F00C8FB3F /* GLK2HardwareMaximums.m in Sources */,
 				6631F26F1870FC9900C6E1AC /* GLK2DrawCallViewController.m in Sources */,
 				6631F25C1870FC3000C6E1AC /* GLK2Uniform.m in Sources */,
 				6631F2501870FC3000C6E1AC /* GLK2BufferFormat.m in Sources */,

@@ -33,7 +33,9 @@
 	
 	if( self.glName > 0 )
 	{
+#if DEBUG_VAO_LIFECYCLE
 		NSLog(@"[%@] glDeleteVertexArraysOES(%i)", [self class], self.glName);
+#endif
 		glDeleteVertexArraysOES( 1, &_glName);
 	}
 	
@@ -82,7 +84,9 @@
 	
 	[self.VBOs addObject:vbo]; // so we can auto-release it when this class deallocs
 	[self.attributeArraysByVBOName setObject:targetAttributes forKey:@(vbo.glName)];
+#if DEBUG_VBO_HANDLING
 	NSLog(@"VAO[%i] now has %lu VBOs", self.glName, (unsigned long)[self.VBOs count]);
+#endif
 	
 	/** Configure the VAO (state) */
 	glBindVertexArrayOES( self.glName );
@@ -142,7 +146,10 @@
 	[self.VBOs removeObjectAtIndex:index];
 	[self.attributeArraysByVBOName removeObjectForKey:@(bufferToDetach.glName)];
 	
+#if DEBUG_VBO_HANDLING
 	NSLog(@"VAO[%i]: released VBO with name = %i; if I was last remaining VAO, ObjC should dealloc it, and OpenGL will then delete it", self.glName, bufferToDetach.glName );
+#endif
+	
 	[bufferToDetach release];
 }
 

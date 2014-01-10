@@ -160,7 +160,7 @@
 		GLK2Uniform* newUniform = [GLK2Uniform uniformNamed:stringName GLType:uniformType GLLocation:uniformLocation numElementsInArray:uniformSize];
 		
 		[result setObject:newUniform forKey:stringName];
-#if DEBUG
+#if DEBUG_UNIFORM_HANDLING
 		NSLog(@"Stored uniform: '%@' with location: %i", stringName, uniformLocation );
 #endif
 	}
@@ -212,7 +212,7 @@
 		GLK2Attribute* newAttribute = [GLK2Attribute attributeNamed:stringName GLType:attributeType GLLocation:attributeLocation GLSize:attributeSize];
 		
 		[result setObject:newAttribute forKey:stringName];
-#if DEBUG
+#if DEBUG_ATTRIBUTE_HANDLING
 		NSLog(@"Stored attribute: '%@' with location: %i", stringName, attributeLocation );
 #endif
 	}

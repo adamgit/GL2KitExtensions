@@ -2,6 +2,9 @@
 #import "GLK2BufferObject.h"
 #import "GLK2Attribute.h"
 
+#define DEBUG_VAO_LIFECYCLE 0
+#define DEBUG_VBO_HANDLING 0
+
 @interface GLK2VertexArrayObject : NSObject
 
 @property(nonatomic, readonly) GLuint glName;
