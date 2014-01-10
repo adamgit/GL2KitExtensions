@@ -66,7 +66,7 @@
 		self.uniformVariablesByName = [NSMutableDictionary dictionary];
 		self.uniformsHistoricValuesByName = [NSMutableDictionary dictionary];
 		
-		NSLog(@"[%@] Created new GL program with GL name = %i", [self class], self.glName );
+		NSLog(@"[%@] Created new GL program with GL name = %i (in GLContext: %@)", [self class], self.glName, [EAGLContext currentContext] );
     }
     return self;
 }

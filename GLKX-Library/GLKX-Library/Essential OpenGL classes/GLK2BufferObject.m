@@ -58,6 +58,17 @@
 	[super dealloc];
 }
 
+-(NSString *)description
+{
+	NSMutableString* s = [NSMutableString string];
+	
+	[s appendFormat:@"VBO-%i:", self.glName];
+	[s appendFormat:@" totalBytes: %li", self.totalBytesPerItem ];
+	[s appendFormat:@" %@", self.currentFormat];
+	
+	return s;
+}
+
 -(void) bind
 {
 	glBindBuffer(GL_ARRAY_BUFFER, self.glName);

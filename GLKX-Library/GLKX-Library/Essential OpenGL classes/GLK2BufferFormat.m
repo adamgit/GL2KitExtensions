@@ -38,6 +38,34 @@
     return self;
 }
 
+-(void)dealloc
+{
+	self.numFloatsPerItem = nil;
+	self.bytesPerItem = nil;
+	
+	[super dealloc];
+}
+
+-(NSString *)description
+{
+	NSMutableString* s = [NSMutableString string];
+	
+	[s appendFormat:@"Format: %i [", self.numberOfSubTypes];
+	int i = -1;
+	for( NSNumber* numFloats in self.numFloatsPerItem )
+	{
+		i++;
+		
+		NSNumber* numBytes = [self.bytesPerItem objectAtIndex:i];
+		if( i > 0 )
+			[s appendString:@", "];
+		[s appendFormat:@"%i floats == %i bytes", numFloats.intValue, numBytes.intValue];
+	}
+	[s appendString:@"]"];
+	
+	return s;
+}
+
 -(GLuint)sizePerItemInFloatsForSubTypeIndex:(int)index
 {
 	/** Apple currently defines GLuint as "unsigned int" */

@@ -42,6 +42,20 @@
     [super dealloc];
 }
 
+-(NSString *)description
+{
+	NSMutableString* s = [NSMutableString string];
+	
+	[s appendFormat:@"VAO-%i: ", self.glName];
+	[s appendString:@"["];
+	for( GLK2BufferObject* bo in self.VBOs )
+	{
+		[s appendFormat:@" VBO-%i: format=%@", bo.glName, bo.currentFormat];
+	}
+	[s appendString:@"]"];
+	return s;
+}
+
 -(GLK2BufferObject*) addVBOForAttribute:(GLK2Attribute*) targetAttribute filledWithData:(const void*) data bytesPerArrayElement:(GLsizeiptr) bytesPerDataItem  arrayLength:(int) numDataItems
 {
 	return [self addVBOForAttribute:targetAttribute filledWithData:data bytesPerArrayElement:bytesPerDataItem arrayLength:numDataItems updateFrequency:GLK2BufferObjectFrequencyStatic];
@@ -138,7 +152,7 @@
 {
 	NSUInteger index = [self.VBOs indexOfObject:bufferToDetach];
 	
-	NSAssert( index > -1, @"Couldn't find that VBO to detach!" );
+	NSAssert( index != NSNotFound, @"Couldn't find that VBO to detach!" );
 	
 	/** Major problem with Xcode5: even without ARC, Apple is incorrectly release'ing a reference too early here, the moment something leaves the array, instead of "at end of main loop" */
 	[bufferToDetach retain];

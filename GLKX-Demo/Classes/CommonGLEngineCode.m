@@ -120,9 +120,9 @@
 		
 		GLKVector2Make( 0, 0 ),
 		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 0, 0 ),
 		GLKVector2Make( 0, 1 ),
+		GLKVector2Make( 0, 0 ),
+		GLKVector2Make( 1, 0 ),
 		GLKVector2Make( 1, 1 ),
 		
 		GLKVector2Make( 0, 0 ),
@@ -141,11 +141,12 @@
 		
 		GLKVector2Make( 0, 0 ),
 		GLKVector2Make( 1, 1 ),
-		GLKVector2Make( 1, 0 ),
-		GLKVector2Make( 0, 0 ),
 		GLKVector2Make( 0, 1 ),
+		GLKVector2Make( 0, 0 ),
+		GLKVector2Make( 1, 0 ),
 		GLKVector2Make( 1, 1 ),
 	};
+	
 	GLK2BufferObject* sharedVBOVirtualXYs = [GLK2BufferObject newVBOFilledWithData:attributesVirtualXY inFormat:[GLK2BufferFormat bufferFormatOneAttributeMadeOfGLFloats:2] numVertices:36 updateFrequency:GLK2BufferObjectFrequencyStatic];
 	
 	GLK2Attribute* attPosition = [shaderProgram attributeNamed:@"position"]; // will fail if you haven't called glUseProgram yet
