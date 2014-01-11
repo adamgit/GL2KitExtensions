@@ -134,10 +134,25 @@
 	
 	if( self.drawCalls == nil || self.drawCalls.count < 1 )
 		NSLog(@"no drawcalls specified; rendering nothing");
-	
-	for( GLK2DrawCall* drawCall in self.drawCalls )
+	else
 	{
-		[self renderSingleDrawCall:drawCall];
+		/**
+		 REQUIRED by PVR chips (even though it's technically incorrect
+		 - if you wanted to do a coloured clear etc).
+		 
+		 You'll later have to disable/re-enable the depth-test as required,
+		 but doing this unncessary clear gives a 10%+ increase in frame rate,
+		 so it's a necessity!
+		 */
+		{
+			glEnable( GL_DEPTH_TEST );
+			glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		}
+		
+		for( GLK2DrawCall* drawCall in self.drawCalls )
+		{
+			[self renderSingleDrawCall:drawCall];
+		}
 	}
 }
 
