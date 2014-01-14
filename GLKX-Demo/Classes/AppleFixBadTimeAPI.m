@@ -4,7 +4,7 @@
 @implementation AppleFixBadTimeAPI
 
 /** From Apple docs: https://developer.apple.com/library/mac/qa/qa1398/_index.html
- This is INSANELY complicated
+ This is ... over-complicated
  */
 uint64_t timeAbsoluteNanoseconds(void)
 {

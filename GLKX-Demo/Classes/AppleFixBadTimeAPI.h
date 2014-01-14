@@ -1,11 +1,7 @@
 /**
- It is tragic that this class is needed, but Apple refuses to provide a sane, working
- way of measuring time - even inaccurately!
+ Apple's own timing class that is literally hundreds of times faster than NSDate.
  
- (The "easy" measure is to use NSDate, but NSDate has an ENORMOUS overhead in requiring
- you to keep creating and destroying objects - NSDate is slow even by the standards of OOP
- creation/destruction. It came up as a major performance bottleneck in several projects
- that don't even use graphics - NSDate slowed down basic UIKit rendering!)
+ Why Apple doesn't provide an ObjectiveC time-measuring class that's fast? ... I have no idea.
  */
 #import <Foundation/Foundation.h>
 #include <mach/mach_time.h>
