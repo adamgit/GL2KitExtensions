@@ -87,6 +87,13 @@
 -(float*) clearColourArray;
 -(void) setClearColourRed:(float) r green:(float) g blue:(float) b alpha:(float) a;
 
+#pragma mark Missing GL methods for handling Uniforms in Shaders each frame
+
+/** MUST be called AFTER setting this drawcall's shader to current
+ (e.g. within the update / drawFrame loop)
+ */
+-(void) setAllUniformValuesForShader;
+
 #pragma mark Texturing and texture-mapping methods
 
 /** When the draw-call runs, it will look up all the 'sampler2D' objects in the Shader sourcecode,

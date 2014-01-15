@@ -123,6 +123,90 @@
 	clearColour[3] = a;
 }
 
+#pragma mark - Shader Uniforms
+
+-(void) setAllUniformValuesForShader
+{
+	if( self.uniformValueGenerator != nil )
+	{
+		for( GLK2Uniform* uniform in [self.shaderProgram allUniforms] )
+		{			
+			if( uniform.isFloat )
+			{
+				float* floatPointer = NULL;
+				if( uniform.isMatrix )
+				{
+					switch( uniform.matrixWidth )
+					{
+						case 2:
+						{
+							GLKMatrix2* matrixValue = [self.uniformValueGenerator matrix2ForUniform:uniform inDrawCall:self];
+							floatPointer = matrixValue->m;
+						}break;
+						case 3:
+						{
+							GLKMatrix3* matrixValue = [self.uniformValueGenerator matrix3ForUniform:uniform inDrawCall:self];
+							floatPointer = matrixValue->m;
+						}break;
+						case 4:
+						{
+							GLKMatrix4* matrixValue = [self.uniformValueGenerator matrix4ForUniform:uniform inDrawCall:self];
+							floatPointer = matrixValue->m;
+						}break;
+					}
+				}
+				else if( uniform.isVector )
+				{
+					switch( uniform.vectorWidth )
+					{
+						case 2:
+						{
+							GLKVector2* vectorValue = [self.uniformValueGenerator vector2ForUniform:uniform inDrawCall:self];
+							floatPointer = vectorValue->v;
+						}break;
+						case 3:
+						{
+							GLKVector3* vectorValue = [self.uniformValueGenerator vector3ForUniform:uniform inDrawCall:self];
+							floatPointer = vectorValue->v;
+						}break;
+						case 4:
+						{
+							GLKVector4* vectorValue = [self.uniformValueGenerator vector4ForUniform:uniform inDrawCall:self];
+							floatPointer = vectorValue->v;
+						}break;
+					}
+				}
+				else
+				{
+					if( ! [self.uniformValueGenerator floatForUniform:uniform returnIn:floatPointer inDrawCall:self] )
+						floatPointer = 0; // kill the pointer
+				}
+				
+				if( floatPointer != NULL ) // prevent the next line from clobbering the value!
+					[self.shaderProgram setValue:floatPointer forUniform:uniform];
+			}
+			else
+			{
+				int* intPointer = NULL;
+				if( uniform.isVector )
+				{
+					NSAssert(FALSE, @"Int vectors not supported yet");
+				}
+				else
+				{
+					if( ! [self.uniformValueGenerator intForUniform:uniform returnIn:intPointer inDrawCall:self] )
+						intPointer = 0; // kill the pointer
+				}
+				
+				if( intPointer != NULL ) // prevent the next line from clobbering the value!
+					[self.shaderProgram setValue:intPointer forUniform:uniform];
+				
+			}
+		}
+	}
+	
+}
+
 #pragma mark - textures
 
 /**

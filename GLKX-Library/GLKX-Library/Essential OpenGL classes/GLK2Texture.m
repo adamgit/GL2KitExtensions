@@ -36,12 +36,28 @@
 {
 	NSString* guessedPath = nil;
 	
+	/** if it already has an extension, try it */
+	if( [filename pathExtension] != nil )
+		guessedPath = [[NSBundle mainBundle] pathForResource:[filename stringByDeletingPathExtension] ofType:[filename pathExtension]];
+	
+	if( guessedPath == nil )
+	{
 	NSArray* possibleExtensions = @[ @"png", @"jpg", @"gif", @"pvr" ];
+	for( NSString* extension in possibleExtensions )
+	{
+		if( [[filename pathExtension] isEqualToString:extension] )
+		{
+			filename = [filename stringByDeletingPathExtension];
+			break;
+		}
+	}
+	
 	for( NSString* extension in possibleExtensions )
 	{
 		guessedPath = [[NSBundle mainBundle] pathForResource:filename ofType:extension];
 		if( guessedPath != nil )
 			break;
+	}
 	}
 	
 	NSAssert( guessedPath != nil, @"Failed to find a texture with base filename '%@' and no extension (Apple doesn't allow them)", filename);
