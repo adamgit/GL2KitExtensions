@@ -27,6 +27,19 @@
 /** In almost all apps you want it ON */
 @property(nonatomic) BOOL requiresCullFace;
 
+/** Enabling this on Apple/PVR devices MASSIVELY reduces performance, so only use it when genuinely needed.
+ 
+ Requires you to also set:
+  - alphaBlendSourceFactor
+  - alphaBlendDestinationFactor
+ */
+@property(nonatomic) BOOL requiresAlphaBlending;
+
+/**
+ For mode "requiresAlphaBlending = TRUE", defaults to: source = GL_ONE, dest = GL_ONE_MINUS_SRC_ALPHA
+ */
+@property(nonatomic) GLenum alphaBlendSourceFactor, alphaBlendDestinationFactor;
+
 /** If this draw call has ANY geometry, it should go in a VBO (stores raw Vertex attributes),
  and the VBO should be embedded in a VAO (which stores the metadata about the geometry) */
 @property(nonatomic,retain) GLK2VertexArrayObject* VAO;

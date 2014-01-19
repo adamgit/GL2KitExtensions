@@ -50,6 +50,8 @@
 		66DDE1F8184A19CB008C4E55 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DDE1F7184A19CB008C4E55 /* GLKit.framework */; };
 		66DDE235184A1AEA008C4E55 /* GLKX-Library-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 66DDE217184A1AEA008C4E55 /* GLKX-Library-Prefix.pch */; };
 		66F4144318610F4500BCBC8C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F4144218610F4500BCBC8C /* CoreVideo.framework */; };
+		66FF7CE5188C2A6B0073F5D1 /* GLK2Cube.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FF7CE3188C2A6B0073F5D1 /* GLK2Cube.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66FF7CE6188C2A6B0073F5D1 /* GLK2Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF7CE4188C2A6B0073F5D1 /* GLK2Cube.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,8 @@
 		66DDE1F7184A19CB008C4E55 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		66DDE217184A1AEA008C4E55 /* GLKX-Library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLKX-Library-Prefix.pch"; sourceTree = "<group>"; };
 		66F4144218610F4500BCBC8C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		66FF7CE3188C2A6B0073F5D1 /* GLK2Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Cube.h; sourceTree = "<group>"; };
+		66FF7CE4188C2A6B0073F5D1 /* GLK2Cube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2Cube.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,8 @@
 		6631F23C1870FC3000C6E1AC /* OpenGL OOP Improvements */ = {
 			isa = PBXGroup;
 			children = (
+				66FF7CE3188C2A6B0073F5D1 /* GLK2Cube.h */,
+				66FF7CE4188C2A6B0073F5D1 /* GLK2Cube.m */,
 				6631F23D1870FC3000C6E1AC /* GLK2ExampleUniformValueGenerator.h */,
 				6631F23E1870FC3000C6E1AC /* GLK2ExampleUniformValueGenerator.m */,
 				667C3AF518802C7F00C8FB3F /* GLK2HardwareMaximums.h */,
@@ -290,6 +296,7 @@
 				66DDE235184A1AEA008C4E55 /* GLKX-Library-Prefix.pch in Headers */,
 				6631F25F1870FC3000C6E1AC /* GLK2ExampleUniformValueGenerator.h in Headers */,
 				6672C7B7184A228000A23414 /* GLKX_Library.h in Headers */,
+				66FF7CE5188C2A6B0073F5D1 /* GLK2Cube.h in Headers */,
 				6631F2591870FC3000C6E1AC /* GLK2Texture.h in Headers */,
 				6631F24D1870FC3000C6E1AC /* GLK2Attribute.h in Headers */,
 				6631F25B1870FC3000C6E1AC /* GLK2Uniform.h in Headers */,
@@ -409,6 +416,7 @@
 				6631F26F1870FC9900C6E1AC /* GLK2DrawCallViewController.m in Sources */,
 				6631F25C1870FC3000C6E1AC /* GLK2Uniform.m in Sources */,
 				6631F2501870FC3000C6E1AC /* GLK2BufferFormat.m in Sources */,
+				66FF7CE6188C2A6B0073F5D1 /* GLK2Cube.m in Sources */,
 				6631F2581870FC3000C6E1AC /* GLK2ShaderProgram.m in Sources */,
 				6631F2671870FC3000C6E1AC /* GLK2Texture+CoreVideo.m in Sources */,
 				6631F2651870FC3000C6E1AC /* GLK2Texture+CoreGraphics.m in Sources */,

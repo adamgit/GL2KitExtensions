@@ -72,6 +72,12 @@
 +(GLK2Texture*) texturePreLoadedByApplesGLKit:(GLKTextureInfo*) appleMetadata;
 
 /**
+ If your texture is already on the GPU and/or was created by 3rdparty code, this lets you
+ create a CPU-side GLK2Texture object to manage it
+ */
++(GLK2Texture*) textureAlreadyOnGPUWithName:(GLuint) existingName;
+
+/**
  Note that a raw stream of bytes contains NO INFORMATION about width/height of texture, so you need to provide those
  details in the parametrs.
  

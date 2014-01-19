@@ -32,6 +32,13 @@
 	return newValue;
 }
 
++(GLK2Texture*) textureAlreadyOnGPUWithName:(GLuint) existingName
+{
+	GLK2Texture* newValue = [[[GLK2Texture alloc] initWithName:existingName] autorelease];
+	
+	return newValue;
+}
+
 +(GLK2Texture *)textureNamed:(NSString *)filename
 {
 	NSString* guessedPath = nil;

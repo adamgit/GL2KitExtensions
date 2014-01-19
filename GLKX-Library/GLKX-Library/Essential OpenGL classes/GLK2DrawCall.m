@@ -90,6 +90,11 @@
 		[self setClearColourRed:1.0f green:0 blue:1.0f alpha:1.0f];
 		self.requiresDepthTest = TRUE;
 		self.requiresCullFace = TRUE;
+		self.requiresAlphaBlending = FALSE;
+		
+		/** Sensible defaults even for modes that are off by default */
+		self.alphaBlendSourceFactor = GL_ONE;
+		self.alphaBlendDestinationFactor = GL_ONE_MINUS_SRC_ALPHA;
 		
 		/** General class setup */
 		self.texturesFromSamplers = [NSMutableDictionary dictionary];
