@@ -337,4 +337,54 @@
 	
 	return -1;
 }
+
+#pragma mark - workaround for bad OpenGL committee decisions
+
+-(id) copyDrawCallAllocatingNewVAO
+{
+	GLK2DrawCall* newCopy = [[[self class] alloc] init];
+	
+	newCopy.title = self.title;
+	
+	[newCopy setClearColourRed:self.clearColourArray[0] green:self.clearColourArray[1] blue:self.clearColourArray[2] alpha:self.clearColourArray[3]];
+	
+	newCopy.shouldClearColorBit = self.shouldClearColorBit;
+	newCopy.shouldClearDepthBit = self.shouldClearDepthBit;
+	
+	newCopy.shaderProgram = self.shaderProgram;
+	
+	newCopy.requiresDepthTest = self.requiresDepthTest;
+	
+	newCopy.requiresCullFace = self.requiresCullFace;
+	
+	newCopy.requiresAlphaBlending = self.requiresAlphaBlending;
+	
+	newCopy.alphaBlendSourceFactor = self.alphaBlendSourceFactor;
+	newCopy.alphaBlendDestinationFactor = self.alphaBlendDestinationFactor;
+	
+	/** this is the important bit! */
+	newCopy.VAO = [[[GLK2VertexArrayObject alloc] init] autorelease];
+	
+	/** ... and copy across the VBOs ... */
+	for( GLK2BufferObject* vbo in self.VAO.VBOs )
+	{
+		[newCopy.VAO addVBO:vbo forAttributes:[self.VAO attributesArrayForVBO:vbo]];
+	}
+	
+	newCopy.glDrawCallType = self.glDrawCallType;
+	
+	newCopy.numVerticesToDraw = self.numVerticesToDraw;
+	
+	newCopy.uniformValueGenerator = self.uniformValueGenerator;
+	
+	for( GLK2Uniform* sampler in self.texturesFromSamplers.allKeys )
+	{
+		GLK2Texture* texture = [self.texturesFromSamplers objectForKey:sampler];
+		
+		[newCopy setTexture:texture forSampler:sampler];
+	}
+	
+	return newCopy;
+}
+
 @end

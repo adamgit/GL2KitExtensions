@@ -75,11 +75,11 @@
 	GLK2BufferObject* newVBO = [GLK2BufferObject newVBOFilledWithData:data inFormat:bFormat numVertices:numDataItems updateFrequency:freq];
 	
 	/** Add to this VAO */
-	[self addVBO:newVBO forAttributes:targetAttributes numVertices:numDataItems];
+	[self addVBO:newVBO forAttributes:targetAttributes];
 	return newVBO;
 }
 
--(void) addVBO:(GLK2BufferObject*) vbo forAttributes:(NSArray*) targetAttributes numVertices:(int) numDataItems
+-(void) addVBO:(GLK2BufferObject*) vbo forAttributes:(NSArray*) targetAttributes
 {
 	NSAssert( ![self.VBOs containsObject:vbo], @"Can't add a VBO, it's already added to this VAO");
 	/** Check if we already have a buffer that's mapped to any of those Attributes; GL does NOT ALLOW two buffers
@@ -118,6 +118,11 @@
 		bytesForPreviousItems += bytesPerItem;
 	}
 	glBindVertexArrayOES(0); //unbind the vertex array, as a precaution against accidental changes by other classes
+}
+
+-(NSArray*) attributesArrayForVBO:(GLK2BufferObject*) vbo
+{
+	return [self.attributeArraysByVBOName objectForKey:@(vbo.glName)];
 }
 
 -(GLK2BufferObject*) VBOContainingOrderedAttributes:(NSArray*) targetAttributes

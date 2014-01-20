@@ -129,4 +129,17 @@
  */
 -(GLint)textureUnitOffsetForSampler:(GLK2Uniform *)sampler;
 
+#pragma mark - workaround for bad OpenGL committee decisions
+
+/**
+ The OpenGL committee are sometimes evil - they decided to break GL ES so that VAO's
+ can't be shared across threads.
+ 
+ This also prevents you from loading background geometry. It's a MAJOR bug in the API.
+ 
+ The only workaround is to load your geometry once, then clone your draw-calls, creating
+ new VAO's, and re-assign the VBO's (which ARE shared) to the new VAO's on the new thread.
+ */
+-(id) copyDrawCallAllocatingNewVAO;
+
 @end

@@ -18,7 +18,7 @@
 -(GLK2BufferObject*) addVBOForAttribute:(GLK2Attribute*) targetAttribute filledWithData:(const void*) data bytesPerArrayElement:(GLsizeiptr) bytesPerDataItem arrayLength:(int) numDataItems updateFrequency:(GLK2BufferObjectFrequency) freq;
 
 /** If you have a VBO already uploaded to the GPU (e.g. used elsewhere), you can ADDITIONALLY add it to this VAO */
--(void) addVBO:(GLK2BufferObject*) vbo forAttributes:(NSArray*) targetAttributes numVertices:(int) numDataItems;
+-(void) addVBO:(GLK2BufferObject*) vbo forAttributes:(NSArray*) targetAttributes;
 
 /**
  If you forget which VBO was which, you can use this to find the one that used the EXACT set of attributes (a single attribute, or an interleaved set) */
@@ -32,5 +32,10 @@
 /** OpenGL's association of VAO's/VBO's has a very poor API, so you have to manually check and associate
  them whenever needed */
 -(BOOL) containsVBO:(GLK2BufferObject*) buffer;
- 
+
+/** ONLY exists so that you can clone a VAO while *sharing* the VBO's (required by the terrible
+ design decisions of the OpenGL committee)
+ */
+-(NSArray*) attributesArrayForVBO:(GLK2BufferObject*) vbo;
+
 @end
