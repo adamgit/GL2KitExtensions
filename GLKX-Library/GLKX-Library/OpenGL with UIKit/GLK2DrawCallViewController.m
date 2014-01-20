@@ -189,12 +189,29 @@
 	
 	float* newClearColour = [drawCall clearColourArray];
 	glClearColor( newClearColour[0], newClearColour[1], newClearColour[2], newClearColour[3] );
-	glClear( (drawCall.shouldClearColorBit ? GL_COLOR_BUFFER_BIT : 0) );
+	
+	if( drawCall.shouldClearColorBit ) // if not, don't bother reading/comparing/changing the clear-colour
+	{
+		float* newClearColour = [drawCall clearColourArray];
+		{
+			glClearColor( newClearColour[0], newClearColour[1], newClearColour[2], newClearColour[3] );
+		}
+	}
+	if( drawCall.shouldClearColorBit || drawCall.shouldClearDepthBit )
+		glClear( (drawCall.shouldClearColorBit ? GL_COLOR_BUFFER_BIT : 0) | (drawCall.shouldClearDepthBit ? GL_DEPTH_BUFFER_BIT : 0) ); // NB: don't remove the brackets! the C | operator is evil!
 	
 	if( drawCall.requiresCullFace )
 		glEnable(  GL_CULL_FACE );
 	else
 		glDisable( GL_CULL_FACE );
+	
+	if( drawCall.requiresAlphaBlending )
+	{
+		glEnable(  GL_BLEND );
+		glBlendFunc( drawCall.alphaBlendSourceFactor, drawCall.alphaBlendDestinationFactor );
+	}
+	else
+		glDisable( GL_BLEND );
 	
 	/**
 	 Re-bind / enable all the textures for this Draw call */
