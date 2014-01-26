@@ -187,6 +187,13 @@
 	 (Apple/hardware issue: always aim to do a glClear, unless you visually can't; in some cases,
 	 it helps with performance to do the clear - even if not needed)*/
 	
+	/* ... GL API bug: must enalbe/disable DEPTH before doing ANY clears */
+	if( drawCall.requiresDepthTest )
+		
+		glEnable( GL_DEPTH_TEST );
+	else
+		glDisable( GL_DEPTH_TEST );
+	
 	float* newClearColour = [drawCall clearColourArray];
 	glClearColor( newClearColour[0], newClearColour[1], newClearColour[2], newClearColour[3] );
 	
