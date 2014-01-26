@@ -340,6 +340,22 @@
 
 #pragma mark - workaround for bad OpenGL committee decisions
 
+-(void) reCreateVAOOnCurrentThread
+{
+	GLK2VertexArrayObject* newVAO;
+	
+	/** this is the important bit! */
+	newVAO = [[[GLK2VertexArrayObject alloc] init] autorelease];
+	
+	/** ... and copy across the VBOs ... */
+	for( GLK2BufferObject* vbo in self.VAO.VBOs )
+	{
+		[newVAO addVBO:vbo forAttributes:[self.VAO attributesArrayForVBO:vbo]];
+	}
+	
+	self.VAO = newVAO;
+}
+
 -(id) copyDrawCallAllocatingNewVAO
 {
 	GLK2DrawCall* newCopy = [[[self class] alloc] init];

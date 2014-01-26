@@ -129,7 +129,15 @@
  */
 -(GLint)textureUnitOffsetForSampler:(GLK2Uniform *)sampler;
 
-#pragma mark - workaround for bad OpenGL committee decisions
+#pragma mark - workaround for OpenGL API bug: GL ES VAO's "cannot" be shared across threads
+
+/**
+ Converts this DrawCall from one created on "any thread except the main one" to "a valid
+ renderable drawcall", assuming you are CURRENTLY EXECUTING ON THE MAIN RENDER THREAD
+ 
+ Alternatively, use copyDrawCallAllocatingNewVAO below
+ */
+-(void) reCreateVAOOnCurrentThread;
 
 /**
  The OpenGL committee are sometimes evil - they decided to break GL ES so that VAO's
@@ -139,6 +147,8 @@
  
  The only workaround is to load your geometry once, then clone your draw-calls, creating
  new VAO's, and re-assign the VBO's (which ARE shared) to the new VAO's on the new thread.
+ 
+ Alternatively, use reCreateVAOOnCurrentThread above (but make sure you're in the main thread and not mid-render!)
  */
 -(id) copyDrawCallAllocatingNewVAO;
 
