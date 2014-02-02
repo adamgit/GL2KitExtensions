@@ -132,4 +132,18 @@
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pWide, pHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, [rawData bytes]);
 }
 
+-(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName
+{
+	if( newTetureName == self.glName )
+		return; // no effect
+	
+	if( self.willDeleteOnDealloc )
+	{
+		NSLog(@"Dealloc: %@, glDeleteTexures( 1, %i)", [self class], self.glName );
+		glDeleteTextures(1, &_glName);
+	}
+	
+	self.glName = newTetureName;
+}
+
 @end

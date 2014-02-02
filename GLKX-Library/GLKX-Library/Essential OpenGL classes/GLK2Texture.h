@@ -109,4 +109,14 @@
 
 -(void) uploadFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh;
 
+/** Advanced:
+ 
+ Mostly useful when hot-swapping a teture, this call drops the old .glName (and issues a glDeleteTeture on it
+ unless willDeleteOnDealloc is set to FALSE), then it grabs the incoming value and sets it as self.glName.
+ 
+ From this moment onwards, all rendering that indirects via this instance will use the "new" GPU-side teture
+ instead of the old one.
+ */
+-(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName;
+
 @end
