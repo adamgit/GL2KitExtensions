@@ -123,6 +123,11 @@
 	[super dealloc];
 }
 
+-(NSString *)description
+{
+	return [NSString stringWithFormat:@"Texture-%i%@", self.glName, self.willDeleteOnDealloc? @"" : @"(WON'T delete on dealloc)" ];
+}
+
 -(void) uploadFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh
 {
 	/*************** 2. Upload NSData to OpenGL */
