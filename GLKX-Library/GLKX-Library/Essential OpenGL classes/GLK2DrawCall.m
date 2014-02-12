@@ -2,7 +2,6 @@
 
 @interface GLK2DrawCall()
 @property(nonatomic,retain) NSMutableArray* textureUnitSlots;
-@property(nonatomic,retain, readwrite) NSString* title;
 @end
 
 @implementation GLK2DrawCall
@@ -75,7 +74,8 @@
 	self.VAO = nil;
 	self.uniformValueGenerator = nil;
 	
-	NSLog(@"Drawcall dealloced: %@", [self class] );
+	NSLog(@"Drawcall dealloced: %@ (\"%@\")", [self class], self.title );
+	self.title = nil;
 	
 	[super dealloc];
 }
@@ -111,6 +111,11 @@
 - (id)init
 {
 	return [self initWithTitle:[NSString stringWithFormat:@"Drawcall-%i", arc4random_uniform(INT_MAX)]];
+}
+
+-(NSString *)description
+{
+	return self.title;
 }
 
 #pragma mark - glClear
