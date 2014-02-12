@@ -95,4 +95,7 @@
  */
 -(void) renderSingleDrawCall:(GLK2DrawCall*) drawCall;
 
+/** Apple's driver is very slow at switching shaderprogram, and won't check if it's already set */
+@property(nonatomic) GLuint currentlyActiveShaderProgramName;
+
 @end

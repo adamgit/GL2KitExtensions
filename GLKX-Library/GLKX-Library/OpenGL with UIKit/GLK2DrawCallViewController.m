@@ -171,10 +171,12 @@
 	 and restore the Uniforms (which GL should do as part of the VAO, but sadly doesn't)
 	 */
 	
-	if( drawCall.shaderProgram != nil )
-		glUseProgram( drawCall.shaderProgram.glName);
-	else
-		glUseProgram( 0 /** means "none */ );
+	GLuint requiredShaderProgramName = drawCall.shaderProgram != nil? drawCall.shaderProgram.glName : 0;
+	if( self.currentlyActiveShaderProgramName != requiredShaderProgramName )
+	{
+		self.currentlyActiveShaderProgramName = requiredShaderProgramName;
+		glUseProgram( self.currentlyActiveShaderProgramName );
+	}
 	
 	/** Set uniforms to defaults */
 	[drawCall setAllUniformValuesForShader];

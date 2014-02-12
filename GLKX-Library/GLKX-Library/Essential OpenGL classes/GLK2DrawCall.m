@@ -2,7 +2,6 @@
 
 @interface GLK2DrawCall()
 @property(nonatomic,retain) NSMutableArray* textureUnitSlots;
-@property(nonatomic,retain, readwrite) NSString* title;
 @end
 
 @implementation GLK2DrawCall

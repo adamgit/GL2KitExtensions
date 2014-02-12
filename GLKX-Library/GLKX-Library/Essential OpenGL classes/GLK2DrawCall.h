@@ -13,7 +13,7 @@
 @interface GLK2DrawCall : NSObject
 
 /** Massively helpful when debugging: give each one a human-readable title */
-@property(nonatomic,readonly) NSString* title;
+@property(nonatomic,retain) NSString* title;
 
 @property(nonatomic) BOOL shouldClearColorBit, shouldClearDepthBit;
 
