@@ -31,6 +31,11 @@ GLK2Cube GLK2CubeFromOriginAndBaseVectors( GLKVector3 o, GLKVector3 vAcross, GLK
 GLK2Cube GLK2CubeMultiplyScalar( GLK2Cube oldCube, CGFloat scalar );
 
 /**
+ Adds offset to the cube's origin
+ */
+GLK2Cube GLK2CubeOffsetBy( GLK2Cube oldCube, GLKVector3 offset );
+
+/**
  Takes the X, Y, and Z of vector, and multiplies the cube along its own axes by those
  amounts.
  

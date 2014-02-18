@@ -31,6 +31,17 @@ GLK2Cube GLK2CubeMultiplyBaseVectors( GLK2Cube oldCube, GLKVector3 vector )
 	return cube;
 }
 
+GLK2Cube GLK2CubeOffsetBy( GLK2Cube oldCube, GLKVector3 offset )
+{
+	GLK2Cube cube = { GLKVector3Add( oldCube.origin, offset ),
+		oldCube.vectorAcross,
+		oldCube.vectorUp,
+		oldCube.vectorOut
+	};
+	
+	return cube;
+}
+
 /*GLK2Cube GLK2CubeFromRect( GLKVector3 topLeft, GLKVector3 topRight, GLKVector3 bottomRight, GLKVector3 bottomLeft )
 {
 	GLK2Cube cube;
