@@ -61,6 +61,7 @@
 		{			
 			if( uniform.isMatrix )
 			{
+				NSAssert( uniform.arrayLength == 1, @"Not supported: uniform that is an array-of-matrices");
 				switch( uniform.matrixWidth )
 				{
 					case 2:
@@ -74,9 +75,9 @@
 						break;
 				}
 			}
-			
-			if( uniform.isVector )
+			else if( uniform.isVector )
 			{
+				NSAssert( uniform.arrayLength == 1, @"Not supported: uniform that is an array-of-vectors");
 				switch( uniform.vectorWidth )
 				{
 					case 2:
@@ -89,6 +90,10 @@
 						countOfVector4s++;
 						break;
 				}
+			}
+			else
+			{
+				// FIXME: not supported yet - raw ints, floats, bools, shorts, etc
 			}
 		}
 		
