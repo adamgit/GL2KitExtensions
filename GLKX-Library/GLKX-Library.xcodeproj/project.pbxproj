@@ -37,6 +37,10 @@
 		6631F2691870FC3000C6E1AC /* GLK2TextureLoaderPVRv1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631F2491870FC3000C6E1AC /* GLK2TextureLoaderPVRv1.m */; };
 		6631F26E1870FC9900C6E1AC /* GLK2DrawCallViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6631F26C1870FC9900C6E1AC /* GLK2DrawCallViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6631F26F1870FC9900C6E1AC /* GLK2DrawCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631F26D1870FC9900C6E1AC /* GLK2DrawCallViewController.m */; };
+		666CA02518B52BD70092D459 /* GLK2UniformMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 666CA02318B52BD70092D459 /* GLK2UniformMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666CA02618B52BD70092D459 /* GLK2UniformMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CA02418B52BD70092D459 /* GLK2UniformMap.m */; };
+		666CA02918B5327D0092D459 /* GLK2UniformMapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 666CA02718B5327D0092D459 /* GLK2UniformMapGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666CA02A18B5327D0092D459 /* GLK2UniformMapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CA02818B5327D0092D459 /* GLK2UniformMapGenerator.m */; };
 		6672C7B7184A228000A23414 /* GLKX_Library.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DDE1CB184A1919008C4E55 /* GLKX_Library.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		667C3AF618802C7F00C8FB3F /* GLK2HardwareMaximums.m in Sources */ = {isa = PBXBuildFile; fileRef = 667C3AF418802C7F00C8FB3F /* GLK2HardwareMaximums.m */; };
 		667C3AF718802C7F00C8FB3F /* GLK2HardwareMaximums.h in Headers */ = {isa = PBXBuildFile; fileRef = 667C3AF518802C7F00C8FB3F /* GLK2HardwareMaximums.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -107,6 +111,10 @@
 		6631F2491870FC3000C6E1AC /* GLK2TextureLoaderPVRv1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2TextureLoaderPVRv1.m; sourceTree = "<group>"; };
 		6631F26C1870FC9900C6E1AC /* GLK2DrawCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2DrawCallViewController.h; sourceTree = "<group>"; };
 		6631F26D1870FC9900C6E1AC /* GLK2DrawCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2DrawCallViewController.m; sourceTree = "<group>"; };
+		666CA02318B52BD70092D459 /* GLK2UniformMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2UniformMap.h; sourceTree = "<group>"; };
+		666CA02418B52BD70092D459 /* GLK2UniformMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2UniformMap.m; sourceTree = "<group>"; };
+		666CA02718B5327D0092D459 /* GLK2UniformMapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2UniformMapGenerator.h; sourceTree = "<group>"; };
+		666CA02818B5327D0092D459 /* GLK2UniformMapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2UniformMapGenerator.m; sourceTree = "<group>"; };
 		667C3AF418802C7F00C8FB3F /* GLK2HardwareMaximums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLK2HardwareMaximums.m; sourceTree = "<group>"; };
 		667C3AF518802C7F00C8FB3F /* GLK2HardwareMaximums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2HardwareMaximums.h; sourceTree = "<group>"; };
 		66DDE1A2184A188C008C4E55 /* libGLKX-Library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libGLKX-Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +193,10 @@
 				6631F23E1870FC3000C6E1AC /* GLK2ExampleUniformValueGenerator.m */,
 				667C3AF518802C7F00C8FB3F /* GLK2HardwareMaximums.h */,
 				667C3AF418802C7F00C8FB3F /* GLK2HardwareMaximums.m */,
+				666CA02318B52BD70092D459 /* GLK2UniformMap.h */,
+				666CA02418B52BD70092D459 /* GLK2UniformMap.m */,
+				666CA02718B5327D0092D459 /* GLK2UniformMapGenerator.h */,
+				666CA02818B5327D0092D459 /* GLK2UniformMapGenerator.m */,
 				6631F2411870FC3000C6E1AC /* Protocols */,
 			);
 			path = "OpenGL OOP Improvements";
@@ -299,7 +311,9 @@
 				66FF7CE5188C2A6B0073F5D1 /* GLK2Cube.h in Headers */,
 				6631F2591870FC3000C6E1AC /* GLK2Texture.h in Headers */,
 				6631F24D1870FC3000C6E1AC /* GLK2Attribute.h in Headers */,
+				666CA02518B52BD70092D459 /* GLK2UniformMap.h in Headers */,
 				6631F25B1870FC3000C6E1AC /* GLK2Uniform.h in Headers */,
+				666CA02918B5327D0092D459 /* GLK2UniformMapGenerator.h in Headers */,
 				6631F2661870FC3000C6E1AC /* GLK2Texture+CoreVideo.h in Headers */,
 				6631F2531870FC3000C6E1AC /* GLK2DrawCall.h in Headers */,
 				6631F25D1870FC3000C6E1AC /* GLK2VertexArrayObject.h in Headers */,
@@ -427,7 +441,9 @@
 				6631F2541870FC3000C6E1AC /* GLK2DrawCall.m in Sources */,
 				6631F2691870FC3000C6E1AC /* GLK2TextureLoaderPVRv1.m in Sources */,
 				6631F25E1870FC3000C6E1AC /* GLK2VertexArrayObject.m in Sources */,
+				666CA02618B52BD70092D459 /* GLK2UniformMap.m in Sources */,
 				6631F25A1870FC3000C6E1AC /* GLK2Texture.m in Sources */,
+				666CA02A18B5327D0092D459 /* GLK2UniformMapGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
