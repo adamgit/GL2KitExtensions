@@ -3,19 +3,23 @@
 #import "GLK2Uniform.h"
 
 @interface GLK2UniformMap ()
-@property(nonatomic,retain) NSMutableArray* namesOfMatrix4s;
-@property(nonatomic,retain) NSMutableArray* namesOfVector4s;
+@property(nonatomic,retain) NSMutableArray* namesOfMatrix2s, * namesOfMatrix3s, * namesOfMatrix4s;
+@property(nonatomic,retain) NSMutableArray* namesOfVector2s, * namesOfVector3s, * namesOfVector4s;
 @end
 
 @implementation GLK2UniformMap
 {
+	GLKMatrix2* rawMatrix2s;
+	GLKMatrix3* rawMatrix3s;
 	GLKMatrix4* rawMatrix4s;
-	BOOL* existsRawMatrix4;
-	int countOfMatrix4s;
+	BOOL* existsRawMatrix2, * existsRawMatrix3, * existsRawMatrix4;
+	int countOfMatrix2s, countOfMatrix3s, countOfMatrix4s;
 	
+	GLKVector2* rawVector2s;
+	GLKVector3* rawVector3s;
 	GLKVector4* rawVector4s;
-	BOOL* existsRawVector4;
-	int countOfVector4s;
+	BOOL* existsRawVector2, * existsRawVector3, * existsRawVector4;
+	int countOfVector2s, countOfVector3s, countOfVector4s;
 }
 
 +(GLK2UniformMap *)uniformMapForLinkedShaderProgram:(GLK2ShaderProgram *)shaderProgram
@@ -25,6 +29,28 @@
 	GLK2UniformMap* newValue = [[[GLK2UniformMap alloc] initWithUniforms:shaderProgram.allUniforms] autorelease];
 	
 	return newValue;
+}
+
+-(void)dealloc
+{
+	free( rawMatrix2s );
+	free( rawMatrix3s );
+	free( rawMatrix4s );
+	free( existsRawMatrix2 );
+	free( existsRawMatrix3 );
+	free( existsRawMatrix4 );
+	
+	free( rawVector2s );
+	free( rawVector3s );
+	free( rawVector4s );
+	free( existsRawVector2 );
+	free( existsRawVector3 );
+	free( existsRawVector4 );
+	
+	self.namesOfMatrix2s = self.namesOfMatrix3s = self.namesOfMatrix4s = nil;
+	self.namesOfVector2s = self.namesOfVector3s = self.namesOfVector4s = nil;
+	
+	[super dealloc];
 }
 
 - (id)initWithUniforms:(NSArray*) allUniforms
@@ -38,8 +64,10 @@
 				switch( uniform.matrixWidth )
 				{
 					case 2:
+						countOfMatrix2s++;
 						break;
 					case 3:
+						countOfMatrix3s++;
 						break;
 					case 4:
 						countOfMatrix4s++;
@@ -52,8 +80,10 @@
 				switch( uniform.vectorWidth )
 				{
 					case 2:
+						countOfVector2s++;
 						break;
 					case 3:
+						countOfVector3s++;
 						break;
 					case 4:
 						countOfVector4s++;
@@ -63,15 +93,25 @@
 		}
 		
 		/** Now allocate + fill */
+		rawMatrix2s = calloc( countOfMatrix2s, sizeof(GLKMatrix2));
+		rawMatrix3s = calloc( countOfMatrix3s, sizeof(GLKMatrix3));
 		rawMatrix4s = calloc( countOfMatrix4s, sizeof(GLKMatrix4));
+		existsRawMatrix2 = calloc( countOfMatrix2s, sizeof(BOOL));
+		existsRawMatrix3 = calloc( countOfMatrix3s, sizeof(BOOL));
 		existsRawMatrix4 = calloc( countOfMatrix4s, sizeof(BOOL));
+		self.namesOfMatrix2s = [NSMutableArray array];
+		self.namesOfMatrix3s = [NSMutableArray array];
 		self.namesOfMatrix4s = [NSMutableArray array];
-		int currentIndexMat4 = 0;
 		
+		rawVector2s = calloc( countOfVector2s, sizeof(GLKMatrix2));
+		rawVector3s = calloc( countOfVector3s, sizeof(GLKMatrix3));
 		rawVector4s = calloc( countOfVector4s, sizeof(GLKMatrix4));
+		existsRawVector2 = calloc( countOfVector2s, sizeof(BOOL));
+		existsRawVector3 = calloc( countOfVector3s, sizeof(BOOL));
 		existsRawVector4 = calloc( countOfVector4s, sizeof(BOOL));
+		self.namesOfVector2s = [NSMutableArray array];
+		self.namesOfVector3s = [NSMutableArray array];
 		self.namesOfVector4s = [NSMutableArray array];
-		int currentIndexVec4 = 0;
 		
 		
 		for( GLK2Uniform* uniform in allUniforms )
@@ -81,12 +121,13 @@
 				switch( uniform.matrixWidth )
 				{
 					case 2:
+						[self.namesOfMatrix2s addObject:uniform.nameInSourceFile];
 						break;
 					case 3:
+						[self.namesOfMatrix3s addObject:uniform.nameInSourceFile];
 						break;
 					case 4:
 						[self.namesOfMatrix4s addObject:uniform.nameInSourceFile];
-						currentIndexMat4++;
 						break;
 				}
 			}
@@ -96,12 +137,13 @@
 				switch( uniform.vectorWidth )
 				{
 					case 2:
+						[self.namesOfVector2s addObject:uniform.nameInSourceFile];
 						break;
 					case 3:
+						[self.namesOfVector3s addObject:uniform.nameInSourceFile];
 						break;
 					case 4:
 						[self.namesOfVector4s addObject:uniform.nameInSourceFile];
-						currentIndexVec4++;
 						break;
 				}
 			}
@@ -112,6 +154,28 @@
 
 #pragma mark - Matrices
 
+-(GLKMatrix2*) pointerToMatrix2Named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfMatrix2s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return NULL;
+	
+	if( ! existsRawMatrix2[rowIndex] )
+		return NULL;
+	
+	return &rawMatrix2s[rowIndex];
+}
+-(GLKMatrix3*) pointerToMatrix3Named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfMatrix3s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return NULL;
+	
+	if( ! existsRawMatrix3[rowIndex] )
+		return NULL;
+	
+	return &rawMatrix3s[rowIndex];
+}
 -(GLKMatrix4*) pointerToMatrix4Named:(NSString*) name
 {
 	NSUInteger rowIndex = [self.namesOfMatrix4s indexOfObject:name];
@@ -124,6 +188,24 @@
 	return &rawMatrix4s[rowIndex];
 }
 
+-(void) setMatrix2:(GLKMatrix2) value named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfMatrix2s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return;
+	
+	existsRawMatrix2[rowIndex] = TRUE;
+	rawMatrix2s[rowIndex] = value;
+}
+-(void) setMatrix3:(GLKMatrix3) value named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfMatrix3s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return;
+	
+	existsRawMatrix3[rowIndex] = TRUE;
+	rawMatrix3s[rowIndex] = value;
+}
 -(void) setMatrix4:(GLKMatrix4) value named:(NSString*) name
 {
 	NSUInteger rowIndex = [self.namesOfMatrix4s indexOfObject:name];
@@ -136,6 +218,28 @@
 
 #pragma mark - Vectors
 
+-(GLKVector2*) pointerToVector2Named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfVector2s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return NULL;
+	
+	if( ! existsRawVector2[rowIndex] )
+		return NULL;
+	
+	return &rawVector2s[rowIndex];
+}
+-(GLKVector3*) pointerToVector3Named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfVector3s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return NULL;
+	
+	if( ! existsRawVector3[rowIndex] )
+		return NULL;
+	
+	return &rawVector3s[rowIndex];
+}
 -(GLKVector4*) pointerToVector4Named:(NSString*) name
 {
 	NSUInteger rowIndex = [self.namesOfVector4s indexOfObject:name];
@@ -148,6 +252,24 @@
 	return &rawVector4s[rowIndex];
 }
 
+-(void) setVector2:(GLKVector2) value named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfVector2s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return;
+	
+	existsRawVector2[rowIndex] = TRUE;
+	rawVector2s[rowIndex] = value;
+}
+-(void) setVector3:(GLKVector3) value named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfVector3s indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return;
+	
+	existsRawVector3[rowIndex] = TRUE;
+	rawVector3s[rowIndex] = value;
+}
 -(void) setVector4:(GLKVector4) value named:(NSString*) name
 {
 	NSUInteger rowIndex = [self.namesOfVector4s indexOfObject:name];

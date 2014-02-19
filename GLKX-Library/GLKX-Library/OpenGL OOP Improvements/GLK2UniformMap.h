@@ -33,10 +33,18 @@
 - (id)initWithUniforms:(NSArray*) allUniforms;
 
 #pragma mark - methods for setting and getting via pointers
+-(GLKMatrix2*) pointerToMatrix2Named:(NSString*) name;
+-(GLKMatrix3*) pointerToMatrix3Named:(NSString*) name;
 -(GLKMatrix4*) pointerToMatrix4Named:(NSString*) name;
+-(void) setMatrix2:(GLKMatrix2) value named:(NSString*) name;
+-(void) setMatrix3:(GLKMatrix3) value named:(NSString*) name;
 -(void) setMatrix4:(GLKMatrix4) value named:(NSString*) name;
 
+-(GLKVector2*) pointerToVector2Named:(NSString*) name;
+-(GLKVector3*) pointerToVector3Named:(NSString*) name;
 -(GLKVector4*) pointerToVector4Named:(NSString*) name;
+-(void) setVector2:(GLKVector2) value named:(NSString*) name;
+-(void) setVector3:(GLKVector3) value named:(NSString*) name;
 -(void) setVector4:(GLKVector4) value named:(NSString*) name;
 
 @end

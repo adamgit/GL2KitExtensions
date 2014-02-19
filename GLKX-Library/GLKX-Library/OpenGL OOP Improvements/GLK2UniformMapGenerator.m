@@ -19,8 +19,16 @@
 
 #pragma mark - Matrices
 
--(GLKMatrix2*) matrix2ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall { return NULL; }
--(GLKMatrix3*) matrix3ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall { return NULL; }
+-(GLKMatrix2*) matrix2ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall
+{
+	return [self pointerToMatrix2Named:v.nameInSourceFile];
+}
+
+-(GLKMatrix3*) matrix3ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall
+{
+	return [self pointerToMatrix3Named:v.nameInSourceFile];
+}
+
 -(GLKMatrix4 *)matrix4ForUniform:(GLK2Uniform *)v inDrawCall:(GLK2DrawCall *)drawCall
 {
 	return [self pointerToMatrix4Named:v.nameInSourceFile];
@@ -28,16 +36,31 @@
 
 #pragma mark - Vectors
 
--(GLKVector2*) vector2ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall  { return NULL; }
--(GLKVector3*) vector3ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall { return NULL; }
+-(GLKVector2*) vector2ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall
+{
+	return [self pointerToVector2Named:v.nameInSourceFile];
+}
+
+-(GLKVector3*) vector3ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall
+{
+	return [self pointerToVector3Named:v.nameInSourceFile];
+}
+
 -(GLKVector4 *)vector4ForUniform:(GLK2Uniform *)v inDrawCall:(GLK2DrawCall *)drawCall
 {
 	return [self pointerToVector4Named:v.nameInSourceFile];
 }
 
--(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value inDrawCall:(GLK2DrawCall*) drawCall { return FALSE; }
--(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value inDrawCall:(GLK2DrawCall*) drawCall { return FALSE; }
+-(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value inDrawCall:(GLK2DrawCall*) drawCall
+{
+	NSAssert(FALSE, @"Storing floats: not implemented yet");
+	return FALSE;
+}
 
-
+-(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value inDrawCall:(GLK2DrawCall*) drawCall
+{
+	NSAssert(FALSE, @"Storing ints: not implemented yet");
+	return FALSE;
+}
 
 @end
