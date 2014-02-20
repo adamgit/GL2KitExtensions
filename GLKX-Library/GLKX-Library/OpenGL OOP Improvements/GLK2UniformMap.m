@@ -3,12 +3,19 @@
 #import "GLK2Uniform.h"
 
 @interface GLK2UniformMap ()
+@property(nonatomic,retain) NSMutableArray* namesOfFloats, * namesOfInts;
 @property(nonatomic,retain) NSMutableArray* namesOfMatrix2s, * namesOfMatrix3s, * namesOfMatrix4s;
 @property(nonatomic,retain) NSMutableArray* namesOfVector2s, * namesOfVector3s, * namesOfVector4s;
 @end
 
 @implementation GLK2UniformMap
 {
+	GLfloat* rawFloats;
+	int countOfFloats;
+	
+	GLint* rawInts;
+	int countOfInts;
+	
 	GLKMatrix2* rawMatrix2s;
 	GLKMatrix3* rawMatrix3s;
 	GLKMatrix4* rawMatrix4s;
@@ -33,6 +40,9 @@
 
 -(void)dealloc
 {
+	free( rawFloats );
+	free( rawInts );
+	
 	free( rawMatrix2s );
 	free( rawMatrix3s );
 	free( rawMatrix4s );
@@ -47,6 +57,7 @@
 	free( existsRawVector3 );
 	free( existsRawVector4 );
 	
+	self.namesOfFloats = self.namesOfInts = nil;
 	self.namesOfMatrix2s = self.namesOfMatrix3s = self.namesOfMatrix4s = nil;
 	self.namesOfVector2s = self.namesOfVector3s = self.namesOfVector4s = nil;
 	
@@ -93,11 +104,20 @@
 			}
 			else
 			{
-				// FIXME: not supported yet - raw ints, floats, bools, shorts, etc
+				if( uniform.isFloat )
+					countOfFloats++;
+				else if( uniform.isInteger )
+					countOfInts++;
 			}
 		}
 		
 		/** Now allocate + fill */
+		rawFloats = calloc( countOfFloats, sizeof(GLfloat));
+		self.namesOfFloats = [NSMutableArray array];
+		
+		rawInts = calloc( countOfInts, sizeof(GLint));
+		self.namesOfInts = [NSMutableArray array];
+		
 		rawMatrix2s = calloc( countOfMatrix2s, sizeof(GLKMatrix2));
 		rawMatrix3s = calloc( countOfMatrix3s, sizeof(GLKMatrix3));
 		rawMatrix4s = calloc( countOfMatrix4s, sizeof(GLKMatrix4));
@@ -136,8 +156,7 @@
 						break;
 				}
 			}
-			
-			if( uniform.isVector )
+			else if( uniform.isVector )
 			{
 				switch( uniform.vectorWidth )
 				{
@@ -152,9 +171,53 @@
 						break;
 				}
 			}
+			else if( uniform.isFloat )
+			{
+				[self.namesOfFloats addObject:uniform.nameInSourceFile];
+			}
+			else if( uniform.isInteger )
+			{
+				[self.namesOfInts addObject:uniform.nameInSourceFile];
+			}
 		}
     }
     return self;
+}
+
+#pragma mark - Primitives
+
+-(GLfloat*) pointerToFloatNamed:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfFloats indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return 0;
+		
+	return &(rawFloats[rowIndex]);
+}
+-(GLint*) pointerToIntNamed:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfInts indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return 0;
+	
+	return &(rawInts[rowIndex]);
+}
+
+-(void) setFloat:(GLfloat) value named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfFloats indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return;
+	
+	rawFloats[rowIndex] = value;
+}
+-(void) setInt:(GLint) value named:(NSString*) name
+{
+	NSUInteger rowIndex = [self.namesOfInts indexOfObject:name];
+	if( rowIndex == NSNotFound )
+		return;
+	
+	rawInts[rowIndex] = value;
 }
 
 #pragma mark - Matrices

@@ -31,12 +31,16 @@ typedef NS_ENUM(NSInteger, DeviceMemoryInBytes )
 
 @interface GLK2HardwareMaximums : NSObject
 
-/**
- Invoke this method to read + cache all GL hardware data. You need to do this at least once!
+/** The first time you invoke this, it reads the values from the GPU.
+ 
+ Afterwards, it uses cached data
  */
--(void) readAllGLMaximums;
++(GLK2HardwareMaximums*) sharedInstance;
 
+/** Maximum width or height of any texture, in pixels */
 @property(nonatomic,readonly) GLint glMaxTextureSize;
+
+/** Amount of RAM the iOS device contains (constrains texture-ram, but is total RAM) */
 @property(nonatomic,readonly) DeviceMemoryInBytes iOSDeviceRAM;
 
 @end

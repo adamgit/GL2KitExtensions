@@ -143,9 +143,10 @@
 		{			
 			if( uniform.isFloat )
 			{
-				float* floatPointer = NULL;
+				float* floatPointer;
 				if( uniform.isMatrix )
 				{
+					floatPointer = NULL;
 					switch( uniform.matrixWidth )
 					{
 						case 2:
@@ -167,6 +168,7 @@
 				}
 				else if( uniform.isVector )
 				{
+					floatPointer = NULL;
 					switch( uniform.vectorWidth )
 					{
 						case 2:
@@ -188,8 +190,15 @@
 				}
 				else
 				{
-					if( ! [self.uniformValueGenerator floatForUniform:uniform returnIn:floatPointer inDrawCall:self] )
-						floatPointer = 0; // kill the pointer
+					float f; // need some local storage that will survive lon enough to hand-off to the setValue:: call
+					if( ! [self.uniformValueGenerator floatForUniform:uniform returnIn:&f inDrawCall:self] )
+						;
+					else
+					{
+						[self.shaderProgram setValue:&f forUniform:uniform];
+					}
+					
+					continue;
 				}
 				
 				if( floatPointer != NULL ) // prevent the next line from clobbering the value!
@@ -197,9 +206,10 @@
 			}
 			else
 			{
-				int* intPointer = NULL;
+				int* intPointer;
 				if( uniform.isVector )
 				{
+					intPointer = NULL;
 					NSAssert(FALSE, @"Int vectors not supported yet");
 				}
 				else

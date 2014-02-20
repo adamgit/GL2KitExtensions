@@ -32,7 +32,7 @@
  */
 - (id)initWithUniforms:(NSArray*) allUniforms;
 
-#pragma mark - methods for setting and getting 
+#pragma mark - methods for setting and getting
 
 -(GLfloat*) pointerToFloatNamed:(NSString*) name;
 -(GLint*) pointerToIntNamed:(NSString*) name;

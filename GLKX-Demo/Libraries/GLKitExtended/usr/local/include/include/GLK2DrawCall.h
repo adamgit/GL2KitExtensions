@@ -13,7 +13,7 @@
 @interface GLK2DrawCall : NSObject
 
 /** Massively helpful when debugging: give each one a human-readable title */
-@property(nonatomic,readonly) NSString* title;
+@property(nonatomic,retain) NSString* title;
 
 @property(nonatomic) BOOL shouldClearColorBit, shouldClearDepthBit;
 
@@ -26,6 +26,19 @@
 
 /** In almost all apps you want it ON */
 @property(nonatomic) BOOL requiresCullFace;
+
+/** Enabling this on Apple/PVR devices MASSIVELY reduces performance, so only use it when genuinely needed.
+ 
+ Requires you to also set:
+  - alphaBlendSourceFactor
+  - alphaBlendDestinationFactor
+ */
+@property(nonatomic) BOOL requiresAlphaBlending;
+
+/**
+ For mode "requiresAlphaBlending = TRUE", defaults to: source = GL_ONE, dest = GL_ONE_MINUS_SRC_ALPHA
+ */
+@property(nonatomic) GLenum alphaBlendSourceFactor, alphaBlendDestinationFactor;
 
 /** If this draw call has ANY geometry, it should go in a VBO (stores raw Vertex attributes),
  and the VBO should be embedded in a VAO (which stores the metadata about the geometry) */
@@ -87,6 +100,13 @@
 -(float*) clearColourArray;
 -(void) setClearColourRed:(float) r green:(float) g blue:(float) b alpha:(float) a;
 
+#pragma mark Missing GL methods for handling Uniforms in Shaders each frame
+
+/** MUST be called AFTER setting this drawcall's shader to current
+ (e.g. within the update / drawFrame loop)
+ */
+-(void) setAllUniformValuesForShader;
+
 #pragma mark Texturing and texture-mapping methods
 
 /** When the draw-call runs, it will look up all the 'sampler2D' objects in the Shader sourcecode,
@@ -108,5 +128,28 @@
  for identifying texture-units; instead, they use "the offset to add to GL_TEXTURE0"
  */
 -(GLint)textureUnitOffsetForSampler:(GLK2Uniform *)sampler;
+
+#pragma mark - workaround for OpenGL API bug: GL ES VAO's "cannot" be shared across threads
+
+/**
+ Converts this DrawCall from one created on "any thread except the main one" to "a valid
+ renderable drawcall", assuming you are CURRENTLY EXECUTING ON THE MAIN RENDER THREAD
+ 
+ Alternatively, use copyDrawCallAllocatingNewVAO below
+ */
+-(void) reCreateVAOOnCurrentThread;
+
+/**
+ The OpenGL committee are sometimes evil - they decided to break GL ES so that VAO's
+ can't be shared across threads.
+ 
+ This also prevents you from loading background geometry. It's a MAJOR bug in the API.
+ 
+ The only workaround is to load your geometry once, then clone your draw-calls, creating
+ new VAO's, and re-assign the VBO's (which ARE shared) to the new VAO's on the new thread.
+ 
+ Alternatively, use reCreateVAOOnCurrentThread above (but make sure you're in the main thread and not mid-render!)
+ */
+-(id) copyDrawCallAllocatingNewVAO;
 
 @end

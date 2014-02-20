@@ -34,9 +34,9 @@
 	dc.glDrawCallType = GL_TRIANGLES;
 	
 	dc.VAO = [[GLK2VertexArrayObject new] autorelease];
-	[dc.VAO addVBO:sharedVBOPositions forAttributes:@[attPosition] numVertices:3];
+	[dc.VAO addVBO:sharedVBOPositions forAttributes:@[attPosition]];
 	if( attXY != nil )
-		[dc.VAO addVBO:sharedVBOVirtualXYs forAttributes:@[attXY] numVertices:3];
+		[dc.VAO addVBO:sharedVBOVirtualXYs forAttributes:@[attXY]];
 	
 	return dc;
 	

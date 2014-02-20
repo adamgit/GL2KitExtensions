@@ -72,6 +72,12 @@
 +(GLK2Texture*) texturePreLoadedByApplesGLKit:(GLKTextureInfo*) appleMetadata;
 
 /**
+ If your texture is already on the GPU and/or was created by 3rdparty code, this lets you
+ create a CPU-side GLK2Texture object to manage it
+ */
++(GLK2Texture*) textureAlreadyOnGPUWithName:(GLuint) existingName;
+
+/**
  Note that a raw stream of bytes contains NO INFORMATION about width/height of texture, so you need to provide those
  details in the parametrs.
  
@@ -102,5 +108,15 @@
 - (id)initWithName:(GLuint) name;
 
 -(void) uploadFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh;
+
+/** Advanced:
+ 
+ Mostly useful when hot-swapping a teture, this call drops the old .glName (and issues a glDeleteTeture on it
+ unless willDeleteOnDealloc is set to FALSE), then it grabs the incoming value and sets it as self.glName.
+ 
+ From this moment onwards, all rendering that indirects via this instance will use the "new" GPU-side teture
+ instead of the old one.
+ */
+-(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName;
 
 @end

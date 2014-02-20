@@ -12,6 +12,6 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface VideoTextureViewController : GLK2DrawCallViewController <AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface AnimatedTextureViewController : GLK2DrawCallViewController
 
 @end

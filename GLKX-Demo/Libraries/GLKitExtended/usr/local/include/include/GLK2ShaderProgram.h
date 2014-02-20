@@ -13,6 +13,9 @@
 #import "GLK2Attribute.h"
 #import "GLK2Uniform.h"
 
+#define DEBUG_ATTRIBUTE_HANDLING 0
+#define DEBUG_UNIFORM_HANDLING 0
+
 typedef enum GLK2ShaderProgramStatus
 {
 	GLK2ShaderProgramStatusUnlinked,

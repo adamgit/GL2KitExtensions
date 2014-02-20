@@ -53,14 +53,19 @@
 
 -(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value inDrawCall:(GLK2DrawCall*) drawCall
 {
-	NSAssert(FALSE, @"Storing floats: not implemented yet");
-	return FALSE;
+	*value = *[self pointerToFloatNamed:v.nameInSourceFile];
+	
+	return TRUE;
 }
 
 -(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value inDrawCall:(GLK2DrawCall*) drawCall
 {
-	NSAssert(FALSE, @"Storing ints: not implemented yet");
-	return FALSE;
+	if( v.glType == GL_SAMPLER_2D ) // Special case: Teture Sampler's are ignored by this class (handled by GLK2Teture isntead)
+		return FALSE;
+	
+	*value = *[self pointerToIntNamed:v.nameInSourceFile];
+	
+	return TRUE;
 }
 
 @end
