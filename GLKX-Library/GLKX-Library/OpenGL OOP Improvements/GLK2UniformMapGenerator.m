@@ -57,10 +57,12 @@
 	return FALSE;
 }
 
--(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value inDrawCall:(GLK2DrawCall*) drawCall
+-(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(GLint*) value inDrawCall:(GLK2DrawCall*) drawCall
 {
-	NSAssert(FALSE, @"Storing ints: not implemented yet");
-	return FALSE;
+	BOOL isValid;
+	*value = *[self pointerToIntNamed:v.nameInSourceFile isValid:&isValid];
+	
+	return isValid;
 }
 
 @end

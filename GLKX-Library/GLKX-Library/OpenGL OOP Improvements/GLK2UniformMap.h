@@ -47,4 +47,8 @@
 -(void) setVector3:(GLKVector3) value named:(NSString*) name;
 -(void) setVector4:(GLKVector4) value named:(NSString*) name;
 
+#pragma mark - Primitives
+
+-(GLint*) pointerToIntNamed:(NSString*) name isValid:(BOOL*) isValid;
+
 @end

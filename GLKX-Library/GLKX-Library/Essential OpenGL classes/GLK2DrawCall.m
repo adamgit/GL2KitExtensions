@@ -197,19 +197,18 @@
 			}
 			else
 			{
-				int* intPointer = NULL;
+				int tempInt;
 				if( uniform.isVector )
 				{
 					NSAssert(FALSE, @"Int vectors not supported yet");
 				}
 				else
 				{
-					if( ! [self.uniformValueGenerator intForUniform:uniform returnIn:intPointer inDrawCall:self] )
-						intPointer = 0; // kill the pointer
+					if( [self.uniformValueGenerator intForUniform:uniform returnIn:&tempInt inDrawCall:self] )
+						[self.shaderProgram setValue:&tempInt forUniform:uniform];
+					else
+						; // don't change anything; the generator had no value for this uniform
 				}
-				
-				if( intPointer != NULL ) // prevent the next line from clobbering the value!
-					[self.shaderProgram setValue:intPointer forUniform:uniform];
 				
 			}
 		}

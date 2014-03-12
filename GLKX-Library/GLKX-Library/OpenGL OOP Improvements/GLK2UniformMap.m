@@ -5,6 +5,7 @@
 @interface GLK2UniformMap ()
 @property(nonatomic,retain) NSMutableArray* namesOfMatrix2s, * namesOfMatrix3s, * namesOfMatrix4s;
 @property(nonatomic,retain) NSMutableArray* namesOfVector2s, * namesOfVector3s, * namesOfVector4s;
+@property(nonatomic,retain) NSMutableArray* namesOfInts;
 @end
 
 @implementation GLK2UniformMap
@@ -20,6 +21,10 @@
 	GLKVector4* rawVector4s;
 	BOOL* existsRawVector2, * existsRawVector3, * existsRawVector4;
 	int countOfVector2s, countOfVector3s, countOfVector4s;
+	
+	GLint* rawInts;
+	BOOL* existsRawInt;
+	int countOfInts;
 }
 
 +(GLK2UniformMap *)uniformMapForLinkedShaderProgram:(GLK2ShaderProgram *)shaderProgram
@@ -47,8 +52,12 @@
 	free( existsRawVector3 );
 	free( existsRawVector4 );
 	
+	free( rawInts );
+	free( existsRawInt );
+	
 	self.namesOfMatrix2s = self.namesOfMatrix3s = self.namesOfMatrix4s = nil;
 	self.namesOfVector2s = self.namesOfVector3s = self.namesOfVector4s = nil;
+	self.namesOfInts = nil;
 	
 	[super dealloc];
 }
@@ -94,6 +103,10 @@
 			else
 			{
 				// FIXME: not supported yet - raw ints, floats, bools, shorts, etc
+				if( uniform.isInteger )
+				{
+					countOfInts++;
+				}
 			}
 		}
 		
@@ -118,6 +131,9 @@
 		self.namesOfVector3s = [NSMutableArray array];
 		self.namesOfVector4s = [NSMutableArray array];
 		
+		rawInts = calloc( countOfInts, sizeof(GLint));
+		existsRawInt = calloc( countOfInts, sizeof(BOOL));
+		self.namesOfInts = [NSMutableArray array];
 		
 		for( GLK2Uniform* uniform in allUniforms )
 		{
@@ -136,8 +152,7 @@
 						break;
 				}
 			}
-			
-			if( uniform.isVector )
+			else if( uniform.isVector )
 			{
 				switch( uniform.vectorWidth )
 				{
@@ -150,6 +165,14 @@
 					case 4:
 						[self.namesOfVector4s addObject:uniform.nameInSourceFile];
 						break;
+				}
+			}
+			else
+			{
+				// FIXME: add floats, bools etc
+				if( uniform.isInteger )
+				{
+					[self.namesOfInts addObject:uniform.nameInSourceFile];
 				}
 			}
 		}
@@ -283,6 +306,21 @@
 	
 	existsRawVector4[rowIndex] = TRUE;
 	rawVector4s[rowIndex] = value;
+}
+
+#pragma mark - Primitives
+
+-(GLint*) pointerToIntNamed:(NSString*) name isValid:(BOOL*) isValid
+{
+	NSUInteger rowIndex = [self.namesOfInts indexOfObject:name];
+	
+	if( rowIndex == NSNotFound
+	|| (! existsRawInt[rowIndex]) )
+		*isValid = FALSE;
+	else
+		*isValid = TRUE;
+	
+	return &rawInts[rowIndex];
 }
 
 @end

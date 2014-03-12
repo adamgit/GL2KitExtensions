@@ -119,4 +119,11 @@
  */
 -(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName;
 
+/** Wraps the texture in S */
+-(void) setWrapSRepeat;
+-(void) setWrapTRepeat;
+/** Clamps the texture in S */
+-(void) setWrapSClamp;
+-(void) setWrapTClamp;
+
 @end

@@ -151,4 +151,30 @@
 	self.glName = newTetureName;
 }
 
+-(void)setWrapSClamp
+{
+	glBindTexture( GL_TEXTURE_2D, self.glName);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+}
+-(void)setWrapTClamp
+{
+	glBindTexture( GL_TEXTURE_2D, self.glName);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+}
+
+-(void)setWrapSRepeat
+{
+	NSLog(@"Warning: GL ES is broken and makes wrap-S textures go all black if NPOT - but provides NO WAY to check if a texture is NPOT. Seriously bad API design");
+	
+	glBindTexture( GL_TEXTURE_2D, self.glName);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+}
+-(void)setWrapTRepeat
+{
+	NSLog(@"Warning: GL ES is broken and makes wrap-S textures go all black if NPOT - but provides NO WAY to check if a texture is NPOT. Seriously bad API design");
+	
+	glBindTexture( GL_TEXTURE_2D, self.glName);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+}
+
 @end
