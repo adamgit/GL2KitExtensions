@@ -141,7 +141,7 @@
 	{
 		if( [self.shaderProgram allUniforms].count > 0 )
 		{
-			NSLog(@"WARNING: this DrawCall has uniforms, but no uniformValueGenerator; if another object ever uses the same ShaderProgram, and changes the values, this DrawCall will get 'leaked' incorrect values. Set a .uniformValueGenerator to remove this message - even an empty one that returns false for everything.");
+			NSLog(@"WARNING: DrawCall '%@' has uniforms, but no uniformValueGenerator; if another object ever uses the same ShaderProgram, and changes the values, this DrawCall will get 'leaked' incorrect values. Set a .uniformValueGenerator to remove this message - even an empty one that returns false for everything.", self.title );
 		}
 	}
 	else
