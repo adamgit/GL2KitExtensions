@@ -333,6 +333,16 @@
 	return [self setTexture:texture forSampler:sampler];
 }
 
+-(GLK2Texture*)getTextureForSamplerNamed:(NSString *)samplerName
+{
+	NSAssert( self.shaderProgram != nil, @"Cannot get textures from a drawcall until you've given it a shader program");
+	
+	GLK2Uniform* sampler = [self.shaderProgram uniformNamed:samplerName];
+	NSAssert( sampler != nil, @"Unknown sampler named %@", samplerName );
+	
+	return [self.texturesFromSamplers objectForKey:sampler];
+}
+
 -(GLint)textureUnitOffsetForSampler:(GLK2Uniform *)sampler
 {
 	int i=-1;

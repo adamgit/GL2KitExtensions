@@ -49,6 +49,8 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
+#define USE_GLK2TEXTURETRACKER_INTERNALLY 1 // set to 0 if you want to build without the extended classes e.g. GLK2TextureTracker
+
 @interface GLK2Texture : NSObject
 
 /**
@@ -70,6 +72,12 @@
  from doing this (for no apparent reason). So this method lets you convert from Apple's badly designed proprietary class
  into an instance that you can safely use */
 +(GLK2Texture*) texturePreLoadedByApplesGLKit:(GLKTextureInfo*) appleMetadata;
+
+/**
+ If your texture is already on the GPU and/or was created by 3rdparty code, this lets you
+ create a CPU-side GLK2Texture object to manage it
+ */
++(GLK2Texture*) textureAlreadyOnGPUWithName:(GLuint) existingName;
 
 /**
  Note that a raw stream of bytes contains NO INFORMATION about width/height of texture, so you need to provide those
@@ -96,11 +104,28 @@
 /** If a texture was loaded by an external source - e.g. Apple's GLKit - you'll already have a name for it, and can
  use this method
  
- NB: this is the designated initializer; this is particularly important w.r.t. GLK2TextureManager and subclassing
+ NB: this is the designated initializer; this is particularly important w.r.t. GLK2TextureTracker and subclassing
  this class
  */
 - (id)initWithName:(GLuint) name;
 
 -(void) uploadFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh;
+
+/** Advanced:
+ 
+ Mostly useful when hot-swapping a teture, this call drops the old .glName (and issues a glDeleteTeture on it
+ unless willDeleteOnDealloc is set to FALSE), then it grabs the incoming value and sets it as self.glName.
+ 
+ From this moment onwards, all rendering that indirects via this instance will use the "new" GPU-side teture
+ instead of the old one.
+ */
+-(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName;
+
+/** Wraps the texture in S */
+-(void) setWrapSRepeat;
+-(void) setWrapTRepeat;
+/** Clamps the texture in S */
+-(void) setWrapSClamp;
+-(void) setWrapTClamp;
 
 @end

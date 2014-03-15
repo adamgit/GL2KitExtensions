@@ -124,6 +124,14 @@
  Convenience version of method that takes a name, and fetches the sampler for you */
 -(GLuint) setTexture:(GLK2Texture*) texture forSamplerNamed:(NSString*) samplerName;
 
+/**
+ For hot-swapping textures, you often need to ask a drawcall:
+ 
+ "which GLK2Texture object do you currently use for sampler BLAH?"
+ 
+ */
+-(GLK2Texture*)getTextureForSamplerNamed:(NSString *)samplerName;
+
 /** Massive bug in OpenGL API: ShaderPrograms DO NOT USE the correct texture-unit ID's (i.e. GL_TEXTURE0 etc)
  for identifying texture-units; instead, they use "the offset to add to GL_TEXTURE0"
  */

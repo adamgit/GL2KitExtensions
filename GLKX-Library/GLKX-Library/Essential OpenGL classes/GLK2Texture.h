@@ -49,6 +49,8 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
+#define USE_GLK2TEXTURETRACKER_INTERNALLY 1 // set to 0 if you want to build without the extended classes e.g. GLK2TextureTracker
+
 @interface GLK2Texture : NSObject
 
 /**
@@ -102,7 +104,7 @@
 /** If a texture was loaded by an external source - e.g. Apple's GLKit - you'll already have a name for it, and can
  use this method
  
- NB: this is the designated initializer; this is particularly important w.r.t. GLK2TextureManager and subclassing
+ NB: this is the designated initializer; this is particularly important w.r.t. GLK2TextureTracker and subclassing
  this class
  */
 - (id)initWithName:(GLuint) name;

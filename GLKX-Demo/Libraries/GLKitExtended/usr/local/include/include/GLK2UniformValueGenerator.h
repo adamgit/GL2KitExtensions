@@ -52,6 +52,6 @@
 /** Returns FALSE if this object has no value / wants you to leave the value alone, because C doesn't support null primitives */
 -(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value inDrawCall:(GLK2DrawCall*) drawCall;
 /** Returns FALSE if this object has no value / wants you to leave the value alone, because C doesn't support null primitives */
--(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value inDrawCall:(GLK2DrawCall*) drawCall;
+-(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(GLint*) value inDrawCall:(GLK2DrawCall*) drawCall;
 
 @end

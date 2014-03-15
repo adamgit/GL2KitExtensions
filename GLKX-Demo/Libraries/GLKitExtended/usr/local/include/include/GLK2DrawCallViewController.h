@@ -73,4 +73,29 @@
  */
 -(void) willRenderDrawCallUsingVAOShaderProgramAndDefaultUniforms:(GLK2DrawCall*) drawCall;
 
+#pragma mark - Optional overrides for subclasses ONLY
+
+/** Subclasses can override this if they need to subvert the render-loop itself.
+ 
+ This is rare but sometimes useful if e.g. you want to have all your app-logic triggered
+ by the renderloop itself.
+ 
+ If overriding, be sure to call [super update] when you want the main rendering logic to
+ execute
+ */
+-(void) update;
+
+/** Subclasses can override this if they need to e.g. specialize the order in which drawcalls are 
+ drawn (e.g. pre-sorting, alpha-sorting, etc)
+ */
+-(void) renderSingleFrame;
+
+/** Subclasses can call this if overriding "renderSingleFrame", to use this class's detailed
+ version (it's a long method)
+ */
+-(void) renderSingleDrawCall:(GLK2DrawCall*) drawCall;
+
+/** Apple's driver is very slow at switching shaderprogram, and won't check if it's already set */
+@property(nonatomic) GLuint currentlyActiveShaderProgramName;
+
 @end

@@ -7,6 +7,10 @@
 
 #import "GLK2TextureLoaderPVRv1.h" // for textureNamed: auto-loading PVR's without Apple's bug
 
+#if USE_GLK2TEXTURETRACKER_INTERNALLY
+#import "GLK2TextureTracker.h"
+#endif
+
 @implementation GLK2Texture
 
 +(GLK2Texture *)textureNewEmpty
@@ -97,28 +101,38 @@
 {
 	GLuint newName;
 	glGenTextures(1, &newName);
-	
+		
 	return [self initWithName:newName];
 }
 
+/** DESIGNATED INITIALIZER: MUST BE CALLED EVENTUALLY, or else GLK2TextureTracker etc will break */
 - (id)initWithName:(GLuint) name
 {
     self = [super init];
     if (self) {
         self.glName = name;
 		self.willDeleteOnDealloc = TRUE;
+		
+#if USE_GLK2TEXTURETRACKER_INTERNALLY
+		[[GLK2TextureTracker sharedInstance] classTextureCreated:self];
+#endif
     }
     return self;
 }
 
 - (void)dealloc
 {
+#if USE_GLK2TEXTURETRACKER_INTERNALLY
+	[[GLK2TextureTracker sharedInstance] classTextureDeallocing:self];
 	
+	// no need to glDeleteTextures - the GLK2TextureTracker will do that *IF* required
+#else
 	if( self.willDeleteOnDealloc )
 	{
 		NSLog(@"Dealloc: %@, glDeleteTexures( 1, %i)", [self class], self.glName );
 		glDeleteTextures(1, &_glName);
 	}
+#endif
 	
 	[super dealloc];
 }
@@ -139,6 +153,10 @@
 
 -(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName
 {
+#if USE_GLK2TEXTURETRACKER_INTERNALLY
+	NSAssert(false, @"not checked yet");
+#endif
+
 	if( newTetureName == self.glName )
 		return; // no effect
 	
