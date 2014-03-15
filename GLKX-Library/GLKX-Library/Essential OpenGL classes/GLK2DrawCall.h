@@ -132,6 +132,9 @@
  */
 -(GLK2Texture*)getTextureForSamplerNamed:(NSString *)samplerName;
 
+/** For debugging: returns an array of all the GLK2Texture objects currently bound to a sampler */
+-(NSArray*) getCurrentTextures;
+
 /** Massive bug in OpenGL API: ShaderPrograms DO NOT USE the correct texture-unit ID's (i.e. GL_TEXTURE0 etc)
  for identifying texture-units; instead, they use "the offset to add to GL_TEXTURE0"
  */

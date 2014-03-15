@@ -111,7 +111,6 @@
     self = [super init];
     if (self) {
         self.glName = name;
-		self.willDeleteOnDealloc = TRUE;
 		
 #if USE_GLK2TEXTURETRACKER_INTERNALLY
 		[[GLK2TextureTracker sharedInstance] classTextureCreated:self];
@@ -137,9 +136,30 @@
 	[super dealloc];
 }
 
+-(void)setDisableAutoDelete:(BOOL)newValue
+{
+	if( _disableAutoDelete == newValue )
+		return;
+	
+	_disableAutoDelete = newValue;
+	
+#if USE_GLK2TEXTURETRACKER_INTERNALLY
+	if( self.disableAutoDelete )
+	{
+		// create an artificial thing to keep it live
+		[[GLK2TextureTracker sharedInstance] gpuTextureArtificiallyRetain:self.glName retainer:self];
+	}
+	else
+	{
+		// REMOVE an artificial thing to keep it live
+		[[GLK2TextureTracker sharedInstance] gpuTextureStopArtificiallyRetaining:self.glName retainer:self];
+	}
+#endif
+}
+
 -(NSString *)description
 {
-	return [NSString stringWithFormat:@"Texture-%i%@", self.glName, self.willDeleteOnDealloc? @"" : @"(WON'T delete on dealloc)" ];
+	return [NSString stringWithFormat:@"Texture-%i%@", self.glName, self.disableAutoDelete? @"(WILL NEVER DELETE)" : @"" ];
 }
 
 -(void) uploadFromNSData:(NSData *)rawData pixelsWide:(int) pWide pixelsHigh:(int) pHigh
@@ -151,22 +171,16 @@
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pWide, pHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, [rawData bytes]);
 }
 
--(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName
+-(void) reAssociateWithNewGPUTexture:(GLuint) newTextureName
 {
-#if USE_GLK2TEXTURETRACKER_INTERNALLY
-	NSAssert(false, @"not checked yet");
-#endif
-
-	if( newTetureName == self.glName )
+	if( newTextureName == self.glName )
 		return; // no effect
 	
-	if( self.willDeleteOnDealloc )
-	{
-		NSLog(@"Dealloc: %@, glDeleteTexures( 1, %i)", [self class], self.glName );
-		glDeleteTextures(1, &_glName);
-	}
+#if USE_GLK2TEXTURETRACKER_INTERNALLY
+	[[GLK2TextureTracker sharedInstance] classTexture:self switchingFrom:self.glName toNew:newTextureName];
+#endif
 	
-	self.glName = newTetureName;
+	self.glName = newTextureName;
 }
 
 -(void)setWrapSClamp

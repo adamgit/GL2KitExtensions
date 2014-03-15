@@ -57,5 +57,51 @@
 	XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 0, @"The temporary texture should have been dropped, and the GL texture untracked");
 }
 
+- (void)testTextureTrackerSharesTextureReferences
+{
+	GLK2TextureTracker* tracker = [GLK2TextureTracker sharedInstance];
+	XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 0, @"Should be no textures yet");
+	
+	GLK2Texture* textureOne;
+	GLK2Texture* textureTwo;
+	GLK2Texture* textureThatSwitches;
+	@autoreleasepool
+	{
+		textureOne = [GLK2Texture textureNewEmpty];
+		XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 1, @"Should be 1 tracked texture");
+		textureTwo = [[GLK2Texture textureNewEmpty] retain];
+		XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 2, @"Should be 2 tracked textures");
+		textureThatSwitches = [[GLK2Texture textureAlreadyOnGPUWithName:textureOne.glName] retain];
+		XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 2, @"Should be 2 tracked texture");
+	}
+	
+	XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 2, @"Should be 2 tracked textures");
+}
+
+- (void)testTextureTrackerReAssociatesTextures
+{
+	GLK2TextureTracker* tracker = [GLK2TextureTracker sharedInstance];
+	XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 0, @"Should be no textures yet");
+	
+	GLK2Texture* textureOne;
+	GLK2Texture* textureTwo;
+	GLK2Texture* textureThatSwitches;
+	@autoreleasepool
+	{
+		textureOne = [GLK2Texture textureNewEmpty];
+		XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 1, @"Should be 1 tracked texture");
+		
+		textureTwo = [GLK2Texture textureNewEmpty];
+		XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 2, @"Should be 2 tracked textures");
+		
+		textureThatSwitches = [[GLK2Texture textureAlreadyOnGPUWithName:textureOne.glName] retain];
+		XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 2, @"Should be 2 tracked texture");
+		
+		[textureThatSwitches reAssociateWithNewGPUTexture:textureTwo.glName];
+	}
+	
+	XCTAssertEqual( tracker.totalGLTexturesCurrentlyOnGPU, 1, @"Should be 1 tracked texture");
+}
+
 
 @end

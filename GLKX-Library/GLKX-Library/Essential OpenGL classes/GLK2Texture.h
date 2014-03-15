@@ -91,9 +91,13 @@
 /** OpenGL uses integers as "names" instead of Strings, because Strings in C are a pain to work with, and slower */
 @property(nonatomic, readonly) GLuint glName;
 
-/** Defaults to TRUE: there is only one known case where you DON'T want this behaviour: Apple's badly-documented CoreVideo for pulling frames from Camera onto GL texture, where Apple REQUIRES you to manually buffer
+/**
+ DEFAULTS to FALSE
+ 
+ There is one known case where you DON'T want to delete your own textures:
+ Apple's badly-documented CoreVideo for pulling frames from Camera onto GL texture, where Apple REQUIRES you to manually buffer
  textures from frame-to-frame until they "die" at a non-specified time of Apple's internal choosing */
-@property(nonatomic) BOOL willDeleteOnDealloc;
+@property(nonatomic) BOOL disableAutoDelete;
 
 /** Creates a new, blank, OpenGL texture on the GPU.
  
@@ -119,7 +123,7 @@
  From this moment onwards, all rendering that indirects via this instance will use the "new" GPU-side teture
  instead of the old one.
  */
--(void) reAssociateWithNewGPUTeture:(GLuint) newTetureName;
+-(void) reAssociateWithNewGPUTexture:(GLuint) newTextureName;
 
 /** Wraps the texture in S */
 -(void) setWrapSRepeat;

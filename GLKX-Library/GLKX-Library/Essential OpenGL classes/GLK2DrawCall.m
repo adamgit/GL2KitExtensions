@@ -343,6 +343,11 @@
 	return [self.texturesFromSamplers objectForKey:sampler];
 }
 
+-(NSArray*) getCurrentTextures
+{
+	return [self.texturesFromSamplers allValues];
+}
+
 -(GLint)textureUnitOffsetForSampler:(GLK2Uniform *)sampler
 {
 	int i=-1;
