@@ -6,6 +6,7 @@
 @property(nonatomic,retain) NSMutableArray* namesOfMatrix2s, * namesOfMatrix3s, * namesOfMatrix4s;
 @property(nonatomic,retain) NSMutableArray* namesOfVector2s, * namesOfVector3s, * namesOfVector4s;
 @property(nonatomic,retain) NSMutableArray* namesOfInts;
+@property(nonatomic,retain) NSMutableArray* namesOfFloats;
 @end
 
 @implementation GLK2UniformMap
@@ -25,6 +26,10 @@
 	GLint* rawInts;
 	BOOL* existsRawInt;
 	int countOfInts;
+	
+	GLfloat* rawFloats;
+	BOOL* existsRawFloat;
+	int countOfFloats;
 }
 
 +(GLK2UniformMap *)uniformMapForLinkedShaderProgram:(GLK2ShaderProgram *)shaderProgram
@@ -55,9 +60,13 @@
 	free( rawInts );
 	free( existsRawInt );
 	
+	free( rawFloats );
+	free( existsRawFloat );
+	
 	self.namesOfMatrix2s = self.namesOfMatrix3s = self.namesOfMatrix4s = nil;
 	self.namesOfVector2s = self.namesOfVector3s = self.namesOfVector4s = nil;
 	self.namesOfInts = nil;
+	self.namesOfFloats = nil;
 	
 	[super dealloc];
 }
@@ -102,10 +111,14 @@
 			}
 			else
 			{
-				// FIXME: not supported yet - raw ints, floats, bools, shorts, etc
+				// FIXME: not supported yet - raw bools, shorts, etc
 				if( uniform.isInteger )
 				{
 					countOfInts++;
+				}
+				else if( uniform.isFloat )
+				{
+					countOfFloats++;
 				}
 			}
 		}
@@ -134,6 +147,10 @@
 		rawInts = calloc( countOfInts, sizeof(GLint));
 		existsRawInt = calloc( countOfInts, sizeof(BOOL));
 		self.namesOfInts = [NSMutableArray array];
+		
+		rawFloats = calloc( countOfFloats, sizeof(GLfloat));
+		existsRawFloat = calloc( countOfFloats, sizeof(BOOL));
+		self.namesOfFloats = [NSMutableArray array];
 		
 		for( GLK2Uniform* uniform in allUniforms )
 		{
@@ -169,10 +186,14 @@
 			}
 			else
 			{
-				// FIXME: add floats, bools etc
+				// FIXME: add bools etc
 				if( uniform.isInteger )
 				{
 					[self.namesOfInts addObject:uniform.nameInSourceFile];
+				}
+				else if( uniform.isFloat )
+				{
+					[self.namesOfFloats addObject:uniform.nameInSourceFile];
 				}
 			}
 		}
@@ -321,6 +342,19 @@
 		*isValid = TRUE;
 	
 	return &rawInts[rowIndex];
+}
+
+-(GLfloat*) pointerToFloatNamed:(NSString*) name isValid:(BOOL*) isValid
+{
+	NSUInteger rowIndex = [self.namesOfFloats indexOfObject:name];
+	
+	if( rowIndex == NSNotFound
+	   || (! existsRawFloat[rowIndex]) )
+		*isValid = FALSE;
+	else
+		*isValid = TRUE;
+	
+	return &rawFloats[rowIndex];
 }
 
 @end

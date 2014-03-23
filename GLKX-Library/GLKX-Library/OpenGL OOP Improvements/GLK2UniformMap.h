@@ -50,5 +50,6 @@
 #pragma mark - Primitives
 
 -(GLint*) pointerToIntNamed:(NSString*) name isValid:(BOOL*) isValid;
+-(GLfloat*) pointerToFloatNamed:(NSString*) name isValid:(BOOL*) isValid;
 
 @end

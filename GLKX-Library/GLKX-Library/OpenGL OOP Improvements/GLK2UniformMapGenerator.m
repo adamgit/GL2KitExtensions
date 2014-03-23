@@ -51,10 +51,12 @@
 	return [self pointerToVector4Named:v.nameInSourceFile];
 }
 
--(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value inDrawCall:(GLK2DrawCall*) drawCall
+-(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(GLfloat*) value inDrawCall:(GLK2DrawCall*) drawCall
 {
-	NSAssert(FALSE, @"Storing floats: not implemented yet");
-	return FALSE;
+	BOOL isValid;
+	*value = *[self pointerToFloatNamed:v.nameInSourceFile isValid:&isValid];
+	
+	return isValid;
 }
 
 -(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(GLint*) value inDrawCall:(GLK2DrawCall*) drawCall

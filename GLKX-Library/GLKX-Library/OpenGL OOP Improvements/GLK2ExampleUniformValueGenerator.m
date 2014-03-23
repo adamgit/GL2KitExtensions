@@ -10,7 +10,7 @@
 -(GLKMatrix3*) matrix3ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall { return NULL; }
 -(GLKMatrix4*) matrix4ForUniform:(GLK2Uniform*) v inDrawCall:(GLK2DrawCall*) drawCall { return NULL; }
 
--(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(float*) value inDrawCall:(GLK2DrawCall*) drawCall { return FALSE; }
--(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(int*) value inDrawCall:(GLK2DrawCall*) drawCall { return FALSE; }
+-(BOOL) floatForUniform:(GLK2Uniform*) v returnIn:(GLfloat*) value inDrawCall:(GLK2DrawCall*) drawCall { return FALSE; }
+-(BOOL) intForUniform:(GLK2Uniform*) v returnIn:(GLint*) value inDrawCall:(GLK2DrawCall*) drawCall { return FALSE; }
 
 @end

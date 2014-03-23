@@ -151,6 +151,7 @@
 			if( uniform.isFloat )
 			{
 				float* floatPointer = NULL;
+				GLfloat tempFloat; // used when there's no struct
 				if( uniform.isMatrix )
 				{
 					switch( uniform.matrixWidth )
@@ -195,6 +196,7 @@
 				}
 				else
 				{
+					floatPointer = &tempFloat;
 					if( ! [self.uniformValueGenerator floatForUniform:uniform returnIn:floatPointer inDrawCall:self] )
 						floatPointer = 0; // kill the pointer
 				}
