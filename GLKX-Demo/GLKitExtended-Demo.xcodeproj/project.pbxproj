@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		660BC5CD18650C5300F3BF83 /* AppleFixBadTimeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 660BC5CC18650C5300F3BF83 /* AppleFixBadTimeAPI.m */; };
 		660BC5CF18650E0B00F3BF83 /* split-mesh-lat-lines.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660BC5CE18650E0B00F3BF83 /* split-mesh-lat-lines.mov */; };
-		6621F24218D4A01E00349CCA /* libGLKX-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6621F22818D4A01E00349CCA /* libGLKX-Library.a */; };
 		6631F2B01871015700C6E1AC /* CommonGLEngineCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631F2AF1871015700C6E1AC /* CommonGLEngineCode.m */; };
 		6672C734184A1E1700A23414 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C733184A1E1700A23414 /* Foundation.framework */; };
 		6672C736184A1E1700A23414 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6672C735184A1E1700A23414 /* CoreGraphics.framework */; };
@@ -34,6 +33,10 @@
 		668926FC187A078200479898 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668926FB187A078200479898 /* ViewController.m */; };
 		668926FF187A07A300479898 /* CALayerTextureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668926FE187A07A300479898 /* CALayerTextureViewController.m */; };
 		66892702187A0AAD00479898 /* VideoTextureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66892701187A0AAD00479898 /* VideoTextureViewController.m */; };
+		6695B8AA18E1F7D70063AAB1 /* MemoryUsageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6695B8A918E1F7D70063AAB1 /* MemoryUsageViewController.m */; };
+		6695B8AC18E1FB0E0063AAB1 /* libGLKX-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6695B8AB18E1FB0E0063AAB1 /* libGLKX-Library.a */; };
+		6695B8AE18E1FD360063AAB1 /* world.topo.bathy.200412.3x16384x8192.A1-legacy.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 6695B8AD18E1FD360063AAB1 /* world.topo.bathy.200412.3x16384x8192.A1-legacy.pvr */; };
+		6695B8B018E1FE250063AAB1 /* world.topo.200412.3x5400x2700.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695B8AF18E1FE250063AAB1 /* world.topo.200412.3x5400x2700.png */; };
 		66F414241860C77A00BCBC8C /* FragmentWithTexture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 66F414231860C77A00BCBC8C /* FragmentWithTexture.fsh */; };
 		66F414261860CB9D00BCBC8C /* VertexProjectedWithTexture.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 66F414251860CB9D00BCBC8C /* VertexProjectedWithTexture.vsh */; };
 		66F4143D186109FD00BCBC8C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F4143C186109FD00BCBC8C /* AVFoundation.framework */; };
@@ -44,7 +47,6 @@
 		660BC5CB18650C5300F3BF83 /* AppleFixBadTimeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleFixBadTimeAPI.h; sourceTree = "<group>"; };
 		660BC5CC18650C5300F3BF83 /* AppleFixBadTimeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleFixBadTimeAPI.m; sourceTree = "<group>"; };
 		660BC5CE18650E0B00F3BF83 /* split-mesh-lat-lines.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "split-mesh-lat-lines.mov"; sourceTree = "<group>"; };
-		6621F22818D4A01E00349CCA /* libGLKX-Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGLKX-Library.a"; sourceTree = "<group>"; };
 		6621F22D18D4A01E00349CCA /* GLK2Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2Attribute.h; sourceTree = "<group>"; };
 		6621F22E18D4A01E00349CCA /* GLK2BufferFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferFormat.h; sourceTree = "<group>"; };
 		6621F22F18D4A01E00349CCA /* GLK2BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLK2BufferObject.h; sourceTree = "<group>"; };
@@ -100,6 +102,11 @@
 		668926FE187A07A300479898 /* CALayerTextureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CALayerTextureViewController.m; sourceTree = "<group>"; };
 		66892700187A0AAD00479898 /* VideoTextureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTextureViewController.h; sourceTree = "<group>"; };
 		66892701187A0AAD00479898 /* VideoTextureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTextureViewController.m; sourceTree = "<group>"; };
+		6695B8A818E1F7D70063AAB1 /* MemoryUsageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryUsageViewController.h; sourceTree = "<group>"; };
+		6695B8A918E1F7D70063AAB1 /* MemoryUsageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryUsageViewController.m; sourceTree = "<group>"; };
+		6695B8AB18E1FB0E0063AAB1 /* libGLKX-Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGLKX-Library.a"; sourceTree = "<group>"; };
+		6695B8AD18E1FD360063AAB1 /* world.topo.bathy.200412.3x16384x8192.A1-legacy.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = "world.topo.bathy.200412.3x16384x8192.A1-legacy.pvr"; sourceTree = "<group>"; };
+		6695B8AF18E1FE250063AAB1 /* world.topo.200412.3x5400x2700.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = world.topo.200412.3x5400x2700.png; sourceTree = "<group>"; };
 		66F414231860C77A00BCBC8C /* FragmentWithTexture.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentWithTexture.fsh; sourceTree = "<group>"; };
 		66F414251860CB9D00BCBC8C /* VertexProjectedWithTexture.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexProjectedWithTexture.vsh; sourceTree = "<group>"; };
 		66F4143C186109FD00BCBC8C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -112,7 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F4143D186109FD00BCBC8C /* AVFoundation.framework in Frameworks */,
-				6621F24218D4A01E00349CCA /* libGLKX-Library.a in Frameworks */,
+				6695B8AC18E1FB0E0063AAB1 /* libGLKX-Library.a in Frameworks */,
 				6672C736184A1E1700A23414 /* CoreGraphics.framework in Frameworks */,
 				6672C738184A1E1700A23414 /* UIKit.framework in Frameworks */,
 				6672C734184A1E1700A23414 /* Foundation.framework in Frameworks */,
@@ -215,6 +222,8 @@
 				6672C771184A1ED200A23414 /* Images.xcassets */,
 				6672C772184A1ED200A23414 /* Shaders */,
 				6672C77B184A1ED200A23414 /* tex2.png */,
+				6695B8AD18E1FD360063AAB1 /* world.topo.bathy.200412.3x16384x8192.A1-legacy.pvr */,
+				6695B8AF18E1FE250063AAB1 /* world.topo.200412.3x5400x2700.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -274,7 +283,7 @@
 		6672C787184A1ED200A23414 /* GLKitExtended */ = {
 			isa = PBXGroup;
 			children = (
-				6621F22818D4A01E00349CCA /* libGLKX-Library.a */,
+				6695B8AB18E1FB0E0063AAB1 /* libGLKX-Library.a */,
 				6621F22918D4A01E00349CCA /* usr */,
 			);
 			path = GLKitExtended;
@@ -291,6 +300,8 @@
 				66892701187A0AAD00479898 /* VideoTextureViewController.m */,
 				668926FA187A078200479898 /* ViewController.h */,
 				668926FB187A078200479898 /* ViewController.m */,
+				6695B8A818E1F7D70063AAB1 /* MemoryUsageViewController.h */,
+				6695B8A918E1F7D70063AAB1 /* MemoryUsageViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -353,8 +364,10 @@
 				6672C7A3184A1ED200A23414 /* VertexPassThroughAlgorithmData.vsh in Resources */,
 				66F414241860C77A00BCBC8C /* FragmentWithTexture.fsh in Resources */,
 				6672C7A6184A1ED200A23414 /* VertexUnprojectedWithTexture.vsh in Resources */,
+				6695B8B018E1FE250063AAB1 /* world.topo.200412.3x5400x2700.png in Resources */,
 				660BC5CF18650E0B00F3BF83 /* split-mesh-lat-lines.mov in Resources */,
 				6672C7A2184A1ED200A23414 /* FragmentXYParameterized.fsh in Resources */,
+				6695B8AE18E1FD360063AAB1 /* world.topo.bathy.200412.3x16384x8192.A1-legacy.pvr in Resources */,
 				6672C79F184A1ED200A23414 /* FragmentColourOnly.fsh in Resources */,
 				6672C7A1184A1ED200A23414 /* FragmentTextureOnly.fsh in Resources */,
 				6672C7A0184A1ED200A23414 /* FragmentFunkyAlgorithm1.fsh in Resources */,
@@ -378,6 +391,7 @@
 				668926FC187A078200479898 /* ViewController.m in Sources */,
 				6672C7A9184A1ED200A23414 /* main.m in Sources */,
 				668926FF187A07A300479898 /* CALayerTextureViewController.m in Sources */,
+				6695B8AA18E1F7D70063AAB1 /* MemoryUsageViewController.m in Sources */,
 				66892702187A0AAD00479898 /* VideoTextureViewController.m in Sources */,
 				667C3B251880495F00C8FB3F /* MultithreadedLoadingTexturesViewController.m in Sources */,
 				6672C7A8184A1ED200A23414 /* AppDelegate.m in Sources */,

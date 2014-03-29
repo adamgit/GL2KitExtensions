@@ -6,6 +6,8 @@
 
 #define PVR_TEXTURE_FLAG_TYPE_MASK  0xff
 
+#define MEMORY_EFFICIENT_UPLOADS 1
+
 static char gPVRTexIdentifier[4] = "PVR!";
 
 enum
@@ -132,6 +134,10 @@ typedef struct _PVRTexHeader
 		
 		bytes = ((uint8_t *)[data bytes]) + sizeof(PVRTexHeader);
 		
+		BOOL hasMipMaps = FALSE;
+#if MEMORY_EFFICIENT_UPLOADS
+		int currentMipLevelIgnoringRejects = 0;
+#endif
 		// Calculate the data size for each texture level and respect the minimum number of blocks
 		while (dataOffset < dataLength)
 		{
@@ -159,10 +165,18 @@ typedef struct _PVRTexHeader
 			
 			dataSize = widthBlocks * heightBlocks * ((blockSize  * bpp) / 8);
 			
+			if( dataSize + dataOffset < dataLength )
+				hasMipMaps = TRUE;
+			
 			BOOL didRejectThisWidthHeight = FALSE;
 			if( width <= maximumTextureSize )
 			{
+#if MEMORY_EFFICIENT_UPLOADS
+				if( [self uploadtoGPUPartialDataFrom:data offsetInData:dataOffset lengthInData:dataSize forMipMapLevel:currentMipLevelIgnoringRejects fromTexture:pvrTexture width:width height:height includesMipMaps:hasMipMaps] )
+					currentMipLevelIgnoringRejects++;
+#else
 				[pvrTexture.imageData addObject:[NSData dataWithBytes:bytes+dataOffset length:dataSize]];
+#endif
 			}
 			else
 			{
@@ -193,6 +207,56 @@ typedef struct _PVRTexHeader
 	
 }
 
++(BOOL) uploadtoGPUPartialDataFrom:(NSData *)data offsetInData:(long) bytesOffset lengthInData:(long) bytesLength forMipMapLevel:(int) mipLevel fromTexture:(PVRTextureV1*) cpuTexture width:(int) widthOfCurrentMipLevel height:(int) heightOfCurrentMipLevel includesMipMaps:(BOOL) hasMipMaps
+{
+	GLenum err;
+	
+	err = glGetError();
+	if (err != GL_NO_ERROR)
+	{
+		NSLog(@"Error before starting texture upload: glError: 0x%04X", err);
+	}
+	
+	glBindTexture(GL_TEXTURE_2D, cpuTexture.glName);
+	
+	if ( hasMipMaps)
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	else
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	
+	/**
+	 Fix for Apple's broken code:
+	 
+	 - PVR MipMaps usually contain hi-res images that will crash the loader because they are too large for the chipset you're running
+	 - we are REQUIRED (by the chip manufacturer) to manually "ignore" those hi-res images when loading a mipmap, and NOT upload them to the chip
+	 */
+	GLint maximumTextureSize;
+	glGetIntegerv( GL_MAX_TEXTURE_SIZE, &maximumTextureSize );
+	if( maximumMipMapSize > 0 ) // 0 is "ignore", any other value is "artificial max value of maximumTextureSize"
+		maximumTextureSize = MIN( maximumTextureSize, maximumMipMapSize );
+	
+		if( widthOfCurrentMipLevel <= maximumTextureSize )
+		{
+			NSLog(@"glCompressedTexImage2D( ... mip: %i, width: %i, height: %i, bytesLength: %li, offset from start pointer: %li", mipLevel, widthOfCurrentMipLevel, heightOfCurrentMipLevel, bytesLength, bytesOffset);
+			glCompressedTexImage2D(GL_TEXTURE_2D, mipLevel, cpuTexture.internalFormat, widthOfCurrentMipLevel, heightOfCurrentMipLevel, 0, (int)bytesLength, [data bytes] + bytesOffset);
+			
+			err = glGetError();
+			if (err != GL_NO_ERROR)
+			{
+				NSLog(@"Error uploading compressed texture level = %d. glError: 0x%04X", mipLevel, err);
+				return FALSE;
+			}
+		
+		}
+		else
+		{
+			NSLog(@"[%@] WARNING: skipped mipmap level that was too large for this hardware (%i x %i pixels). Texture: %@", [self class], widthOfCurrentMipLevel, heightOfCurrentMipLevel, cpuTexture.textureSourceFileInfo );
+			return FALSE;
+		}
+		
+	return TRUE;
+
+}
 
 + (BOOL) uploadTextureToGPU:(PVRTextureV1*) cpuTexture
 {
@@ -292,7 +356,7 @@ typedef struct _PVRTexHeader
 	newTexture.textureSourceFileInfo = path;
 	
 	BOOL parsedPVRFileOK = [GLK2TextureLoaderPVRv1 unpackPVRData:data intoPVRTexture:newTexture];
-	[data release]; // release it quick! A 4kx4k uncompressed with mips could be than 85 megabytes!
+	[data release]; // release it quick! A 4kx4k uncompressed with mips could be more than 85 megabytes!
 	if ( ! parsedPVRFileOK )
 	{
 		NSLog(@"Failed to load PVR, file at path wasn't a VERSION1 .pvr file = %@", path);
@@ -300,12 +364,16 @@ typedef struct _PVRTexHeader
 		return nil;
 	}
 	
+#if MEMORY_EFFICIENT_UPLOADS
+	// do nothing; the parse process will have uploaded and released as it went
+#else
 	BOOL uploadedToGPUOK = [GLK2TextureLoaderPVRv1 uploadTextureToGPU:newTexture];
 	if( !uploadedToGPUOK )
 	{
 		[newTexture release]; // don't wait for the autorelease
 		return nil;
 	}
+#endif
 	
 	[newTexture autorelease]; // now we know it's keepable
 	return newTexture;
