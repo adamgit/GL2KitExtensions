@@ -15,6 +15,8 @@
 #import <GLKit/GLKit.h>
 #import "GLK2ShaderProgram.h"
 
+#define LOG_WARNINGS_ON_MISSING_UNIFORMS 1
+
 @interface GLK2UniformMap : NSObject
 
 /**

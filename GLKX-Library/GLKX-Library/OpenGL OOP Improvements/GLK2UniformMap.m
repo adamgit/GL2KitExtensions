@@ -201,6 +201,130 @@
     return self;
 }
 
+-(NSString *)description
+{
+	NSMutableString* s = [[NSMutableString new] autorelease];
+	
+	if( countOfInts > 0 )
+	{
+		int index = -1;
+		for( NSString* name in self.namesOfInts )
+		{
+			index++;
+			[s appendFormat:@"GLint: %@ ", name];
+			if( existsRawInt[index] )
+				[s appendFormat:@"%i", rawInts[index]];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	if( countOfFloats > 0 )
+	{
+		int floatIndex = -1;
+		for( NSString* name in self.namesOfFloats )
+		{
+			floatIndex++;
+			[s appendFormat:@"GLfloat: %@ ", name];
+			if( existsRawFloat[floatIndex] )
+				[s appendFormat:@"%.3f", rawFloats[floatIndex]];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	if( countOfVector2s > 0 )
+	{
+		int index = -1;
+		for( NSString* name in self.namesOfVector2s )
+		{
+			index++;
+			[s appendFormat:@"Vector2: %@ ", name];
+			if( existsRawVector2[index] )
+				[s appendFormat:@"%@", NSStringFromGLKVector2( rawVector2s[index] )];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	if( countOfVector3s > 0 )
+	{
+		int index = -1;
+		for( NSString* name in self.namesOfVector3s )
+		{
+			index++;
+			[s appendFormat:@"Vector3: %@ ", name];
+			if( existsRawVector3[index] )
+				[s appendFormat:@"%@", NSStringFromGLKVector3( rawVector3s[index] )];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	if( countOfVector4s > 0 )
+	{
+		int index = -1;
+		for( NSString* name in self.namesOfVector4s )
+		{
+			index++;
+			[s appendFormat:@"Vector4: %@ ", name];
+			if( existsRawVector4[index] )
+				[s appendFormat:@"%@", NSStringFromGLKVector4( rawVector4s[index] )];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	
+	if( countOfMatrix2s > 0 )
+	{
+		int index = -1;
+		for( NSString* name in self.namesOfMatrix2s )
+		{
+			index++;
+			[s appendFormat:@"Matrix2: %@ ", name];
+			if( existsRawMatrix2[index] )
+				[s appendFormat:@"%@", NSStringFromGLKMatrix2( rawMatrix2s[index] )];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	if( countOfMatrix3s > 0 )
+	{
+		int index = -1;
+		for( NSString* name in self.namesOfMatrix3s )
+		{
+			index++;
+			[s appendFormat:@"Matrix3: %@ ", name];
+			if( existsRawMatrix3[index] )
+				[s appendFormat:@"%@", NSStringFromGLKMatrix3( rawMatrix3s[index] )];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	if( countOfMatrix4s > 0 )
+	{
+		int index = -1;
+		for( NSString* name in self.namesOfMatrix4s )
+		{
+			index++;
+			[s appendFormat:@"Matrix4: %@ ", name];
+			if( existsRawMatrix4[index] )
+				[s appendFormat:@"%@", NSStringFromGLKMatrix4( rawMatrix4s[index] )];
+			else
+				[s appendString:@"<missing>"];
+			[s appendString:@"\n"];
+		}
+	}
+	
+	if( s.length < 1 )
+		[s appendString:@"<Generator created with no uniforms; cannot hold any data>"];
+	
+	return s;
+}
+
 #pragma mark - Matrices
 
 -(GLKMatrix2*) pointerToMatrix2Named:(NSString*) name
@@ -241,7 +365,12 @@
 {
 	NSUInteger rowIndex = [self.namesOfMatrix2s indexOfObject:name];
 	if( rowIndex == NSNotFound )
+	{
+#if LOG_WARNINGS_ON_MISSING_UNIFORMS
+		NSLog(@"WARNING: attempted to setMatrix2: for non-existent uniform = %@", name );
+#endif
 		return;
+	}
 	
 	existsRawMatrix2[rowIndex] = TRUE;
 	rawMatrix2s[rowIndex] = value;
@@ -250,7 +379,12 @@
 {
 	NSUInteger rowIndex = [self.namesOfMatrix3s indexOfObject:name];
 	if( rowIndex == NSNotFound )
+	{
+#if LOG_WARNINGS_ON_MISSING_UNIFORMS
+		NSLog(@"WARNING: attempted to setMatrix3: for non-existent uniform = %@", name );
+#endif
 		return;
+	}
 	
 	existsRawMatrix3[rowIndex] = TRUE;
 	rawMatrix3s[rowIndex] = value;
@@ -259,7 +393,12 @@
 {
 	NSUInteger rowIndex = [self.namesOfMatrix4s indexOfObject:name];
 	if( rowIndex == NSNotFound )
+	{
+#if LOG_WARNINGS_ON_MISSING_UNIFORMS
+		NSLog(@"WARNING: attempted to setMatrix4: for non-existent uniform = %@", name );
+#endif
 		return;
+	}
 	
 	existsRawMatrix4[rowIndex] = TRUE;
 	rawMatrix4s[rowIndex] = value;
@@ -305,7 +444,12 @@
 {
 	NSUInteger rowIndex = [self.namesOfVector2s indexOfObject:name];
 	if( rowIndex == NSNotFound )
+	{
+#if LOG_WARNINGS_ON_MISSING_UNIFORMS
+		NSLog(@"WARNING: attempted to setVector2: for non-existent uniform = %@", name );
+#endif
 		return;
+	}
 	
 	existsRawVector2[rowIndex] = TRUE;
 	rawVector2s[rowIndex] = value;
@@ -314,7 +458,12 @@
 {
 	NSUInteger rowIndex = [self.namesOfVector3s indexOfObject:name];
 	if( rowIndex == NSNotFound )
+	{
+#if LOG_WARNINGS_ON_MISSING_UNIFORMS
+		NSLog(@"WARNING: attempted to setVector3: for non-existent uniform = %@", name );
+#endif
 		return;
+	}
 	
 	existsRawVector3[rowIndex] = TRUE;
 	rawVector3s[rowIndex] = value;
@@ -323,7 +472,12 @@
 {
 	NSUInteger rowIndex = [self.namesOfVector4s indexOfObject:name];
 	if( rowIndex == NSNotFound )
+	{
+#if LOG_WARNINGS_ON_MISSING_UNIFORMS
+		NSLog(@"WARNING: attempted to setVector4: for non-existent uniform = %@", name );
+#endif
 		return;
+	}
 	
 	existsRawVector4[rowIndex] = TRUE;
 	rawVector4s[rowIndex] = value;

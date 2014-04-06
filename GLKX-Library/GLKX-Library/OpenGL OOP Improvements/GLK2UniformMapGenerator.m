@@ -4,6 +4,9 @@
 
 +(GLK2UniformMapGenerator *)generatorForShaderProgram:(GLK2ShaderProgram *)shaderProgram
 {
+	if( shaderProgram == nil )
+		return nil;
+	
 	GLK2UniformMapGenerator* newValue = [[GLK2UniformMapGenerator alloc] initWithUniforms:shaderProgram.allUniforms];
 	
 	return newValue;
@@ -11,6 +14,9 @@
 
 +(GLK2UniformMapGenerator *)createAndAddToDrawCall:(GLK2DrawCall *)drawcall
 {
+	if( drawcall == nil )
+		return nil;
+	
 	GLK2UniformMapGenerator* newValue = [self generatorForShaderProgram:drawcall.shaderProgram];
 	drawcall.uniformValueGenerator = newValue;
 	
